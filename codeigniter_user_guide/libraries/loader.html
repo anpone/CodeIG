@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>加载器类 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档</title>
+  
+
+  
+  
+  <link rel="shortcut icon" href="../_static/ci-icon.ico" />
+  
+
+  
+  <link href="../_static/css/fonts.css" rel="stylesheet" type="text/css" />
+
+  
+  
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme_cn.css" type="text/css" />
+    <link rel="top" title="CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" href="../index.html"/>
+        <link rel="up" title="类库参考" href="index.html"/>
+        <link rel="next" title="迁移类" href="migration.html"/>
+        <link rel="prev" title="语言类" href="language.html"/> 
+
+  
+  <script src="../_static/js/modernizr.2.6.2.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">类库参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">语言类</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAICAgICAgICAgICAgICAgMCAgICAwMDAwMDAwMEAwMDAwMDBAQEBAUEBAQFBQYGBQUHBwcHBwcHBwcHBwcHBwf/2wBDAQICAgMDAwUEBAUHBgUGBwgICAgICAgHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwf/wAARCAArAJoDAREAAhEBAxEB/8QAHgABAAAGAwEAAAAAAAAAAAAAAAQFBgcICQECAwr/xAA/EAAABAQCBgcFBAsBAAAAAAACAwQFAAEGBxESExZRU5XVCBQZIlWi0gkVITFCIzJSchgzQUNUVmFiZYWy1P/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDCEXygIE47JKAmEAgEAgEAgEAgEAgEAgEAgEBBnGBCcEH9kBEAnjAekBusU9DWxoACnKgx8ZqLmMBaWquivZhvLMmXRYy8v+XfRf8AS+A1WwCAQCAQGdrZby3DbbG0T0bRllHB4q2kVb0+r7nV5U1PLz1Jb+4oQCSoW96RJ9AEhOWHMAqXekLHGeMBQHSCoei6doG0FTUxTlDMLpVTpWaN9Mt5UbxUjOpLZxsoW+QFTs4OGQwrrZ2eRYg/e72OAcAxRgL79Hy3Rtwq1EnU0Y51hTrciNMfAoUlQKikYjijOomKJU2ES2WkNLmEEpYSn8Zz+AZwGdrf0V7fuZqhEK0TylGY1uI0xxbddJIKSopvPOSSCodpBRhmI8AA4HTwFjl+c5QGrN/p98pV4XU/UjUuZHtsMCS4NTkUIhSnGIATQhNKHgIM5gEEXx/ZOAk8AgEAgMwujjZygLjMDg51XT/vZanqE9uJO685pcqctKlNADIiVEA++aL6YDNZq6HlkDygzFQoxf7moP8A3wE7/QysZ/IY+M1FzKAzzWtJehF3YDHe4DNiSdkD9AoD5j9aFm/8ofTANaFm/wDKH0wDWhZv/KH0wDWhZv8Ayh9MA1oWb/yh9MBsYJujb8VobCIFlyujsgeGu3y1M8tdxqPfawdkZ46pdzgFDPp9ndC0IZkjAOSc8ZZve0uTIYAQgtz0l7j0s62nsI30rWtrqmXtb3cI16T2taVbCiRAVmU91GalidUaFcmEfoTsDDEwQnZBTLEOQZ4BhbrQs3/lD6YC+Vh7g0vS9VDqer6nPRSbtCiR0sVTDNUJNSFOGkTLkC4x/UJWxuSyLyyOPNmIcgDnMoOYOaQZtvV+LEW/bbdW4emWnzimtFUL5T1Y0q6Uxc9bb55dHw6adaZ1AsinXctWQACkxFIOZJMJcwBEMJQoDWtWFQJk1U1AQxVSGrGgDqo6hUoGwTQFyKmZMUlgWw4OdJI3HGRQviGXwwl8oCm9aFm/8ofTANaFm/8AKH0wDWhZv/KH0wHOtCz+I2/MIMP6fTjjAba/Z9SMe7eVAsOFpNHXytPmy/hamsf0fmgNtzA0l6EPd+iAqn3SVsgJ6eXIYBSywFq6oZOtFmSwgPn3e/ZrX1b3BcS21ZbdwbCVh4W1YqUvaNUelCaLqxylGU1qgJjRg7wiwnmhCLuaUf34Cmx+z0v4GeHvy2nEHrk0B17Pa/vjluOIPfJoB2e1+vG7b8Qe+TwDs9r++OW44g98mgHZ7X98ctxxB75NAOz2v745bjiD3yaAdntfrxu2/EHvk8A7Pa/Xjdt+IPfJ4B2e1+vG7b8Qe+TwDs9r9eN234g98ngHZ7X68btvxB75PAOz2v143bfiD3yeAdntf3xy3HEHvk0BHEezo6QKmeAKgtiH8zk+8kgNrHQv6OlSWHtyqpurXZqeH52qpdUqwTIFQJCkCclSt5KYlSqCQcp+xRhPEIRBXeN0WQeTTDDYU2JpFlBllgJ1hL8MAnLNKAlalFI6QsQwFLqqaLOmLEuAlI6MInP9TAeepabcwDUtNuYBqWm3MA1LTbmAalptzANS025gGpabcwDUtNuYBqWm3MA1LTbmAalptzANTCJfuYCOIpQkuYfs4CpkbSAjLgGAnxQMksID2gEB1FAJylsgOcJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUBzAIBAf/Z" title="切换目录" alt="切换目录" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索手册" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">类库参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">语言类</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">首页</a> &raquo; </li>
+    
+    <li><a href="index.html">类库参考</a> &raquo; </li>
+    
+    <li>加载器类</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;">
+      <div style="text-decoration:underline;color:blue;margin-left:5px;cursor:pointer;" id="closeMe">
+        <img title="目录" alt="toc" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+      </div>
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="id1">
+<h1>加载器类<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>加载器，顾名思义，是用于加载元素的，加载的元素可以是库（类），<a class="reference internal" href="../general/views.html"><em>视图文件</em></a> ，
+<a class="reference internal" href="../general/drivers.html"><em>驱动器</em></a> ，<a class="reference internal" href="../general/helpers.html"><em>辅助函数</em></a> ，
+<a class="reference internal" href="../general/models.html"><em>模型</em></a> 或其他你自己的文件。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">该类由系统自动加载，你无需手工加载。</p>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#id2" id="id6">应用程序&quot;包&quot;</a><ul>
+<li><a class="reference internal" href="#id3" id="id7">包的视图文件</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4" id="id8">类参考</a></li>
+</ul>
+</div>
+<div class="custom-index container"></div><div class="section" id="id2">
+<h2><a class="toc-backref" href="#id6">应用程序&quot;包&quot;</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>应用程序包（Package）可以很便捷的将你的应用部署在一个独立的目录中，
+以实现自己整套的类库，模型，辅助函数，配置，文件和语言包。
+建议将这些应用程序包放置在 application/third_party 目录下。
+下面是一个简单应用程序包的目录结构。</p>
+<p>下面是一个名为 &quot;Foo Bar&quot; 的应用程序包目录的例子。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">/</span><span class="nx">application</span><span class="o">/</span><span class="nx">third_party</span><span class="o">/</span><span class="nx">foo_bar</span>
+
+<span class="nx">config</span><span class="o">/</span>
+<span class="nx">helpers</span><span class="o">/</span>
+<span class="nx">language</span><span class="o">/</span>
+<span class="nx">libraries</span><span class="o">/</span>
+<span class="nx">models</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>无论应用程序包是为了实现什么样的目的，它都包含了属于自己的配置文件、
+辅助函数、语言包、类库和模型。如果要在你的控制器里使用这些资源，
+你首先需要告知加载器（Loader）从应用程序包加载资源，使用
+<tt class="docutils literal"><span class="pre">add_package_path()</span></tt> 方法来添加包的路径。</p>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id7">包的视图文件</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>默认情况下，当调用 <tt class="docutils literal"><span class="pre">add_package_path()</span></tt> 方法时，包的视图文件路径就设置好了。
+视图文件的路径是通过一个循环来查找的，一旦找到第一个匹配的即加载该视图。</p>
+<p>在这种情况下，它可能在包内产生视图命名冲突，并可能导致加载错误的包。
+为了确保不会发生此类问题，在调用 <tt class="docutils literal"><span class="pre">add_package_path()</span></tt> 方法时，
+可以将可选的第二个参数设置为 FALSE 。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">add_package_path</span><span class="p">(</span><span class="nx">APPPATH</span><span class="o">.</span><span class="s1">&#39;my_app&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;my_app_index&#39;</span><span class="p">);</span> <span class="c1">// Loads</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;welcome_message&#39;</span><span class="p">);</span> <span class="c1">// Will not load the default welcome_message b/c the second param to add_package_path is FALSE</span>
+
+<span class="c1">// Reset things</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">remove_package_path</span><span class="p">(</span><span class="nx">APPPATH</span><span class="o">.</span><span class="s1">&#39;my_app&#39;</span><span class="p">);</span>
+
+<span class="c1">// Again without the second parameter:</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">add_package_path</span><span class="p">(</span><span class="nx">APPPATH</span><span class="o">.</span><span class="s1">&#39;my_app&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;my_app_index&#39;</span><span class="p">);</span> <span class="c1">// Loads</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;welcome_message&#39;</span><span class="p">);</span> <span class="c1">// Loads</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id8">类参考</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="CI_Loader">
+<em class="property">class </em><tt class="descname">CI_Loader</tt><a class="headerlink" href="#CI_Loader" title="永久链接至目标">¶</a></dt>
+<dd><dl class="method">
+<dt id="CI_Loader::library">
+<tt class="descname">library</tt><big>(</big><em>$library</em><span class="optional">[</span>, <em>$params = NULL</em><span class="optional">[</span>, <em>$object_name = NULL</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Loader::library" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$library</strong> (<em>mixed</em>) -- Library name as a string or an array with multiple libraries</li>
+<li><strong>$params</strong> (<em>array</em>) -- Optional array of parameters to pass to the loaded library's constructor</li>
+<li><strong>$object_name</strong> (<em>string</em>) -- Optional object name to assign the library to</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">CI_Loader instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">CI_Loader</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>该方法用于加载核心类。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">我们有时候说 &quot;类&quot; ，有时候说 &quot;库&quot; ，这两个词不做区分。</p>
+</div>
+<p>例如，如果你想使用 CodeIgniter 发送邮件，第一步就是在控制器中加载 email 类:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>加载完之后，email 类就可以使用 <tt class="docutils literal"><span class="pre">$this-&gt;email</span></tt> 来访问使用了。</p>
+<p>类库文件可以被保存到主 libraries 目录的子目录下面，或者保存到个人的 <em>application/libraries</em>
+目录下。要载入子目录下的文件，只需将路径包含进来就可以了，注意这里说的路径是指相对于
+libraries 目录的路径。 例如，当你有一个文件保存在下面这个位置:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nx">libraries</span><span class="o">/</span><span class="nx">flavors</span><span class="o">/</span><span class="nx">Chocolate</span><span class="o">.</span><span class="nx">php</span>
+</pre></div>
+</div>
+<p>你应该使用下面的方式来载入它:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;flavors/chocolate&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>你可以随心所欲地将文件保存到多层的子目录下。</p>
+<p>另外，你可以同时加载多个类，只需给 library 方法传入一个包含所有要载入的类名的数组即可::</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;table&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<p><strong>设置选项</strong></p>
+<p>第二个参数是可选的，用于选择性地传递配置参数。一般来说，你可以将参数以数组的形式传递过去:</p>
+<div class="highlight-ci"><div class="highlight"><pre>$config = array (
+    &#39;mailtype&#39; =&gt; &#39;html&#39;,
+    &#39;charset&#39;  =&gt; &#39;utf-8,
+    &#39;priority&#39; =&gt; &#39;1&#39;
+);
+
+$this-&gt;load-&gt;library(&#39;email&#39;, $config);
+</pre></div>
+</div>
+<p>配置参数通常也可以保存在一个配置文件中，在每个类库自己的页面中有详细的说明，
+所以在使用类库之前，请认真阅读说明。</p>
+<p>请注意，当第一个参数使用数组来同时载入多个类时，每个类将获得相同的参数信息。</p>
+<p><strong>给类库分配不同的对象名</strong></p>
+<p>第三个参数也是可选的，如果为空，类库通常就会被赋值给一个与类库同名的对象。
+例如，如果类库名为 Calendar ，它将会被赋值给一个名为 <tt class="docutils literal"><span class="pre">$this-&gt;calendar</span></tt> 的变量。</p>
+<p>如果你希望使用你的自定义名称，你可以通过第三个参数把它传递过去:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;calendar&#39;</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="s1">&#39;my_calendar&#39;</span><span class="p">);</span>
+
+<span class="c1">// Calendar class is now accessed using:</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">my_calendar</span>
+</pre></div>
+</div>
+<p>请注意，当第一个参数使用数组来同时载入多个类时，第三个参数将不起作用。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::driver">
+<tt class="descname">driver</tt><big>(</big><em>$library</em><span class="optional">[</span>, <em>$params = NULL</em><span class="optional">[</span>, <em>$object_name</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Loader::driver" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$library</strong> (<em>mixed</em>) -- Library name as a string or an array with multiple libraries</li>
+<li><strong>$params</strong> (<em>array</em>) -- Optional array of parameters to pass to the loaded library's constructor</li>
+<li><strong>$object_name</strong> (<em>string</em>) -- Optional object name to assign the library to</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">CI_Loader instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">CI_Loader</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>该方法用于加载驱动器类，和 <tt class="docutils literal"><span class="pre">library()</span></tt> 方法非常相似。</p>
+<p>例如，如果你想在 CodeIgniter 中使用会话，第一步就是在控制器中加载 session 驱动器:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">driver</span><span class="p">(</span><span class="s1">&#39;session&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>加载完之后，session 驱动器就可以使用 <tt class="docutils literal"><span class="pre">$this-&gt;session</span></tt> 来访问使用了。</p>
+<p>驱动器文件可以被保存到主 libraries 目录的子目录下面，或者保存到个人的 <em>application/libraries</em>
+目录下。子目录的名称必须和驱动器父类的名称一致，你可以阅读 <a class="reference internal" href="../general/drivers.html"><em>驱动器</em></a>
+了解详细信息。</p>
+<p>另外，你可以同时加载多个驱动器，只需给 driver 方法传入一个包含所有要载入的驱动器名的数组即可::</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">driver</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;session&#39;</span><span class="p">,</span> <span class="s1">&#39;cache&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<p><strong>设置选项</strong></p>
+<p>第二个参数是可选的，用于选择性地传递配置参数。一般来说，你可以将参数以数组的形式传递过去:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;sess_driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cookie&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sess_encrypt_cookie&#39;</span>  <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="s1">&#39;encryption_key&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysecretkey&#39;</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">driver</span><span class="p">(</span><span class="s1">&#39;session&#39;</span><span class="p">,</span> <span class="nv">$config</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>配置参数通常也可以保存在一个配置文件中，在每个类库自己的页面中有详细的说明，
+所以在使用类库之前，请认真阅读说明。</p>
+<p><strong>给类库分配不同的对象名</strong></p>
+<p>第三个参数也是可选的，如果为空，驱动器通常就会被赋值给一个与它同名的对象。
+例如，如果驱动器名为 Session ，它将会被赋值给一个名为 <tt class="docutils literal"><span class="pre">$this-&gt;session</span></tt> 的变量。</p>
+<p>如果你希望使用你的自定义名称，你可以通过第三个参数把它传递过去:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">driver</span><span class="p">(</span><span class="s1">&#39;session&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;my_session&#39;</span><span class="p">);</span>
+
+<span class="c1">// Session class is now accessed using:</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">my_session</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::view">
+<tt class="descname">view</tt><big>(</big><em>$view</em><span class="optional">[</span>, <em>$vars = array()</em><span class="optional">[</span>, <em>return = FALSE</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Loader::view" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$view</strong> (<em>string</em>) -- View name</li>
+<li><strong>$vars</strong> (<em>array</em>) -- An associative array of variables</li>
+<li><strong>$return</strong> (<em>bool</em>) -- Whether to return the loaded view</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">View content string if $return is set to TRUE, otherwise CI_Loader instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>该方法用于加载你的视图文件。如果你尚未阅读本手册的 <a class="reference internal" href="../general/views.html"><em>视图</em></a>
+章节的话，建议你先去阅读那里的内容，会有更详细的函数使用说明。</p>
+<p>第一个参数是必须的，指定你要载入的视图文件的名称。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">无需加上 .php 扩展名，除非你使用了其他的扩展名。</p>
+</div>
+<p>第二个参数是**可选的**，允许你传入一个数组或对象参数，传入的参数将使用 PHP 的
+<a class="reference external" href="http://php.net/extract">extract()</a>  函数进行提取，提取出来的变量可以在视图中使用。
+再说一遍，请阅读 <a class="reference internal" href="../general/views.html"><em>视图</em></a> 章节了解该功能的更多用法。</p>
+<p>第三个参数是**可选的**，用于改变方法的行为，将数据以字符串的形式返回，
+而不是发送给浏览器。当你希望对数据进行一些特殊处理时，这个参数就非常有用。
+如果你将这个参数设置为 TRUE，方法就会返回数据。这个参数的默认值是 FALSE，
+也就是数据将会被发送给浏览器。如果你希望数据被返回，记得要将它赋值给一个变量:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$string</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;myfile&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::vars">
+<tt class="descname">vars</tt><big>(</big><em>$vars</em><span class="optional">[</span>, <em>$val = ''</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Loader::vars" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$vars</strong> (<em>mixed</em>) -- An array of variables or a single variable name</li>
+<li><strong>$val</strong> (<em>mixed</em>) -- Optional variable value</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">CI_Loader instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">CI_Loader</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>这个方法以一个关联数组作为输入参数,将这个数组用 PHP 的 <a class="reference external" href="http://php.net/extract">extract()</a> 函数转化成与之对应的变量。这个方法的结果与上面的
+<tt class="docutils literal"><span class="pre">$this-&gt;load-&gt;view()</span></tt> 方法使用第二个参数的结果一样。
+假如你想在控制器的构造函数中定义一些全局变量，并希望这些变量在控制器的
+每一个方法加载的视图文件中都可用，这种情况下你可能想单独使用这个函数。
+你可以多次调用该方法，数据将被缓存，并被合并为一个数组，以便转换成变量。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::get_var">
+<tt class="descname">get_var</tt><big>(</big><em>$key</em><big>)</big><a class="headerlink" href="#CI_Loader::get_var" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>string</em>) -- Variable name key</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Value if key is found, NULL if not</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>该方法检查关联数组中的变量对你的视图是否可用。当一个变量在一个类
+或者控制器的另一个方法里被以这样的方式定义时：<tt class="docutils literal"><span class="pre">$this-&gt;load-&gt;vars()</span></tt>，
+会做这样的检查。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::get_vars">
+<tt class="descname">get_vars</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Loader::get_vars" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">An array of all assigned view variables</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">array</td>
+</tr>
+</tbody>
+</table>
+<p>该方法返回所有对视图可用的变量。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::clear_vars">
+<tt class="descname">clear_vars</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Loader::clear_vars" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">CI_Loader instance (method chaining)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">CI_Loader</td>
+</tr>
+</tbody>
+</table>
+<p>清除缓存的视图变量。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::model">
+<tt class="descname">model</tt><big>(</big><em>$model</em><span class="optional">[</span>, <em>$name = ''</em><span class="optional">[</span>, <em>$db_conn = FALSE</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Loader::model" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$model</strong> (<em>mixed</em>) -- Model name or an array containing multiple models</li>
+<li><strong>$name</strong> (<em>string</em>) -- Optional object name to assign the model to</li>
+<li><strong>$db_conn</strong> (<em>string</em>) -- Optional database configuration group to load</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">CI_Loader instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">CI_Loader</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">model</span><span class="p">(</span><span class="s1">&#39;model_name&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>如果你的模型位于子目录下，加载时将路径包含进来即可。例如，
+如果你有一个模型位于 <em>application/models/blog/Queries.php</em> ，
+你可以使用下面的方法来加载:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">model</span><span class="p">(</span><span class="s1">&#39;blog/queries&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>如果你希望将你的模型赋值给一个不同的变量，你可以在第二个参数中指定:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">model</span><span class="p">(</span><span class="s1">&#39;model_name&#39;</span><span class="p">,</span> <span class="s1">&#39;fubar&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">fubar</span><span class="o">-&gt;</span><span class="na">method</span><span class="p">();</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::database">
+<tt class="descname">database</tt><big>(</big><span class="optional">[</span><em>$params = ''</em><span class="optional">[</span>, <em>$return = FALSE</em><span class="optional">[</span>, <em>$query_builder = NULL</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Loader::database" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$params</strong> (<em>mixed</em>) -- Database group name or configuration options</li>
+<li><strong>$return</strong> (<em>bool</em>) -- Whether to return the loaded database object</li>
+<li><strong>$query_builder</strong> (<em>bool</em>) -- Whether to load the Query Builder</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Loaded CI_DB instance or FALSE on failure if $return is set to TRUE, otherwise CI_Loader instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>该方法用于加载数据库类，有两个可选的参数。
+更多信息，请阅读 <a class="reference internal" href="../database/index.html"><em>数据库</em></a> 。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::dbforge">
+<tt class="descname">dbforge</tt><big>(</big><span class="optional">[</span><em>$db = NULL</em><span class="optional">[</span>, <em>$return = FALSE</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Loader::dbforge" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$db</strong> (<em>object</em>) -- Database object</li>
+<li><strong>$return</strong> (<em>bool</em>) -- Whether to return the Database Forge instance</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Loaded CI_DB_forge instance if $return is set to TRUE, otherwise CI_Loader instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>加载 <a class="reference internal" href="../database/forge.html"><em>数据库工厂类</em></a> ，更多信息，请参考该页面。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::dbutil">
+<tt class="descname">dbutil</tt><big>(</big><span class="optional">[</span><em>$db = NULL</em><span class="optional">[</span>, <em>$return = FALSE</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Loader::dbutil" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$db</strong> (<em>object</em>) -- Database object</li>
+<li><strong>$return</strong> (<em>bool</em>) -- Whether to return the Database Utilities instance</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Loaded CI_DB_utility instance if $return is set to TRUE, otherwise CI_Loader instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>加载 <a class="reference internal" href="../database/utilities.html"><em>数据库工具类</em></a> ，更多信息，请参考该页面。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::helper">
+<tt class="descname">helper</tt><big>(</big><em>$helpers</em><big>)</big><a class="headerlink" href="#CI_Loader::helper" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$helpers</strong> (<em>mixed</em>) -- Helper name as a string or an array containing multiple helpers</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">CI_Loader instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">CI_Loader</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>该方法用于加载辅助函数文件，其中 file_name 为加载的文件名，不带 _helper.php 后缀。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::file">
+<tt class="descname">file</tt><big>(</big><em>$path</em><span class="optional">[</span>, <em>$return = FALSE</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Loader::file" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$path</strong> (<em>string</em>) -- File path</li>
+<li><strong>$return</strong> (<em>bool</em>) -- Whether to return the loaded file</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">File contents if $return is set to TRUE, otherwise CI_Loader instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>这是一个通用的文件载入方法，在第一个参数中给出文件所在的路径和文件名，
+将会打开并读取对应的文件。默认情况下，数据会被发送给浏览器，
+就如同视图文件一样，但如果你将第二个参数设置为 TRUE ，
+那么数据就会以字符串的形式被返回，而不是发送给浏览器。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::language">
+<tt class="descname">language</tt><big>(</big><em>$files</em><span class="optional">[</span>, <em>$lang = ''</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Loader::language" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$files</strong> (<em>mixed</em>) -- Language file name or an array of multiple language files</li>
+<li><strong>$lang</strong> (<em>string</em>) -- Language name</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">CI_Loader instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">CI_Loader</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>该方法是 <a class="reference internal" href="language.html"><em>语言加载方法</em></a> <tt class="docutils literal"><span class="pre">$this-&gt;lang-&gt;load()</span></tt> 的一个别名。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::config">
+<tt class="descname">config</tt><big>(</big><em>$file</em><span class="optional">[</span>, <em>$use_sections = FALSE</em><span class="optional">[</span>, <em>$fail_gracefully = FALSE</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Loader::config" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$file</strong> (<em>string</em>) -- Configuration file name</li>
+<li><strong>$use_sections</strong> (<em>bool</em>) -- Whether configuration values should be loaded into their own section</li>
+<li><strong>$fail_gracefully</strong> (<em>bool</em>) -- Whether to just return FALSE in case of failure</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">TRUE on success, FALSE on failure</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>该方法是 <a class="reference internal" href="config.html"><em>配置文件加载方法</em></a> <tt class="docutils literal"><span class="pre">$this-&gt;config-&gt;load()</span></tt> 的一个别名。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::is_loaded">
+<tt class="descname">is_loaded</tt><big>(</big><em>$class</em><big>)</big><a class="headerlink" href="#CI_Loader::is_loaded" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$class</strong> (<em>string</em>) -- Class name</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Singleton property name if found, FALSE if not</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>用于检查某个类是否已经被加载。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这里的类指的是类库和驱动器。</p>
+</div>
+<p>如果类已经被加载，方法返回它在 CodeIgniter 超级对象中被赋值的变量的名称，
+如果没有加载，返回 FALSE:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;form_validation&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">is_loaded</span><span class="p">(</span><span class="s1">&#39;Form_validation&#39;</span><span class="p">);</span>  <span class="c1">// returns &#39;form_validation&#39;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">is_loaded</span><span class="p">(</span><span class="s1">&#39;Nonexistent_library&#39;</span><span class="p">);</span>  <span class="c1">// returns FALSE</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">如果你有类的多个实例（被赋值给多个不同的属性），那么将返回第一个的名称。</p>
+</div>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;form_validation&#39;</span><span class="p">,</span> <span class="nv">$config</span><span class="p">,</span> <span class="s1">&#39;fv&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;form_validation&#39;</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">is_loaded</span><span class="p">(</span><span class="s1">&#39;Form_validation&#39;</span><span class="p">);</span>  <span class="c1">// returns &#39;fv&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::add_package_path">
+<tt class="descname">add_package_path</tt><big>(</big><em>$path</em><span class="optional">[</span>, <em>$view_cascade = TRUE</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Loader::add_package_path" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$path</strong> (<em>string</em>) -- Path to add</li>
+<li><strong>$view_cascade</strong> (<em>bool</em>) -- Whether to use cascading views</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">CI_Loader instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">CI_Loader</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>添加一个包路径，用于告诉加载器类使用给定的路径来加载后续请求的资源。
+例如，&quot;Foo Bar&quot; 应用程序包里有一个名为 Foo_bar.php 的类，在控制器中，
+我们可以按照如下的方法调用:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">add_package_path</span><span class="p">(</span><span class="nx">APPPATH</span><span class="o">.</span><span class="s1">&#39;third_party/foo_bar/&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;foo_bar&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::remove_package_path">
+<tt class="descname">remove_package_path</tt><big>(</big><span class="optional">[</span><em>$path = ''</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Loader::remove_package_path" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$path</strong> (<em>string</em>) -- Path to remove</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">CI_Loader instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">CI_Loader</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>当你的控制器完成从应用程序包中读取资源，如果你还需要读取其他的应用程序包的资源，
+你会希望删除当前使用的包路径来让加载器不再使用这个文件夹中的资源。
+要删除最后一次使用的包路径，你可以直接不带参数的调用该方法。</p>
+<p>或者你也可以删除一个特定的包路径，指定与之前使用 <tt class="docutils literal"><span class="pre">add_package_path()</span></tt> 方法时
+所加载的包相同的路径:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">remove_package_path</span><span class="p">(</span><span class="nx">APPPATH</span><span class="o">.</span><span class="s1">&#39;third_party/foo_bar/&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Loader::get_package_paths">
+<tt class="descname">get_package_paths</tt><big>(</big><span class="optional">[</span><em>$include_base = TRUE</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Loader::get_package_paths" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$include_base</strong> (<em>bool</em>) -- Whether to include BASEPATH</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">An array of package paths</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">array</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>返回当前所有可用的包路径。</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="migration.html" class="btn btn-neutral float-right" title="迁移类">下一个主题 <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="language.html" class="btn btn-neutral" title="语言类"><span class="fa fa-arrow-circle-left"></span> 上一个主题</a>
+      
+    </div>
+  
+
+  
+  <div id="notes">
+  
+  <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="userguide3/libraries/loader" data-title="加载器类" data-url="http://codeigniter.org.cn/user_guide/libraries/loader.html"></div>
+  <!-- 多说评论框 end -->
+  
+
+  <div class="ds-share flat" data-thread-key="userguide3/libraries/loader" data-title="加载器类 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" data-url="http://codeigniter.org.cn/user_guide/libraries/loader.html" data-images="" data-content="">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+  </div>
+
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codeigniter"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+  <!-- 多说公共JS代码 end -->
+  </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2014 - 2015, 不列颠哥伦比亚理工学院.
+       最后修改: 2015-10-11.
+    </p>
+
+    <p>以 <a href="http://www.aneasystone.com/" target="_blank">aneasystone</a> 制作的手册为基础构建</p>
+  </div>
+
+  
+    <p>基于 <a href="http://sphinx-doc.org/">Sphinx</a> 并使用 <a href="https://readthedocs.org">Read the Docs</a> 提供的<a href="https://github.com/snide/sphinx_rtd_theme">风格</a>构建</p>
+    <p>
+        <a href="https://github.com/CodeIgniter-Chinese/codeigniter-user-guide" target="_blank">Github 简体中文翻译</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/codeigniter_user_guide.zip">离线版压缩包下载</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/CodeIgniter.pdf">PDF 版下载</a>
+    </p>
+  
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.0.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-272152-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+  
+
+</body>
+</html>

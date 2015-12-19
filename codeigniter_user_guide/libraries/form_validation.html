@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>表单验证类 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档</title>
+  
+
+  
+  
+  <link rel="shortcut icon" href="../_static/ci-icon.ico" />
+  
+
+  
+  <link href="../_static/css/fonts.css" rel="stylesheet" type="text/css" />
+
+  
+  
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme_cn.css" type="text/css" />
+    <link rel="top" title="CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" href="../index.html"/>
+        <link rel="up" title="类库参考" href="index.html"/>
+        <link rel="next" title="FTP 类" href="ftp.html"/>
+        <link rel="prev" title="文件上传类" href="file_uploading.html"/> 
+
+  
+  <script src="../_static/js/modernizr.2.6.2.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">类库参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAICAgICAgICAgICAgICAgMCAgICAwMDAwMDAwMEAwMDAwMDBAQEBAUEBAQFBQYGBQUHBwcHBwcHBwcHBwcHBwf/2wBDAQICAgMDAwUEBAUHBgUGBwgICAgICAgHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwf/wAARCAArAJoDAREAAhEBAxEB/8QAHgABAAAGAwEAAAAAAAAAAAAAAAQFBgcICQECAwr/xAA/EAAABAQCBgcFBAsBAAAAAAACAwQFAAEGBxESExZRU5XVCBQZIlWi0gkVITFCIzJSchgzQUNUVmFiZYWy1P/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDCEXygIE47JKAmEAgEAgEAgEAgEAgEAgEAgEBBnGBCcEH9kBEAnjAekBusU9DWxoACnKgx8ZqLmMBaWquivZhvLMmXRYy8v+XfRf8AS+A1WwCAQCAQGdrZby3DbbG0T0bRllHB4q2kVb0+r7nV5U1PLz1Jb+4oQCSoW96RJ9AEhOWHMAqXekLHGeMBQHSCoei6doG0FTUxTlDMLpVTpWaN9Mt5UbxUjOpLZxsoW+QFTs4OGQwrrZ2eRYg/e72OAcAxRgL79Hy3Rtwq1EnU0Y51hTrciNMfAoUlQKikYjijOomKJU2ES2WkNLmEEpYSn8Zz+AZwGdrf0V7fuZqhEK0TylGY1uI0xxbddJIKSopvPOSSCodpBRhmI8AA4HTwFjl+c5QGrN/p98pV4XU/UjUuZHtsMCS4NTkUIhSnGIATQhNKHgIM5gEEXx/ZOAk8AgEAgMwujjZygLjMDg51XT/vZanqE9uJO685pcqctKlNADIiVEA++aL6YDNZq6HlkDygzFQoxf7moP8A3wE7/QysZ/IY+M1FzKAzzWtJehF3YDHe4DNiSdkD9AoD5j9aFm/8ofTANaFm/wDKH0wDWhZv/KH0wDWhZv8Ayh9MA1oWb/yh9MBsYJujb8VobCIFlyujsgeGu3y1M8tdxqPfawdkZ46pdzgFDPp9ndC0IZkjAOSc8ZZve0uTIYAQgtz0l7j0s62nsI30rWtrqmXtb3cI16T2taVbCiRAVmU91GalidUaFcmEfoTsDDEwQnZBTLEOQZ4BhbrQs3/lD6YC+Vh7g0vS9VDqer6nPRSbtCiR0sVTDNUJNSFOGkTLkC4x/UJWxuSyLyyOPNmIcgDnMoOYOaQZtvV+LEW/bbdW4emWnzimtFUL5T1Y0q6Uxc9bb55dHw6adaZ1AsinXctWQACkxFIOZJMJcwBEMJQoDWtWFQJk1U1AQxVSGrGgDqo6hUoGwTQFyKmZMUlgWw4OdJI3HGRQviGXwwl8oCm9aFm/8ofTANaFm/8AKH0wDWhZv/KH0wHOtCz+I2/MIMP6fTjjAba/Z9SMe7eVAsOFpNHXytPmy/hamsf0fmgNtzA0l6EPd+iAqn3SVsgJ6eXIYBSywFq6oZOtFmSwgPn3e/ZrX1b3BcS21ZbdwbCVh4W1YqUvaNUelCaLqxylGU1qgJjRg7wiwnmhCLuaUf34Cmx+z0v4GeHvy2nEHrk0B17Pa/vjluOIPfJoB2e1+vG7b8Qe+TwDs9r++OW44g98mgHZ7X98ctxxB75NAOz2v745bjiD3yaAdntfrxu2/EHvk8A7Pa/Xjdt+IPfJ4B2e1+vG7b8Qe+TwDs9r9eN234g98ngHZ7X68btvxB75PAOz2v143bfiD3yeAdntf3xy3HEHvk0BHEezo6QKmeAKgtiH8zk+8kgNrHQv6OlSWHtyqpurXZqeH52qpdUqwTIFQJCkCclSt5KYlSqCQcp+xRhPEIRBXeN0WQeTTDDYU2JpFlBllgJ1hL8MAnLNKAlalFI6QsQwFLqqaLOmLEuAlI6MInP9TAeepabcwDUtNuYBqWm3MA1LTbmAalptzANS025gGpabcwDUtNuYBqWm3MA1LTbmAalptzANTCJfuYCOIpQkuYfs4CpkbSAjLgGAnxQMksID2gEB1FAJylsgOcJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUBzAIBAf/Z" title="切换目录" alt="切换目录" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索手册" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">类库参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">首页</a> &raquo; </li>
+    
+    <li><a href="index.html">类库参考</a> &raquo; </li>
+    
+    <li>表单验证类</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;">
+      <div style="text-decoration:underline;color:blue;margin-left:5px;cursor:pointer;" id="closeMe">
+        <img title="目录" alt="toc" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+      </div>
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="id1">
+<h1><a class="toc-backref" href="#id29">表单验证类</a><a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>CodeIgniter 提供了一个全面的表单验证和数据预处理类可以帮你少写很多代码。</p>
+<div class="contents topic" id="page-contents">
+<p class="topic-title first">Page Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id1" id="id29">表单验证类</a><ul>
+<li><a class="reference internal" href="#id2" id="id30">概述</a></li>
+<li><a class="reference internal" href="#id3" id="id31">表单验证指南</a><ul>
+<li><a class="reference internal" href="#id4" id="id32">表单</a></li>
+<li><a class="reference internal" href="#id5" id="id33">成功页面</a></li>
+<li><a class="reference internal" href="#id6" id="id34">控制器</a></li>
+<li><a class="reference internal" href="#id7" id="id35">试一下！</a></li>
+<li><a class="reference internal" href="#id8" id="id36">解释</a></li>
+<li><a class="reference internal" href="#setting-validation-rules" id="id37">设置验证规则</a></li>
+<li><a class="reference internal" href="#id10" id="id38">使用数组来设置验证规则</a></li>
+<li><a class="reference internal" href="#cascading-rules" id="id39">级联规则（Cascading Rules）</a></li>
+<li><a class="reference internal" href="#id11" id="id40">预处理数据</a></li>
+<li><a class="reference internal" href="#id12" id="id41">重新填充表单</a></li>
+<li><a class="reference internal" href="#id13" id="id42">回调：你自己的验证函数</a></li>
+<li><a class="reference internal" href="#id14" id="id43">使用任何可调用的方法作为验证规则</a></li>
+<li><a class="reference internal" href="#setting-error-messages" id="id44">设置错误信息</a></li>
+<li><a class="reference internal" href="#translating-field-names" id="id45">翻译表单域名称</a></li>
+<li><a class="reference internal" href="#changing-delimiters" id="id46">更改错误定界符</a></li>
+<li><a class="reference internal" href="#id18" id="id47">单独显示错误</a></li>
+<li><a class="reference internal" href="#post" id="id48">验证数组（除 $_POST 数组）</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#saving-groups" id="id49">将一系列验证规则保存到一个配置文件</a><ul>
+<li><a class="reference internal" href="#id20" id="id50">如何保存你的规则</a></li>
+<li><a class="reference internal" href="#id21" id="id51">创建规则集</a></li>
+<li><a class="reference internal" href="#id22" id="id52">调用某组验证规则</a></li>
+<li><a class="reference internal" href="#id23" id="id53">将控制器方法和规则集关联在一起</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-arrays-as-field-names" id="id54">使用数组作为域名称</a></li>
+<li><a class="reference internal" href="#id25" id="id55">规则参考</a></li>
+<li><a class="reference internal" href="#id26" id="id56">预处理参考</a></li>
+<li><a class="reference internal" href="#class-reference" id="id57">类参考</a></li>
+<li><a class="reference internal" href="#helper-functions" id="id58">辅助函数参考</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id30">概述</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>在解释 CodeIgniter 的数据验证处理之前，让我们先描述一下一般的情况：</p>
+<ol class="arabic simple">
+<li>显示一个表单。</li>
+<li>你填写并提交了它。</li>
+<li>如果你提交了一些无效的信息，或者可能漏掉了一个必填项，
+表单将会重新显示你的数据，并提示一个错误信息。</li>
+<li>这个过程将继续，直到你提交了一个有效的表单。</li>
+</ol>
+<p>在接收端，脚本必须：</p>
+<ol class="arabic simple">
+<li>检查必填的数据。</li>
+<li>验证数据类型是否为正确，条件是否满足。例如，如果提交一个用户名，
+必须验证它是否只包含了允许的字符，必须有一个最小长度，不能超过最大长度。
+用户名不能和已存在的其他人名字相同，或者不能是某个保留字，等等。</li>
+<li>为确保安全性对数据进行过滤。</li>
+<li>如果需要，预格式化数据（数据需要清除空白吗？需要 HTML 编码？等等）</li>
+<li>准备数据，插入数据库。</li>
+</ol>
+<p>尽管上面的过程并不是很复杂，但是通常需要编写很多代码，而且为了显示错误信息，
+在网页中经常要使用多种不同的控制结构。表单验证虽然简单，但是实现起来却非常枯燥。</p>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id31">表单验证指南</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>下面是实现 CodeIgniter 表单验证的一个简易教程。</p>
+<p>为了进行表单验证，你需要这三样东西：</p>
+<ol class="arabic simple">
+<li>一个包含表单的 <a class="reference internal" href="../general/views.html"><em>视图</em></a> 文件。</li>
+<li>一个包含“成功”信息的视图文件，在成功提交后将被显示。</li>
+<li>一个接收并处理所提交数据的 <a class="reference internal" href="../general/controllers.html"><em>控制器</em></a> 方法。</li>
+</ol>
+<p>让我们以一个会员注册表单为例来创建这三样东西。</p>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id32">表单</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p>使用文本编辑器创建一个名为 myform.php 的文件，在它里面插入如下代码，
+并把它保存到你的 applications/views/ 目录下:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Form</span><span class="o">&lt;/</span><span class="nx">title</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+
+<span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">validation_errors</span><span class="p">();</span> <span class="cp">?&gt;</span>
+
+<span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">form_open</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+
+<span class="nt">&lt;h5&gt;</span>Username<span class="nt">&lt;/h5&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;username&quot;</span> <span class="na">value=</span><span class="s">&quot;&quot;</span> <span class="na">size=</span><span class="s">&quot;50&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;h5&gt;</span>Password<span class="nt">&lt;/h5&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;password&quot;</span> <span class="na">value=</span><span class="s">&quot;&quot;</span> <span class="na">size=</span><span class="s">&quot;50&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;h5&gt;</span>Password Confirm<span class="nt">&lt;/h5&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;passconf&quot;</span> <span class="na">value=</span><span class="s">&quot;&quot;</span> <span class="na">size=</span><span class="s">&quot;50&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;h5&gt;</span>Email Address<span class="nt">&lt;/h5&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;email&quot;</span> <span class="na">value=</span><span class="s">&quot;&quot;</span> <span class="na">size=</span><span class="s">&quot;50&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;div&gt;&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span> <span class="na">value=</span><span class="s">&quot;Submit&quot;</span> <span class="nt">/&gt;&lt;/div&gt;</span>
+
+<span class="nt">&lt;/form&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id33">成功页面</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<p>使用文本编辑器创建一个名为 formsuccess.php 的文件，在它里面插入如下代码，
+并把它保存到你的 applications/views/ 目录下:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Form</span><span class="o">&lt;/</span><span class="nx">title</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span><span class="nx">Your</span> <span class="nx">form</span> <span class="nx">was</span> <span class="nx">successfully</span> <span class="nx">submitted</span><span class="o">!&lt;/</span><span class="nx">h3</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">anchor</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;Try it again!&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="nt">&lt;/p&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id34">控制器</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<p>使用文本编辑器创建一个名为 Form.php 的控制器文件，在它里面插入如下代码，
+并把它保存到你的 application/controllers/ 目录下:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">class</span> <span class="nc">Form</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">));</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;form_validation&#39;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">()</span> <span class="o">==</span> <span class="k">FALSE</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;myform&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;formsuccess&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id35">试一下！</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<p>访问类似于下面这样的 URL 来体验一下你的表单:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">form</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>如果你提交表单，你会看到表单只是简单重新加载了，这是因为你还没有设置任何验证规则。</p>
+<p><strong>由于你还没有告诉表单验证类验证什么东西，它默认返回 FALSE， ``run()``
+方法只在全部成功匹配了你的规则后才会返回 TRUE 。</strong></p>
+</div>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id36">解释</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p>在这个页面上你会注意到以下几点：</p>
+<p>例子中的表单（myform.php）是一个标准的 Web 表单，除了以下两点：</p>
+<ol class="arabic">
+<li><p class="first">它使用了一个 表单辅助函数 来创建表单的起始标签。，严格来说这并不是必要的，
+你完全可以使用标准的 HTML 来创建，使用辅助函数的好处是它生成 action 的时候，
+是基于你配置文件来生成 URL 的，这使得你的应用在更改 URL 时更具移植性。</p>
+</li>
+<li><p class="first">在表单的顶部你将注意到如下函数调用：</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">validation_errors</span><span class="p">();</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p>这个函数将会返回验证器返回的所有错误信息。如果没有错误信息，它将返回空字符串。</p>
+</li>
+</ol>
+<p>控制器（Form.php）有一个方法： <tt class="docutils literal"><span class="pre">index()</span></tt> 。这个方法初始化验证类，
+并加载你视图中用到的 表单辅助函数 和 URL 辅助函数，它也会 执行 验证流程，
+基于验证是否成功，它会重新显示表单或显示成功页面。</p>
+</div>
+<div class="section" id="setting-validation-rules">
+<span id="id9"></span><h3><a class="toc-backref" href="#id37">设置验证规则</a><a class="headerlink" href="#setting-validation-rules" title="永久链接至标题">¶</a></h3>
+<p>CodeIgniter 允许你为单个表单域创建多个验证规则，按顺序层叠在一起，
+你也可以同时对表单域的数据进行预处理。要设置验证规则，
+可以使用 <tt class="docutils literal"><span class="pre">set_rules()</span></tt>  方法:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>上面的方法有 <strong>三个</strong> 参数：</p>
+<ol class="arabic simple">
+<li>表单域名 - 就是你给表单域取的那个名字。</li>
+<li>表单域的 &quot;人性化&quot; 名字，它将被插入到错误信息中。例如，
+如果你有一个表单域叫做 “user” ，你可能会给它一个人性化的名字叫做 “用户名” 。</li>
+<li>为此表单域设置的验证规则。</li>
+<li>（可选的）当此表单域设置自定义的错误信息，如果没有设置该参数，将使用默认的。</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">如果你想让表单域的名字保存在一个语言文件里，请参考 <a class="reference internal" href="#translating-field-names"><em>翻译表单域名称</em></a></p>
+</div>
+<p>下面是个例子，在你的控制器（Form.php）中紧接着验证初始化函数之后，添加这段代码:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;passconf&#39;</span><span class="p">,</span> <span class="s1">&#39;Password Confirmation&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>你的控制器现在看起来像这样:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">class</span> <span class="nc">Form</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">));</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;form_validation&#39;</span><span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">,</span>
+            <span class="k">array</span><span class="p">(</span><span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;You must provide a %s.&#39;</span><span class="p">)</span>
+        <span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;passconf&#39;</span><span class="p">,</span> <span class="s1">&#39;Password Confirmation&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">()</span> <span class="o">==</span> <span class="k">FALSE</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;myform&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;formsuccess&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>现在如果你不填写表单就提交，你将会看到错误信息。如果你填写了所有的表单域并提交，你会看到成功页。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">当出现错误时表单页将重新加载，所有的表单域将会被清空，并没有被重新填充。
+稍后我们再去处理这个问题。</p>
+</div>
+</div>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id38">使用数组来设置验证规则</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<p>在继续之前请注意，如果你更喜欢通过一个操作设置所有规则的话，
+你也可以使用一个数组来设置验证规则，如果你使用这种方式，
+你必须像下面这样来定义你的数组:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+    <span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;errors&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;required&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;You must provide a %s.&#39;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;passconf&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Password Confirmation&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+    <span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cascading-rules">
+<h3><a class="toc-backref" href="#id39">级联规则（Cascading Rules）</a><a class="headerlink" href="#cascading-rules" title="永久链接至标题">¶</a></h3>
+<p>CodeIgniter 允许你将多个规则连接在一起。让我们试一试，修改规则设置函数中的第三个参数，如下:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span>
+    <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;required|min_length[5]|max_length[12]|is_unique[users.username]&#39;</span><span class="p">,</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;required&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;You have not provided %s.&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;is_unique&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;This %s already exists.&#39;</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;passconf&#39;</span><span class="p">,</span> <span class="s1">&#39;Password Confirmation&#39;</span><span class="p">,</span> <span class="s1">&#39;required|matches[password]&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="s1">&#39;required|valid_email|is_unique[users.email]&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>上面的代码设置了以下规则：</p>
+<ol class="arabic simple">
+<li>用户名表单域长度不得小于 5 个字符、不得大于 12 个字符。</li>
+<li>密码表单域必须跟密码确认表单域的数据一致。</li>
+<li>电子邮件表单域必须是一个有效邮件地址。</li>
+</ol>
+<p>马上试试看！提交不合法的数据后你会看到新的错误信息，跟你设置的新规则相符。
+还有很多其他的验证规则，你可以阅读验证规则参考。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p>你也可以传一个包含规则的数组给 <tt class="docutils literal"><span class="pre">set_rules()</span></tt> 方法来替代字符串，例如:</p>
+<div class="last highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;required&#39;</span><span class="p">,</span> <span class="s1">&#39;min_length[5]&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id40">预处理数据</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<p>除了上面我们使用的那些验证函数，你还可以以多种方式来预处理你的数据。
+例如，你可以设置像这样的规则:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span> <span class="s1">&#39;trim|required|min_length[5]|max_length[12]&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span> <span class="s1">&#39;trim|required|min_length[8]&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;passconf&#39;</span><span class="p">,</span> <span class="s1">&#39;Password Confirmation&#39;</span><span class="p">,</span> <span class="s1">&#39;trim|required|matches[password]&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="s1">&#39;trim|required|valid_email&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>在上面的例子里，我们去掉字符串两端空白（trimming），检查字符串的长度，确保两次输入的密码一致。</p>
+<p><strong>任何只有一个参数的 PHP 原生函数都可以被用作一个规则，比如 ``htmlspecialchars``，``trim`` 等等。</strong></p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">你一般会在验证规则**之后**使用预处理功能，这样如果发生错误，原数据将会被显示在表单。</p>
+</div>
+</div>
+<div class="section" id="id12">
+<h3><a class="toc-backref" href="#id41">重新填充表单</a><a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<p>目前为止我们只是在处理错误，是时候用提交的数据重新填充表单了。
+CodeIgniter 为此提供了几个辅助函数，你最常用到的一个是:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;field name&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>打开 myform.php 视图文件并使用 <a class="reference internal" href="../helpers/form_helper.html#set_value" title="set_value"><tt class="xref php php-func docutils literal"><span class="pre">set_value()</span></tt></a> 函数更新每个表单域的 <strong>值</strong> ：</p>
+<p><strong>不要忘记在 :php:func:`set_value()` 函数中包含每个表单域的名字！</strong></p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Form</span><span class="o">&lt;/</span><span class="nx">title</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nx">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+
+<span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">validation_errors</span><span class="p">();</span> <span class="cp">?&gt;</span>
+
+<span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">form_open</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+
+<span class="nt">&lt;h5&gt;</span>Username<span class="nt">&lt;/h5&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;username&quot;</span> <span class="na">value=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size=</span><span class="s">&quot;50&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;h5&gt;</span>Password<span class="nt">&lt;/h5&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;password&quot;</span> <span class="na">value=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size=</span><span class="s">&quot;50&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;h5&gt;</span>Password Confirm<span class="nt">&lt;/h5&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;passconf&quot;</span> <span class="na">value=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;passconf&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size=</span><span class="s">&quot;50&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;h5&gt;</span>Email Address<span class="nt">&lt;/h5&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;email&quot;</span> <span class="na">value=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size=</span><span class="s">&quot;50&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;div&gt;&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span> <span class="na">value=</span><span class="s">&quot;Submit&quot;</span> <span class="nt">/&gt;&lt;/div&gt;</span>
+
+<span class="nt">&lt;/form&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>现在刷新你的页面并提交表单触发一个错误，你的表单域应该被重新填充了。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">下面的 <a class="reference internal" href="#class-reference"><em>类参考</em></a> 节包含了可以让你重填下拉菜单，单选框和复选框的函数。</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p>如果你使用一个数组作为一个表单域的名字，那么函数的参数也应该是一个数组。例如:</p>
+<div class="last highlight-ci"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;colors[]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&lt;?php echo set_value(&#39;colors[]&#39;); ?&gt;&quot;</span> <span class="nx">size</span><span class="o">=</span><span class="s2">&quot;50&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>更多信息请参考下面的 <a class="reference internal" href="#using-arrays-as-field-names"><em>使用数组作为域名称</em></a> 一节。</p>
+</div>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id42">回调：你自己的验证函数</a><a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<p>验证系统支持设置你自己的验证函数，这样你可以扩展验证类以适应你自己的需求。
+例如，如果你需要查询数据库来检查用户名是否唯一，你可以创建一个回调函数，
+让我们来新建一个例子。</p>
+<p>在你的控制器中，将用户名的规则修改为:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span> <span class="s1">&#39;callback_username_check&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>然后在你的控制器中添加一个新的方法 <tt class="docutils literal"><span class="pre">username_check()</span></tt> 。你的控制器现在看起来是这样:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">class</span> <span class="nc">Form</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">));</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;form_validation&#39;</span><span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span> <span class="s1">&#39;callback_username_check&#39;</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;passconf&#39;</span><span class="p">,</span> <span class="s1">&#39;Password Confirmation&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span> <span class="s1">&#39;required|is_unique[users.email]&#39;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">()</span> <span class="o">==</span> <span class="k">FALSE</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;myform&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;formsuccess&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">username_check</span><span class="p">(</span><span class="nv">$str</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$str</span> <span class="o">==</span> <span class="s1">&#39;test&#39;</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_message</span><span class="p">(</span><span class="s1">&#39;username_check&#39;</span><span class="p">,</span> <span class="s1">&#39;The {field} field can not be the word &quot;test&quot;&#39;</span><span class="p">);</span>
+            <span class="k">return</span> <span class="k">FALSE</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="k">TRUE</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>重新载入表单并以 “test” 作为用户名提交数据，你会看到表单域数据被传递到你的回调函数中处理了。</p>
+<p>要调用一个回调函数只需把函数名加一个 &quot;callback_&quot; <strong>前缀**并放在验证规则里。
+如果你需要在你的回调函数中调用一个额外的参数，你只需要在回调函数后面用[]把参数
+（这个参数只能是字符串类型）括起来，例如：&quot;callback_foo**[bar]</strong>&quot; ，
+其中 bar 将成为你的回调函数中的第二个参数。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">你也可以对传给你的表单数据进行处理并返回，如果你的回调函数返回了除布尔型的
+TRUE 或 FALSE 之外的任何值，它将被认为是你新处理过的表单数据。</p>
+</div>
+</div>
+<div class="section" id="id14">
+<h3><a class="toc-backref" href="#id43">使用任何可调用的方法作为验证规则</a><a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
+<p>如果回调的规则对你来说还不够好（例如，它们被限制只能定义在控制器中），
+别失望，还有一种方法来创建自定义的规则：任何 <tt class="docutils literal"><span class="pre">is_callable()</span></tt> 函数返回
+TRUE 的东西都可以作为规则。</p>
+<p>看下面的例子:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span>
+    <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;required&#39;</span><span class="p">,</span>
+        <span class="k">array</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">users_model</span><span class="p">,</span> <span class="s1">&#39;valid_username&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>上面的代码将使用 <tt class="docutils literal"><span class="pre">Users_model</span></tt> 模型的 <tt class="docutils literal"><span class="pre">valid_username()</span></tt> 方法来作为验证规则。</p>
+<p>当然，这只是个例子，规则不只限于使用模型的方法，你可以使用任何对象和方法
+来接受域值作为第一个参数。如果你使用 PHP 5.3+ ，还可以使用匿名方法:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span>
+    <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;required&#39;</span><span class="p">,</span>
+        <span class="k">function</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// Check $value</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>但是，由于可调用的规则并不是一个字符串，也没有一个规则名，所以当你需要为它们设置
+相应的错误消息时会有麻烦。为了解决这个问题，你可以将这样的规则放到一个数组的第二个值，
+第一个值放置规则名:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span>
+    <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;required&#39;</span><span class="p">,</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;username_callable&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">users_model</span><span class="p">,</span> <span class="s1">&#39;valid_username&#39;</span><span class="p">))</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>下面是使用匿名方法（PHP 5.3+）的版本:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span>
+    <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;required&#39;</span><span class="p">,</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;username_callable&#39;</span><span class="p">,</span>
+            <span class="k">function</span><span class="p">(</span><span class="nv">$str</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">// Check validity of $str and return TRUE or FALSE</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-error-messages">
+<span id="id15"></span><h3><a class="toc-backref" href="#id44">设置错误信息</a><a class="headerlink" href="#setting-error-messages" title="永久链接至标题">¶</a></h3>
+<p>所有原生的错误信息都位于下面的语言文件中： <strong>language/english/form_validation_lang.php</strong></p>
+<p>To set your own global custom message for a rule, you can either
+extend/override the language file by creating your own in
+<strong>application/language/english/form_validation_lang.php</strong> (read more
+about this in the <a class="reference internal" href="language.html"><em>Language Class</em></a> documentation),
+or use the following method:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_message</span><span class="p">(</span><span class="s1">&#39;rule&#39;</span><span class="p">,</span> <span class="s1">&#39;Error Message&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>如果你要为某个域的某个规则设置你的自定义信息，可以使用 set_rules() 方法:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;field_name&#39;</span><span class="p">,</span> <span class="s1">&#39;Field Label&#39;</span><span class="p">,</span> <span class="s1">&#39;rule1|rule2|rule3&#39;</span><span class="p">,</span>
+    <span class="k">array</span><span class="p">(</span><span class="s1">&#39;rule2&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Error Message on rule2 for this field_name&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>其中， rule 是该规则的名称，Error Message 为该规则显示的错误信息。</p>
+<p>如果你希望在错误信息中包含域的人性化名称，或者某些规则设置的一个可选参数
+（例如：max_length），你可以在消息中使用 <strong>{field}</strong> 和 <strong>{param}</strong> 标签:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_message</span><span class="p">(</span><span class="s1">&#39;min_length&#39;</span><span class="p">,</span> <span class="s1">&#39;{field} must have at least {param} characters.&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>如果域的人性化名称为 Username ，并有一个规则 min_length[5] ，那么错误信息会显示：
+&quot;Username must have at least 5 characters.&quot;</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">老的 <cite>sprintf()</cite> 方法和在字符串使用 <strong>%s</strong> 也还可以工作，但是会覆写掉上面的标签。
+所以你同时只应该使用两个中的一个。</p>
+</div>
+<p>在上面回调的例子中，错误信息是通过方法的名称（不带 &quot;callback_&quot; 前缀）来设置的:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_message</span><span class="p">(</span><span class="s1">&#39;username_check&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="translating-field-names">
+<span id="id16"></span><h3><a class="toc-backref" href="#id45">翻译表单域名称</a><a class="headerlink" href="#translating-field-names" title="永久链接至标题">¶</a></h3>
+<p>如果你希望将传递给 <tt class="docutils literal"><span class="pre">set_rules()</span></tt> 方法的人性化名称存储在一个语言文件中，
+使他们能被翻译成其他语言，你可以这么做：</p>
+<p>首先，给人性化名称添加一个前缀：<strong>lang:</strong>，如下：</p>
+<blockquote>
+<div>$this-&gt;form_validation-&gt;set_rules('first_name', 'lang:first_name', 'required');</div></blockquote>
+<p>然后，将该名称保存到你的某个语言文件数组中（不带前缀）:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$lang</span><span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;First Name&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p>如果你保存的语言文件没有自动被 CI 加载，你要记住在你的控制器中使用下面的方法手工加载:</p>
+<div class="last highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;file_name&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>关于语言文件的更多信息，参看 <a class="reference internal" href="language.html"><em>语言类</em></a> 。</p>
+</div>
+<div class="section" id="changing-delimiters">
+<span id="id17"></span><h3><a class="toc-backref" href="#id46">更改错误定界符</a><a class="headerlink" href="#changing-delimiters" title="永久链接至标题">¶</a></h3>
+<p>在默认情况下，表单验证类会使用 &lt;p&gt; 标签来分割每条错误信息。
+你可以通过全局的，单独的，或者通过配置文件对其进行自定义。</p>
+<ol class="arabic">
+<li><p class="first"><strong>全局的修改定界符</strong>
+要在全局范围内修改错误定界符，你可以在控制器方法中加载表单验证类之后，使用下面的代码:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_error_delimiters</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&quot;error&quot;&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>在这个例子中，我们改成使用 &lt;div&gt; 标签来作为定界符。</p>
+</li>
+<li><p class="first"><strong>单独的修改定界符</strong>
+有两个错误生成方法可以用于设置它们自己的定界符，如下:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;field name&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;div class=&quot;error&quot;&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p>或者:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">validation_errors</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&quot;error&quot;&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>在配置文件中设置定界符</strong>
+你还可以在配置文件 application/config/form_validation.php 中定义错误定界符，如下:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;error_prefix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;error_prefix&quot;&gt;&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;error_suffix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="id18">
+<h3><a class="toc-backref" href="#id47">单独显示错误</a><a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h3>
+<p>如果你喜欢紧挨着每个表单域显示错误信息而不是显示为一个列表，
+你可以使用 <a class="reference internal" href="../helpers/form_helper.html#form_error" title="form_error"><tt class="xref php php-func docutils literal"><span class="pre">form_error()</span></tt></a> 方法。</p>
+<p>尝试一下！修改你的表单如下:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">h5</span><span class="o">&gt;</span><span class="nx">Username</span><span class="o">&lt;/</span><span class="nx">h5</span><span class="o">&gt;</span>
+<span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;username&quot;</span> <span class="na">value=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size=</span><span class="s">&quot;50&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;h5&gt;</span>Password<span class="nt">&lt;/h5&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;password&quot;</span> <span class="na">value=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size=</span><span class="s">&quot;50&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;h5&gt;</span>Password Confirm<span class="nt">&lt;/h5&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;passconf&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;passconf&quot;</span> <span class="na">value=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;passconf&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size=</span><span class="s">&quot;50&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;h5&gt;</span>Email Address<span class="nt">&lt;/h5&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;email&quot;</span> <span class="na">value=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size=</span><span class="s">&quot;50&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>如果没有错误信息，将不会显示。如果有错误信息，将会在输入框的旁边单独显示。</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p>如果你使用一个数组作为一个表单域的名字，那么函数的参数也应该是一个数组。例如:</p>
+<div class="last highlight-ci"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;options[size]&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;options[size]&quot;</span> <span class="na">value=</span><span class="s">&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">set_value</span><span class="p">(</span><span class="s2">&quot;options[size]&quot;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="s">&quot;</span> <span class="na">size=</span><span class="s">&quot;50&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>更多信息，请参考下面的 <a class="reference internal" href="#using-arrays-as-field-names"><em>使用数组作为域名称</em></a> 一节。</p>
+</div>
+<div class="section" id="post">
+<h3><a class="toc-backref" href="#id48">验证数组（除 $_POST 数组）</a><a class="headerlink" href="#post" title="永久链接至标题">¶</a></h3>
+<p>有时你可能希望对一个单纯的数组进行验证，而不是对 <tt class="docutils literal"><span class="pre">$_POST</span></tt> 数组。</p>
+<p>在这种情况下，你可以先定义要验证的数组:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;johndoe&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mypassword&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;passconf&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mypassword&#39;</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_data</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Creating validation rules, running the validation, and retrieving error
+messages works the same whether you are validating <tt class="docutils literal"><span class="pre">$_POST</span></tt> data or
+another array of your choice.</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">You have to call the <tt class="docutils literal"><span class="pre">set_data()</span></tt> method <em>before</em> defining
+any validation rules.</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">如果你想验证多个数组，那么你应该在验证下一个新数组之前先调用 <tt class="docutils literal"><span class="pre">reset_validation()</span></tt> 方法。</p>
+</div>
+<p>更多信息，请参数下面的 <a class="reference internal" href="#class-reference"><em>类参考</em></a> 一节。</p>
+</div>
+</div>
+<div class="section" id="saving-groups">
+<span id="id19"></span><h2><a class="toc-backref" href="#id49">将一系列验证规则保存到一个配置文件</a><a class="headerlink" href="#saving-groups" title="永久链接至标题">¶</a></h2>
+<p>表单验证类的一个不错的特性是，它允许你将整个应用的所有验证规则存储到一个配置文件中去。
+你可以对这些规则进行分组，这些组既可以在匹配控制器和方法时自动加载，也可以在需要时手动调用。</p>
+<div class="section" id="id20">
+<h3><a class="toc-backref" href="#id50">如何保存你的规则</a><a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h3>
+<p>如果要保存验证规则，你需要在 application/config/ 目录下创建一个名为 form_validation.php 的文件。
+然后在该文件中，将验证规则保存在数组 $config 中即可。和之前介绍的一样，验证规则数组格式如下:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+    <span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+    <span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;passconf&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Password Confirmation&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+    <span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>你的验证规则会被自动加载，当用户触发 <tt class="docutils literal"><span class="pre">run()</span></tt> 方法时被调用。</p>
+<p>请务必要将数组名称定义成 <tt class="docutils literal"><span class="pre">$config</span></tt> 。</p>
+</div>
+<div class="section" id="id21">
+<h3><a class="toc-backref" href="#id51">创建规则集</a><a class="headerlink" href="#id21" title="永久链接至标题">¶</a></h3>
+<p>为了将你的多个规则组织成规则集，你需要将它们放置到子数组中。
+请参考下面的例子，在此例中我们设置了两组规则集，我们分别命名为
+&quot;signup&quot; 和 &quot;email&quot; ，你可以根据自己的需求任意命名:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;signup&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;passconf&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Password Confirmation&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">)</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;emailaddress&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;EmailAddress&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required|valid_email&#39;</span>
+        <span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Name&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required|alpha&#39;</span>
+        <span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;message&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;MessageBody&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id22">
+<h3><a class="toc-backref" href="#id52">调用某组验证规则</a><a class="headerlink" href="#id22" title="永久链接至标题">¶</a></h3>
+<p>为了调用特定组的验证规则，你可以将它的名称传给 <tt class="docutils literal"><span class="pre">run()</span></tt> 方法。
+例如，使用 signup 规则你可以这样:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">(</span><span class="s1">&#39;signup&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="k">FALSE</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;myform&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;formsuccess&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id23">
+<h3><a class="toc-backref" href="#id53">将控制器方法和规则集关联在一起</a><a class="headerlink" href="#id23" title="永久链接至标题">¶</a></h3>
+<p>调用一组规则的另一种方法是将控制器方法和规则集关联在一起（这种方法也更自动），
+例如，假设你有一个控制器类 Member 和一个方法 signup ，你的类如下:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">class</span> <span class="nc">Member</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">signup</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;form_validation&#39;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">()</span> <span class="o">==</span> <span class="k">FALSE</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;myform&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;formsuccess&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>在你的验证规则配置文件中，使用 member/signup 来给这组规则集命名:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;member/signup&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Username&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Password&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;passconf&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;PasswordConfirmation&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;field&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;label&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Email&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>当一组规则的名称和控制器类/方法名称完全一样时，它会在该控制器类/方法中自动被
+<tt class="docutils literal"><span class="pre">run()</span></tt> 方法调用。</p>
+</div>
+</div>
+<div class="section" id="using-arrays-as-field-names">
+<span id="id24"></span><h2><a class="toc-backref" href="#id54">使用数组作为域名称</a><a class="headerlink" href="#using-arrays-as-field-names" title="永久链接至标题">¶</a></h2>
+<p>表单验证类支持使用数组作为域名称，比如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="nx">size</span><span class="o">=</span><span class="s2">&quot;50&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>如果你将域名称定义为数组，那么在使用域名称作为参数的 <a class="reference internal" href="#helper-functions"><em>辅助函数函数</em></a> 时，
+你必须传递给他们与域名称完全一样的数组名，对这个域名称的验证规则也一样。</p>
+<p>例如，为上面的域设置验证规则:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">set_rules</span><span class="p">(</span><span class="s1">&#39;options[]&#39;</span><span class="p">,</span> <span class="s1">&#39;Options&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>或者，为上面的域显示错误信息:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;options[]&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p>或者，重新填充该域的值:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&lt;?php echo set_value(&#39;options[]&#39;); ?&gt;&quot;</span> <span class="nx">size</span><span class="o">=</span><span class="s2">&quot;50&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>你也可以使用多维数组作为域的名称，例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[size]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="nx">size</span><span class="o">=</span><span class="s2">&quot;50&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>甚至:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;sports[nba][basketball]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="nx">size</span><span class="o">=</span><span class="s2">&quot;50&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>和上面的例子一样，你必须在辅助函数中使用完全一样的数组名:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;sports[nba][basketball]&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p>如果你正在使用复选框（或其他拥有多个选项的域），不要忘了在每个选项后加个空的方括号，
+这样，所有的选择才会被添加到 POST 数组中:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;checkbox&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;red&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;checkbox&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;checkbox&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;green&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>或者，使用多维数组:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;checkbox&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[color][]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;red&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;checkbox&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[color][]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;checkbox&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;options[color][]&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;green&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>当你使用辅助函数时，也要添加方括号:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;options[color][]&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id25">
+<h2><a class="toc-backref" href="#id55">规则参考</a><a class="headerlink" href="#id25" title="永久链接至标题">¶</a></h2>
+<p>下表列出了所有可用的原生规则：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="7%" />
+<col width="61%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">规则</th>
+<th class="head">参数</th>
+<th class="head">描述</th>
+<th class="head">例子</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>required</strong></td>
+<td>No</td>
+<td>如果表单元素为空，返回 FALSE</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><strong>matches</strong></td>
+<td>Yes</td>
+<td>如果表单元素值与参数中对应的表单字段的值不相等，返回 FALSE</td>
+<td>matches[form_item]</td>
+</tr>
+<tr class="row-even"><td><strong>regex_match</strong></td>
+<td>Yes</td>
+<td>如果表单元素不匹配正则表达式，返回 FALSE</td>
+<td>regex_match[/regex/]</td>
+</tr>
+<tr class="row-odd"><td><strong>differs</strong></td>
+<td>Yes</td>
+<td>如果表单元素值与参数中对应的表单字段的值相等，返回 FALSE</td>
+<td>differs[form_item]</td>
+</tr>
+<tr class="row-even"><td><strong>is_unique</strong></td>
+<td>Yes</td>
+<td>如果表单元素值在指定的表和字段中并不唯一，返回 FALSE
+注意：这个规则需要启用 <a class="reference internal" href="../database/query_builder.html"><em>查询构造器</em></a></td>
+<td>is_unique[table.field]</td>
+</tr>
+<tr class="row-odd"><td><strong>min_length</strong></td>
+<td>Yes</td>
+<td>如果表单元素值的长度小于参数值，返回 FALSE</td>
+<td>min_length[3]</td>
+</tr>
+<tr class="row-even"><td><strong>max_length</strong></td>
+<td>Yes</td>
+<td>如果表单元素值的长度大于参数值，返回 FALSE</td>
+<td>max_length[12]</td>
+</tr>
+<tr class="row-odd"><td><strong>exact_length</strong></td>
+<td>Yes</td>
+<td>如果表单元素值的长度不等于参数值，返回 FALSE</td>
+<td>exact_length[8]</td>
+</tr>
+<tr class="row-even"><td><strong>greater_than</strong></td>
+<td>Yes</td>
+<td>如果表单元素值小于或等于参数值或非数字，返回 FALSE</td>
+<td>greater_than[8]</td>
+</tr>
+<tr class="row-odd"><td><strong>greater_than_equal_to</strong></td>
+<td>Yes</td>
+<td>如果表单元素值小于参数值或非数字，返回 FALSE</td>
+<td>greater_than_equal_to[8]</td>
+</tr>
+<tr class="row-even"><td><strong>less_than</strong></td>
+<td>Yes</td>
+<td>如果表单元素值大于或等于参数值或非数字，返回 FALSE</td>
+<td>less_than[8]</td>
+</tr>
+<tr class="row-odd"><td><strong>less_than_equal_to</strong></td>
+<td>Yes</td>
+<td>如果表单元素值大于参数值或非数字，返回 FALSE</td>
+<td>less_than_equal_to[8]</td>
+</tr>
+<tr class="row-even"><td><strong>in_list</strong></td>
+<td>Yes</td>
+<td>如果表单元素值不在规定的列表中，返回 FALSE</td>
+<td>in_list[red,blue,green]</td>
+</tr>
+<tr class="row-odd"><td><strong>alpha</strong></td>
+<td>No</td>
+<td>如果表单元素值包含除字母以外的其他字符，返回 FALSE</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><strong>alpha_numeric</strong></td>
+<td>No</td>
+<td>如果表单元素值包含除字母和数字以外的其他字符，返回 FALSE</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><strong>alpha_numeric_spaces</strong></td>
+<td>No</td>
+<td>如果表单元素值包含除字母、数字和空格以外的其他字符，返回 FALSE
+应该在 trim 之后使用，避免首尾的空格</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><strong>alpha_dash</strong></td>
+<td>No</td>
+<td>如果表单元素值包含除字母/数字/下划线/破折号以外的其他字符，返回 FALSE</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><strong>numeric</strong></td>
+<td>No</td>
+<td>如果表单元素值包含除数字以外的字符，返回 FALSE</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><strong>integer</strong></td>
+<td>No</td>
+<td>如果表单元素包含除整数以外的字符，返回 FALSE</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><strong>decimal</strong></td>
+<td>No</td>
+<td>如果表单元素包含非十进制数字时，返回 FALSE</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><strong>is_natural</strong></td>
+<td>No</td>
+<td>如果表单元素值包含了非自然数的其他数值 （不包括零），返回 FALSE
+自然数形如：0、1、2、3 .... 等等。</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><strong>is_natural_no_zero</strong></td>
+<td>No</td>
+<td>如果表单元素值包含了非自然数的其他数值 （包括零），返回 FALSE
+非零的自然数：1、2、3 .... 等等。</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><strong>valid_url</strong></td>
+<td>No</td>
+<td>如果表单元素值包含不合法的 URL，返回 FALSE</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><strong>valid_email</strong></td>
+<td>No</td>
+<td>如果表单元素值包含不合法的 email 地址，返回 FALSE</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><strong>valid_emails</strong></td>
+<td>No</td>
+<td>如果表单元素值包含不合法的 email 地址（地址之间用逗号分割），返回 FALSE</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><strong>valid_ip</strong></td>
+<td>No</td>
+<td>如果表单元素值不是一个合法的 IP 地址，返回 FALSE
+通过可选参数 &quot;ipv4&quot; 或 &quot;ipv6&quot; 来指定 IP 地址格式。</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><strong>valid_base64</strong></td>
+<td>No</td>
+<td>如果表单元素值包含除了 base64 编码字符之外的其他字符，返回 FALSE</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p>这些规则也可以作为独立的函数被调用，例如:</p>
+<div class="last highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">form_validation</span><span class="o">-&gt;</span><span class="na">required</span><span class="p">(</span><span class="nv">$string</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">你也可以使用任何一个接受两个参数的原生 PHP 函数（其中至少有一个参数是必须的，用于传递域值）</p>
+</div>
+</div>
+<div class="section" id="id26">
+<h2><a class="toc-backref" href="#id56">预处理参考</a><a class="headerlink" href="#id26" title="永久链接至标题">¶</a></h2>
+<p>下表列出了所有可用的预处理方法：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="7%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">名称</th>
+<th class="head">参数</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>prep_for_form</strong></td>
+<td>No</td>
+<td>将特殊字符的转换，以便可以在表单域中显示 HTML 数据，而不会破坏它</td>
+</tr>
+<tr class="row-odd"><td><strong>prep_url</strong></td>
+<td>No</td>
+<td>当 URL 丢失 &quot;<a class="reference external" href="http://">http://</a>&quot; 时，添加 &quot;<a class="reference external" href="http://">http://</a>&quot;</td>
+</tr>
+<tr class="row-even"><td><strong>strip_image_tags</strong></td>
+<td>No</td>
+<td>移除 HTML 中的 image 标签，只保留 URL</td>
+</tr>
+<tr class="row-odd"><td><strong>encode_php_tags</strong></td>
+<td>No</td>
+<td>将 PHP 标签转成实体</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">你也可以使用任何一个接受一个参数的原生 PHP 函数。
+例如： <tt class="docutils literal"><span class="pre">trim()</span></tt> 、 <tt class="docutils literal"><span class="pre">htmlspecialchars()</span></tt> 、 <tt class="docutils literal"><span class="pre">urldecode()</span></tt> 等</p>
+</div>
+</div>
+<div class="section" id="class-reference">
+<span id="id27"></span><h2><a class="toc-backref" href="#id57">类参考</a><a class="headerlink" href="#class-reference" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="CI_Form_validation">
+<em class="property">class </em><tt class="descname">CI_Form_validation</tt><a class="headerlink" href="#CI_Form_validation" title="永久链接至目标">¶</a></dt>
+<dd><dl class="method">
+<dt id="CI_Form_validation::set_rules">
+<tt class="descname">set_rules</tt><big>(</big><em>$field</em><span class="optional">[</span>, <em>$label = ''</em><span class="optional">[</span>, <em>$rules = ''</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Form_validation::set_rules" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$field</strong> (<em>string</em>) -- Field name</li>
+<li><strong>$label</strong> (<em>string</em>) -- Field label</li>
+<li><strong>$rules</strong> (<em>mixed</em>) -- Validation rules, as a string list separated by a pipe &quot;|&quot;, or as an array or rules</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">CI_Form_validation instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">CI_Form_validation</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>允许您设置验证规则，如在本教程上面描述的：</p>
+<ul class="simple">
+<li><a class="reference internal" href="#setting-validation-rules"><em>设置验证规则</em></a></li>
+<li><a class="reference internal" href="#saving-groups"><em>将一系列验证规则保存到一个配置文件</em></a></li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Form_validation::run">
+<tt class="descname">run</tt><big>(</big><span class="optional">[</span><em>$group = ''</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Form_validation::run" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$group</strong> (<em>string</em>) -- The name of the validation group to run</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">TRUE on success, FALSE if validation failed</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>运行验证程序。成功返回 TRUE，失败返回 FALSE。
+您也可以传一个验证规则集的名称作为参数，参考 <a class="reference internal" href="#saving-groups"><em>将一系列验证规则保存到一个配置文件</em></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Form_validation::set_message">
+<tt class="descname">set_message</tt><big>(</big><em>$lang</em><span class="optional">[</span>, <em>$val = ''</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Form_validation::set_message" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$lang</strong> (<em>string</em>) -- The rule the message is for</li>
+<li><strong>$val</strong> (<em>string</em>) -- The message</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">CI_Form_validation instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">CI_Form_validation</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>允许您设置自定义错误消息，参考 <a class="reference internal" href="#setting-error-messages"><em>设置错误信息</em></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Form_validation::set_error_delimiters">
+<tt class="descname">set_error_delimiters</tt><big>(</big><span class="optional">[</span><em>$prefix = '&lt;p&gt;'</em><span class="optional">[</span>, <em>$suffix = '&lt;/p&gt;'</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Form_validation::set_error_delimiters" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$prefix</strong> (<em>string</em>) -- Error message prefix</li>
+<li><strong>$suffix</strong> (<em>string</em>) -- Error message suffix</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">CI_Form_validation instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">CI_Form_validation</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>设置错误消息的前缀和后缀。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Form_validation::set_data">
+<tt class="descname">set_data</tt><big>(</big><em>$data</em><big>)</big><a class="headerlink" href="#CI_Form_validation::set_data" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$data</strong> (<em>array</em>) -- Array of data validate</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">CI_Form_validation instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">CI_Form_validation</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>允许你设置一个数组来进行验证，取代默认的 <tt class="docutils literal"><span class="pre">$_POST</span></tt> 数组</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Form_validation::reset_validation">
+<tt class="descname">reset_validation</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Form_validation::reset_validation" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">CI_Form_validation instance (method chaining)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">CI_Form_validation</td>
+</tr>
+</tbody>
+</table>
+<p>当你验证多个数组时，该方法可以重置验证规则，当验证下一个新数组时应该调用它。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Form_validation::error_array">
+<tt class="descname">error_array</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Form_validation::error_array" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">Array of error messages</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">array</td>
+</tr>
+</tbody>
+</table>
+<p>返回错误信息数组。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Form_validation::error_string">
+<tt class="descname">error_string</tt><big>(</big><span class="optional">[</span><em>$prefix = ''</em><span class="optional">[</span>, <em>$suffix = ''</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Form_validation::error_string" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$prefix</strong> (<em>string</em>) -- Error message prefix</li>
+<li><strong>$suffix</strong> (<em>string</em>) -- Error message suffix</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Error messages as a string</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>返回所有的错误信息（和 error_array() 返回结果一样），并使用换行符分割格式化成字符串</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Form_validation::error">
+<tt class="descname">error</tt><big>(</big><em>$field</em><span class="optional">[</span>, <em>$prefix = ''</em><span class="optional">[</span>, <em>$suffix = ''</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Form_validation::error" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$field</strong> (<em>string</em>) -- Field name</li>
+<li><strong>$prefix</strong> (<em>string</em>) -- Optional prefix</li>
+<li><strong>$suffix</strong> (<em>string</em>) -- Optional suffix</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Error message string</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>返回特定域的错误消息，也可以添加一个前缀和/或后缀（通常是 HTML 标签）</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Form_validation::has_rule">
+<tt class="descname">has_rule</tt><big>(</big><em>$field</em><big>)</big><a class="headerlink" href="#CI_Form_validation::has_rule" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$field</strong> (<em>string</em>) -- Field name</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">TRUE if the field has rules set, FALSE if not</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>检查某个域是否有验证规则。</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="helper-functions">
+<span id="id28"></span><h2><a class="toc-backref" href="#id58">辅助函数参考</a><a class="headerlink" href="#helper-functions" title="永久链接至标题">¶</a></h2>
+<p>请参考 <a class="reference internal" href="../helpers/form_helper.html"><em>表单辅助函数</em></a> 手册了解以下函数：</p>
+<ul class="simple">
+<li><a class="reference internal" href="../helpers/form_helper.html#form_error" title="form_error"><tt class="xref php php-func docutils literal"><span class="pre">form_error()</span></tt></a></li>
+<li><a class="reference internal" href="../helpers/form_helper.html#validation_errors" title="validation_errors"><tt class="xref php php-func docutils literal"><span class="pre">validation_errors()</span></tt></a></li>
+<li><a class="reference internal" href="../helpers/form_helper.html#set_value" title="set_value"><tt class="xref php php-func docutils literal"><span class="pre">set_value()</span></tt></a></li>
+<li><a class="reference internal" href="../helpers/form_helper.html#set_select" title="set_select"><tt class="xref php php-func docutils literal"><span class="pre">set_select()</span></tt></a></li>
+<li><a class="reference internal" href="../helpers/form_helper.html#set_checkbox" title="set_checkbox"><tt class="xref php php-func docutils literal"><span class="pre">set_checkbox()</span></tt></a></li>
+<li><a class="reference internal" href="../helpers/form_helper.html#set_radio" title="set_radio"><tt class="xref php php-func docutils literal"><span class="pre">set_radio()</span></tt></a></li>
+</ul>
+<p>注意这些都是过程式的函数，所以 <strong>不需要</strong> 添加 <tt class="docutils literal"><span class="pre">$this-&gt;form_validation</span></tt> 就可以直接调用它们。</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ftp.html" class="btn btn-neutral float-right" title="FTP 类">下一个主题 <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="file_uploading.html" class="btn btn-neutral" title="文件上传类"><span class="fa fa-arrow-circle-left"></span> 上一个主题</a>
+      
+    </div>
+  
+
+  
+  <div id="notes">
+  
+  <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="userguide3/libraries/form_validation" data-title="表单验证类" data-url="http://codeigniter.org.cn/user_guide/libraries/form_validation.html"></div>
+  <!-- 多说评论框 end -->
+  
+
+  <div class="ds-share flat" data-thread-key="userguide3/libraries/form_validation" data-title="表单验证类 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" data-url="http://codeigniter.org.cn/user_guide/libraries/form_validation.html" data-images="" data-content="">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+  </div>
+
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codeigniter"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+  <!-- 多说公共JS代码 end -->
+  </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2014 - 2015, 不列颠哥伦比亚理工学院.
+       最后修改: 2015-10-11.
+    </p>
+
+    <p>以 <a href="http://www.aneasystone.com/" target="_blank">aneasystone</a> 制作的手册为基础构建</p>
+  </div>
+
+  
+    <p>基于 <a href="http://sphinx-doc.org/">Sphinx</a> 并使用 <a href="https://readthedocs.org">Read the Docs</a> 提供的<a href="https://github.com/snide/sphinx_rtd_theme">风格</a>构建</p>
+    <p>
+        <a href="https://github.com/CodeIgniter-Chinese/codeigniter-user-guide" target="_blank">Github 简体中文翻译</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/codeigniter_user_guide.zip">离线版压缩包下载</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/CodeIgniter.pdf">PDF 版下载</a>
+    </p>
+  
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.0.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-272152-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+  
+
+</body>
+</html>

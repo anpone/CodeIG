@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>数据库工具类 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档</title>
+  
+
+  
+  
+  <link rel="shortcut icon" href="../_static/ci-icon.ico" />
+  
+
+  
+  <link href="../_static/css/fonts.css" rel="stylesheet" type="text/css" />
+
+  
+  
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme_cn.css" type="text/css" />
+    <link rel="top" title="CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" href="../index.html"/>
+        <link rel="up" title="数据库参考" href="index.html"/>
+        <link rel="next" title="数据库驱动器参考" href="db_driver_reference.html"/>
+        <link rel="prev" title="数据库工厂类" href="forge.html"/> 
+
+  
+  <script src="../_static/js/modernizr.2.6.2.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">类库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">数据库参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAICAgICAgICAgICAgICAgMCAgICAwMDAwMDAwMEAwMDAwMDBAQEBAUEBAQFBQYGBQUHBwcHBwcHBwcHBwcHBwf/2wBDAQICAgMDAwUEBAUHBgUGBwgICAgICAgHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwf/wAARCAArAJoDAREAAhEBAxEB/8QAHgABAAAGAwEAAAAAAAAAAAAAAAQFBgcICQECAwr/xAA/EAAABAQCBgcFBAsBAAAAAAACAwQFAAEGBxESExZRU5XVCBQZIlWi0gkVITFCIzJSchgzQUNUVmFiZYWy1P/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDCEXygIE47JKAmEAgEAgEAgEAgEAgEAgEAgEBBnGBCcEH9kBEAnjAekBusU9DWxoACnKgx8ZqLmMBaWquivZhvLMmXRYy8v+XfRf8AS+A1WwCAQCAQGdrZby3DbbG0T0bRllHB4q2kVb0+r7nV5U1PLz1Jb+4oQCSoW96RJ9AEhOWHMAqXekLHGeMBQHSCoei6doG0FTUxTlDMLpVTpWaN9Mt5UbxUjOpLZxsoW+QFTs4OGQwrrZ2eRYg/e72OAcAxRgL79Hy3Rtwq1EnU0Y51hTrciNMfAoUlQKikYjijOomKJU2ES2WkNLmEEpYSn8Zz+AZwGdrf0V7fuZqhEK0TylGY1uI0xxbddJIKSopvPOSSCodpBRhmI8AA4HTwFjl+c5QGrN/p98pV4XU/UjUuZHtsMCS4NTkUIhSnGIATQhNKHgIM5gEEXx/ZOAk8AgEAgMwujjZygLjMDg51XT/vZanqE9uJO685pcqctKlNADIiVEA++aL6YDNZq6HlkDygzFQoxf7moP8A3wE7/QysZ/IY+M1FzKAzzWtJehF3YDHe4DNiSdkD9AoD5j9aFm/8ofTANaFm/wDKH0wDWhZv/KH0wDWhZv8Ayh9MA1oWb/yh9MBsYJujb8VobCIFlyujsgeGu3y1M8tdxqPfawdkZ46pdzgFDPp9ndC0IZkjAOSc8ZZve0uTIYAQgtz0l7j0s62nsI30rWtrqmXtb3cI16T2taVbCiRAVmU91GalidUaFcmEfoTsDDEwQnZBTLEOQZ4BhbrQs3/lD6YC+Vh7g0vS9VDqer6nPRSbtCiR0sVTDNUJNSFOGkTLkC4x/UJWxuSyLyyOPNmIcgDnMoOYOaQZtvV+LEW/bbdW4emWnzimtFUL5T1Y0q6Uxc9bb55dHw6adaZ1AsinXctWQACkxFIOZJMJcwBEMJQoDWtWFQJk1U1AQxVSGrGgDqo6hUoGwTQFyKmZMUlgWw4OdJI3HGRQviGXwwl8oCm9aFm/8ofTANaFm/8AKH0wDWhZv/KH0wHOtCz+I2/MIMP6fTjjAba/Z9SMe7eVAsOFpNHXytPmy/hamsf0fmgNtzA0l6EPd+iAqn3SVsgJ6eXIYBSywFq6oZOtFmSwgPn3e/ZrX1b3BcS21ZbdwbCVh4W1YqUvaNUelCaLqxylGU1qgJjRg7wiwnmhCLuaUf34Cmx+z0v4GeHvy2nEHrk0B17Pa/vjluOIPfJoB2e1+vG7b8Qe+TwDs9r++OW44g98mgHZ7X98ctxxB75NAOz2v745bjiD3yaAdntfrxu2/EHvk8A7Pa/Xjdt+IPfJ4B2e1+vG7b8Qe+TwDs9r9eN234g98ngHZ7X68btvxB75PAOz2v143bfiD3yeAdntf3xy3HEHvk0BHEezo6QKmeAKgtiH8zk+8kgNrHQv6OlSWHtyqpurXZqeH52qpdUqwTIFQJCkCclSt5KYlSqCQcp+xRhPEIRBXeN0WQeTTDDYU2JpFlBllgJ1hL8MAnLNKAlalFI6QsQwFLqqaLOmLEuAlI6MInP9TAeepabcwDUtNuYBqWm3MA1LTbmAalptzANS025gGpabcwDUtNuYBqWm3MA1LTbmAalptzANTCJfuYCOIpQkuYfs4CpkbSAjLgGAnxQMksID2gEB1FAJylsgOcJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUBzAIBAf/Z" title="切换目录" alt="切换目录" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索手册" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">类库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">数据库参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">首页</a> &raquo; </li>
+    
+    <li><a href="index.html">数据库参考</a> &raquo; </li>
+    
+    <li>数据库工具类</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;">
+      <div style="text-decoration:underline;color:blue;margin-left:5px;cursor:pointer;" id="closeMe">
+        <img title="目录" alt="toc" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+      </div>
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="id1">
+<h1>数据库工具类<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>数据库工具类提供了一些方法用于帮助你管理你的数据库。</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#id2" id="id15">初始化工具类</a></li>
+<li><a class="reference internal" href="#id3" id="id16">使用数据库工具类</a><ul>
+<li><a class="reference internal" href="#id4" id="id17">获取数据库名称列表</a></li>
+<li><a class="reference internal" href="#id5" id="id18">判断一个数据库是否存在</a></li>
+<li><a class="reference internal" href="#id6" id="id19">优化表</a></li>
+<li><a class="reference internal" href="#id7" id="id20">修复表</a></li>
+<li><a class="reference internal" href="#id8" id="id21">优化数据库</a></li>
+<li><a class="reference internal" href="#csv" id="id22">将查询结果导出到 CSV 文档</a></li>
+<li><a class="reference internal" href="#xml" id="id23">将查询结果导出到 XML 文档</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id9" id="id24">备份你的数据库</a><ul>
+<li><a class="reference internal" href="#id10" id="id25">数据备份说明</a></li>
+<li><a class="reference internal" href="#id11" id="id26">使用示例</a></li>
+<li><a class="reference internal" href="#id12" id="id27">设置备份参数</a></li>
+<li><a class="reference internal" href="#id13" id="id28">备份参数说明</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id14" id="id29">类参考</a></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id15">初始化工具类</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">由于工具类依赖于数据库驱动器，为了初始化工具类，你的数据库驱动器必须已经运行。</p>
+</div>
+<p>加载工具类的代码如下:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>如果你想管理的不是你正在使用的数据库，你还可以传另一个数据库对象到数据库工具类的加载方法:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">myutil</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">other_db</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>上例中，我们通过第一个参数传递了一个自定义的数据库对象，第二个参数表示方法将返回 dbutil 对象，
+而不是直接赋值给 <tt class="docutils literal"><span class="pre">$this-&gt;dbutil</span></tt> 。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">两个参数都可以独立使用，如果你只想传第二个参数，可以将第一个参数置空。</p>
+</div>
+<p>一旦初始化结束，你就可以使用 <tt class="docutils literal"><span class="pre">$this-&gt;dbutil</span></tt> 对象来访问它的方法:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">some_method</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id16">使用数据库工具类</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id17">获取数据库名称列表</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p>返回一个包含所有数据库名称的列表:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$dbs</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">list_databases</span><span class="p">();</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$dbs</span> <span class="k">as</span> <span class="nv">$db</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$db</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id18">判断一个数据库是否存在</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<p>有时我们需要判断某个数据库是否存在，可以使用该方法。方法返回布尔值 TRUE/FALSE 。例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">database_exists</span><span class="p">(</span><span class="s1">&#39;database_name&#39;</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="c1">// some code...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">使用你自己的数据库名替换 <em>database_name</em> ，该方法区分大小写。</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id19">优化表</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<p>根据你指定的表名来优化表，根据成败返回 TRUE 或 FALSE</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">optimize_table</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;Success!&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">不是所有的数据库平台都支持表优化，通常使用在 MySQL 数据库上。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id20">修复表</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<p>根据你指定的表名来修复表，根据成败返回 TRUE 或 FALSE</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">repair_table</span><span class="p">(</span><span class="s1">&#39;table_name&#39;</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;Success!&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">不是所有的数据库平台都支持表修复。</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id21">优化数据库</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p>允许你优化数据库类当前正在连接的数据库。返回一个数组，包含数据库状态信息，失败时返回 FALSE 。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">optimize_database</span><span class="p">();</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$result</span> <span class="o">!==</span> <span class="k">FALSE</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$result</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">不是所有的数据库平台都支持数据库优化，通常使用在 MySQL 数据库上。</p>
+</div>
+</div>
+<div class="section" id="csv">
+<h3><a class="toc-backref" href="#id22">将查询结果导出到 CSV 文档</a><a class="headerlink" href="#csv" title="永久链接至标题">¶</a></h3>
+<p>允许你从查询结果生成 CSV 文档，第一个参数必须是查询的结果对象。例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="p">();</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM mytable&quot;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">csv_from_result</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>第二、三、四个参数分别为分隔符、换行符和每个字段包围字符，默认情况下，分隔符为逗号，换行符为 &quot;n&quot; ，
+包围字符为双引号。例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$delimiter</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="p">;</span>
+<span class="nv">$newline</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="nv">$enclosure</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">csv_from_result</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="nv">$delimiter</span><span class="p">,</span> <span class="nv">$newline</span><span class="p">,</span> <span class="nv">$enclosure</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">该方法并不写入 CSV 文档，它只是简单的返回 CSV 内容，如果你需要写入到文件中，
+你可以使用 <a class="reference internal" href="../helpers/file_helper.html"><em>文件辅助函数</em></a> 。</p>
+</div>
+</div>
+<div class="section" id="xml">
+<h3><a class="toc-backref" href="#id23">将查询结果导出到 XML 文档</a><a class="headerlink" href="#xml" title="永久链接至标题">¶</a></h3>
+<p>允许你从查询结果生成 XML 文档，第一个参数为查询的结果对象，第二个参数可选，可以包含一些的配置参数。例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="p">();</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM mytable&quot;</span><span class="p">);</span>
+
+<span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span> <span class="p">(</span>
+    <span class="s1">&#39;root&#39;</span>      <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;element&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;element&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;newline&#39;</span>   <span class="o">=&gt;</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;tab&#39;</span>       <span class="o">=&gt;</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span>
+<span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">xml_from_result</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="nv">$config</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">该方法并不写入 XML 文档，它只是简单的返回 XML 内容，如果你需要写入到文件中，
+你可以使用 <a class="reference internal" href="../helpers/file_helper.html"><em>文件辅助函数</em></a> 。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id9">
+<h2><a class="toc-backref" href="#id24">备份你的数据库</a><a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id25">数据备份说明</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<p>允许你备份完整的数据库或指定的表。备份的数据可以压缩成 Zip 或 Gzip 格式。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">该功能只支持 MySQL 和 Interbase/Firebird 数据库。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p>对于 Interbase/Firebird 数据库，只能提供一个备份文件名参数。</p>
+<p class="last">$this-&gt;dbutil-&gt;backup('db_backup_filename');</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">限于 PHP 的执行时间和内存限制，备份非常大的数据库应该不行。如果你的数据库非常大，
+你可以直接使用命令行进行备份，如果你没有 root 权限的话，让你的管理员来帮你备份。</p>
+</div>
+</div>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id26">使用示例</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<div class="highlight-ci"><div class="highlight"><pre><span class="c1">// Load the DB utility class</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="p">();</span>
+
+<span class="c1">// Backup your entire database and assign it to a variable</span>
+<span class="nv">$backup</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">backup</span><span class="p">();</span>
+
+<span class="c1">// Load the file helper and write the file to your server</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">);</span>
+<span class="nx">write_file</span><span class="p">(</span><span class="s1">&#39;/path/to/mybackup.gz&#39;</span><span class="p">,</span> <span class="nv">$backup</span><span class="p">);</span>
+
+<span class="c1">// Load the download helper and send the file to your desktop</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="s1">&#39;download&#39;</span><span class="p">);</span>
+<span class="nx">force_download</span><span class="p">(</span><span class="s1">&#39;mybackup.gz&#39;</span><span class="p">,</span> <span class="nv">$backup</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h3><a class="toc-backref" href="#id27">设置备份参数</a><a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<p>备份参数为一个数组，通过第一个参数传递给 <tt class="docutils literal"><span class="pre">backup()</span></tt> 方法，例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$prefs</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;tables&#39;</span>    <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;table1&#39;</span><span class="p">,</span> <span class="s1">&#39;table2&#39;</span><span class="p">),</span>   <span class="c1">// Array of tables to backup.</span>
+    <span class="s1">&#39;ignore&#39;</span>    <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(),</span>         <span class="c1">// List of tables to omit from the backup</span>
+    <span class="s1">&#39;format&#39;</span>    <span class="o">=&gt;</span> <span class="s1">&#39;txt&#39;</span><span class="p">,</span>           <span class="c1">// gzip, zip, txt</span>
+    <span class="s1">&#39;filename&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;mybackup.sql&#39;</span><span class="p">,</span>      <span class="c1">// File name - NEEDED ONLY WITH ZIP FILES</span>
+    <span class="s1">&#39;add_drop&#39;</span>  <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>            <span class="c1">// Whether to add DROP TABLE statements to backup file</span>
+    <span class="s1">&#39;add_insert&#39;</span>    <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span>            <span class="c1">// Whether to add INSERT data to backup file</span>
+    <span class="s1">&#39;newline&#39;</span>   <span class="o">=&gt;</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>             <span class="c1">// Newline character used in backup file</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">dbutil</span><span class="o">-&gt;</span><span class="na">backup</span><span class="p">(</span><span class="nv">$prefs</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id28">备份参数说明</a><a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数</th>
+<th class="head">默认值           选项</th>
+<th class="head">描述</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>tables</strong></td>
+<td>empty array</td>
+<td>None</td>
+<td>你要备份的表，如果留空将备份所有的表。</td>
+</tr>
+<tr class="row-odd"><td><strong>ignore</strong></td>
+<td>empty array</td>
+<td>None</td>
+<td>你要忽略备份的表。</td>
+</tr>
+<tr class="row-even"><td><strong>format</strong></td>
+<td>gzip</td>
+<td>gzip, zip, txt</td>
+<td>导出文件的格式。</td>
+</tr>
+<tr class="row-odd"><td><strong>filename</strong></td>
+<td>the current date/time</td>
+<td>None</td>
+<td>备份文件名。如果你使用了 zip 压缩这个参数是必填的。</td>
+</tr>
+<tr class="row-even"><td><strong>add_drop</strong></td>
+<td>TRUE</td>
+<td>TRUE/FALSE</td>
+<td>是否在导出的 SQL 文件里包含 DROP TABLE 语句</td>
+</tr>
+<tr class="row-odd"><td><strong>add_insert</strong></td>
+<td>TRUE</td>
+<td>TRUE/FALSE</td>
+<td>是否在导出的 SQL 文件里包含 INSERT 语句</td>
+</tr>
+<tr class="row-even"><td><strong>newline</strong></td>
+<td>&quot;\n&quot;</td>
+<td>&quot;\n&quot;, &quot;\r&quot;, &quot;\r\n&quot;</td>
+<td>导出的 SQL 文件使用的换行符</td>
+</tr>
+<tr class="row-odd"><td><strong>foreign_key_checks</strong></td>
+<td>TRUE</td>
+<td>TRUE/FALSE</td>
+<td>导出的 SQL 文件中是否继续保持外键约束</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id14">
+<h2><a class="toc-backref" href="#id29">类参考</a><a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="CI_DB_utility">
+<em class="property">class </em><tt class="descname">CI_DB_utility</tt><a class="headerlink" href="#CI_DB_utility" title="永久链接至目标">¶</a></dt>
+<dd><dl class="method">
+<dt id="CI_DB_utility::backup">
+<tt class="descname">backup</tt><big>(</big><span class="optional">[</span><em>$params = array()</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_DB_utility::backup" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$params</strong> (<em>array</em>) -- An associative array of options</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">raw/(g)zipped SQL query string</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>根据用户参数执行数据库备份。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_DB_utility::database_exists">
+<tt class="descname">database_exists</tt><big>(</big><em>$database_name</em><big>)</big><a class="headerlink" href="#CI_DB_utility::database_exists" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$database_name</strong> (<em>string</em>) -- Database name</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">TRUE if the database exists, FALSE otherwise</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>判断数据库是否存在。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_DB_utility::list_databases">
+<tt class="descname">list_databases</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_DB_utility::list_databases" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">Array of database names found</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">array</td>
+</tr>
+</tbody>
+</table>
+<p>获取所有的数据库名称列表。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_DB_utility::optimize_database">
+<tt class="descname">optimize_database</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_DB_utility::optimize_database" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">Array of optimization messages or FALSE on failure</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">array</td>
+</tr>
+</tbody>
+</table>
+<p>优化数据库。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_DB_utility::optimize_table">
+<tt class="descname">optimize_table</tt><big>(</big><em>$table_name</em><big>)</big><a class="headerlink" href="#CI_DB_utility::optimize_table" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$table_name</strong> (<em>string</em>) -- Name of the table to optimize</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Array of optimization messages or FALSE on failure</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">array</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>优化数据库表。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_DB_utility::repair_table">
+<tt class="descname">repair_table</tt><big>(</big><em>$table_name</em><big>)</big><a class="headerlink" href="#CI_DB_utility::repair_table" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$table_name</strong> (<em>string</em>) -- Name of the table to repair</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Array of repair messages or FALSE on failure</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">array</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>修复数据库表。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_DB_utility::csv_from_result">
+<tt class="descname">csv_from_result</tt><big>(</big><em>$query</em><span class="optional">[</span>, <em>$delim = '</em>, <em>'</em><span class="optional">[</span>, <em>$newline = &quot;n&quot;</em><span class="optional">[</span>, <em>$enclosure = '&quot;'</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_DB_utility::csv_from_result" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$query</strong> (<em>object</em>) -- A database result object</li>
+<li><strong>$delim</strong> (<em>string</em>) -- The CSV field delimiter to use</li>
+<li><strong>$newline</strong> (<em>string</em>) -- The newline character to use</li>
+<li><strong>$enclosure</strong> (<em>string</em>) -- The enclosure delimiter to use</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">The generated CSV file as a string</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>将数据库结果对象转换为 CSV 文档。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_DB_utility::xml_from_result">
+<tt class="descname">xml_from_result</tt><big>(</big><em>$query</em><span class="optional">[</span>, <em>$params = array()</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_DB_utility::xml_from_result" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$query</strong> (<em>object</em>) -- A database result object</li>
+<li><strong>$params</strong> (<em>array</em>) -- An associative array of preferences</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">The generated XML document as a string</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>将数据库结果对象转换为 XML 文档。</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="db_driver_reference.html" class="btn btn-neutral float-right" title="数据库驱动器参考">下一个主题 <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="forge.html" class="btn btn-neutral" title="数据库工厂类"><span class="fa fa-arrow-circle-left"></span> 上一个主题</a>
+      
+    </div>
+  
+
+  
+  <div id="notes">
+  
+  <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="userguide3/database/utilities" data-title="数据库工具类" data-url="http://codeigniter.org.cn/user_guide/database/utilities.html"></div>
+  <!-- 多说评论框 end -->
+  
+
+  <div class="ds-share flat" data-thread-key="userguide3/database/utilities" data-title="数据库工具类 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" data-url="http://codeigniter.org.cn/user_guide/database/utilities.html" data-images="" data-content="">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+  </div>
+
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codeigniter"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+  <!-- 多说公共JS代码 end -->
+  </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2014 - 2015, 不列颠哥伦比亚理工学院.
+       最后修改: 2015-10-11.
+    </p>
+
+    <p>以 <a href="http://www.aneasystone.com/" target="_blank">aneasystone</a> 制作的手册为基础构建</p>
+  </div>
+
+  
+    <p>基于 <a href="http://sphinx-doc.org/">Sphinx</a> 并使用 <a href="https://readthedocs.org">Read the Docs</a> 提供的<a href="https://github.com/snide/sphinx_rtd_theme">风格</a>构建</p>
+    <p>
+        <a href="https://github.com/CodeIgniter-Chinese/codeigniter-user-guide" target="_blank">Github 简体中文翻译</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/codeigniter_user_guide.zip">离线版压缩包下载</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/CodeIgniter.pdf">PDF 版下载</a>
+    </p>
+  
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.0.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-272152-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+  
+
+</body>
+</html>

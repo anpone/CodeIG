@@ -1,0 +1,84 @@
+<footer>
+  {% if next or prev %}
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      {% if next %}
+        <a href="{{ next.link|e }}" class="btn btn-neutral float-right" title="{{ next.title|striptags|e }}">下一个主题 <span class="fa fa-arrow-circle-right"></span></a>
+      {% endif %}
+      {% if prev %}
+        <a href="{{ prev.link|e }}" class="btn btn-neutral" title="{{ prev.title|striptags|e }}"><span class="fa fa-arrow-circle-left"></span> 上一个主题</a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if pagename != 'search' %}
+  <div id="notes">
+  {% if pagename != 'general/welcome' and pagename != 'index' and pagename != 'DCO' and pagename != 'license' %}
+  <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="userguide3/{{ pagename|e }}" data-title="{{ title|striptags|e }}" data-url="http://codeigniter.org.cn/user_guide/{{ pagename|e }}{{ file_suffix|e }}"></div>
+  <!-- 多说评论框 end -->
+  {% endif %}
+
+  <div class="ds-share flat" data-thread-key="userguide3/{{ pagename|e }}" data-title="{{ title|striptags|e }}{{ titlesuffix }}" data-url="http://codeigniter.org.cn/user_guide/{{ pagename|e }}{{ file_suffix|e }}" data-images="" data-content="">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+  </div>
+
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codeigniter"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+  <!-- 多说公共JS代码 end -->
+  </div>
+  {% endif %}
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    {%- if show_copyright %}
+      {%- if hasdoc('copyright') %}
+        {% trans path=pathto('copyright'), copyright=copyright|e %}&copy; <a href="{{ path }}">版权所有</a> {{ copyright }}.{% endtrans %}
+      {%- else %}
+        {% trans copyright=copyright|e %}&copy; 版权所有 {{ copyright }}.{% endtrans %}
+      {%- endif %}
+    {%- endif %}
+
+    {%- if last_updated %}
+      {% trans last_updated=last_updated|e %} 最后修改: {{ last_updated }}.{% endtrans %}
+    {%- endif %}
+    </p>
+
+    <p>以 <a href="http://www.aneasystone.com/" target="_blank">aneasystone</a> 制作的手册为基础构建</p>
+  </div>
+
+  {% trans %}
+    <p>基于 <a href="http://sphinx-doc.org/">Sphinx</a> 并使用 <a href="https://readthedocs.org">Read the Docs</a> 提供的<a href="https://github.com/snide/sphinx_rtd_theme">风格</a>构建</p>
+    <p>
+        <a href="https://github.com/CodeIgniter-Chinese/codeigniter-user-guide" target="_blank">Github 简体中文翻译</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/codeigniter_user_guide.zip">离线版压缩包下载</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/CodeIgniter.pdf">PDF 版下载</a>
+    </p>
+  {% endtrans %}
+
+</footer>

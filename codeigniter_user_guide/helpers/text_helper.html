@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>文本辅助函数 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档</title>
+  
+
+  
+  
+  <link rel="shortcut icon" href="../_static/ci-icon.ico" />
+  
+
+  
+  <link href="../_static/css/fonts.css" rel="stylesheet" type="text/css" />
+
+  
+  
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme_cn.css" type="text/css" />
+    <link rel="top" title="CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" href="../index.html"/>
+        <link rel="up" title="辅助函数参考" href="index.html"/>
+        <link rel="next" title="排版辅助函数" href="typography_helper.html"/>
+        <link rel="prev" title="字符串辅助函数" href="string_helper.html"/> 
+
+  
+  <script src="../_static/js/modernizr.2.6.2.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">类库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">辅助函数参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpg;base64,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" title="切换目录" alt="切换目录" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索手册" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">类库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">辅助函数参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">首页</a> &raquo; </li>
+    
+    <li><a href="index.html">辅助函数参考</a> &raquo; </li>
+    
+    <li>文本辅助函数</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;">
+      <div style="text-decoration:underline;color:blue;margin-left:5px;cursor:pointer;" id="closeMe">
+        <img title="目录" alt="toc" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+      </div>
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="id1">
+<h1>文本辅助函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>文本辅助函数文件包含了一些帮助你处理文本的函数。</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#id2" id="id4">加载辅助函数</a></li>
+<li><a class="reference internal" href="#id3" id="id5">可用函数</a></li>
+</ul>
+</div>
+<div class="custom-index container"></div><div class="section" id="id2">
+<h2><a class="toc-backref" href="#id4">加载辅助函数</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>该辅助函数通过下面的代码加载:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id5">可用函数</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>该辅助函数有下列可用函数：</p>
+<dl class="function">
+<dt id="word_limiter">
+<tt class="descname">word_limiter</tt><big>(</big><em>$str</em><span class="optional">[</span>, <em>$limit = 100</em><span class="optional">[</span>, <em>$end_char = '&amp;#8230;'</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#word_limiter" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$str</strong> (<em>string</em>) -- Input string</li>
+<li><strong>$limit</strong> (<em>int</em>) -- Limit</li>
+<li><strong>$end_char</strong> (<em>string</em>) -- End character (usually an ellipsis)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Word-limited string</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>根据指定的 <em>单词</em> 个数裁剪字符串。例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$string</span> <span class="o">=</span> <span class="s2">&quot;Here is a nice text string consisting of eleven words.&quot;</span><span class="p">;</span>
+<span class="nv">$string</span> <span class="o">=</span> <span class="nx">word_limiter</span><span class="p">(</span><span class="nv">$string</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="c1">// Returns:  Here is a nice</span>
+</pre></div>
+</div>
+<p>第三个参数用于给裁剪的字符串设置一个可选的后缀，默认使用省略号。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="character_limiter">
+<tt class="descname">character_limiter</tt><big>(</big><em>$str</em><span class="optional">[</span>, <em>$n = 500</em><span class="optional">[</span>, <em>$end_char = '&amp;#8230;'</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#character_limiter" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$str</strong> (<em>string</em>) -- Input string</li>
+<li><strong>$n</strong> (<em>int</em>) -- Number of characters</li>
+<li><strong>$end_char</strong> (<em>string</em>) -- End character (usually an ellipsis)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Character-limited string</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>根据指定的 <em>字符</em> 个数裁剪字符串。它会保证单词的完整性，所以最终生成的
+字符串长度和你指定的长度有可能会有出入。</p>
+<p>例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$string</span> <span class="o">=</span> <span class="s2">&quot;Here is a nice text string consisting of eleven words.&quot;</span><span class="p">;</span>
+<span class="nv">$string</span> <span class="o">=</span> <span class="nx">character_limiter</span><span class="p">(</span><span class="nv">$string</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+<span class="c1">// Returns:  Here is a nice text string</span>
+</pre></div>
+</div>
+<p>第三个参数用于给裁剪的字符串设置一个可选的后缀，如果没该参数，默认使用省略号。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">如果你需要将字符串精确的裁剪到指定长度，请参见下面的 <a class="reference internal" href="#ellipsize" title="ellipsize"><tt class="xref php php-func docutils literal"><span class="pre">ellipsize()</span></tt></a> 函数。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="ascii_to_entities">
+<tt class="descname">ascii_to_entities</tt><big>(</big><em>$str</em><big>)</big><a class="headerlink" href="#ascii_to_entities" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$str</strong> (<em>string</em>) -- Input string</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">A string with ASCII values converted to entities</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>将 ASCII 字符转换为字符实体，包括高位 ASCII 和 Microsoft Word 中的特殊字符，
+在 Web 页面中使用这些字符可能会导致问题。转换为字符实体后，它们就可以
+不受浏览器设置的影响正确的显示出来，也能可靠的存储到到数据库中。本函数依赖于
+你的服务器支持的字符集，所以它可能并不能保证 100% 可靠，但在大多数情况下，
+它都能正确的识别这些特殊字符（例如重音字符）。</p>
+<p>例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$string</span> <span class="o">=</span> <span class="nx">ascii_to_entities</span><span class="p">(</span><span class="nv">$string</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="convert_accented_characters">
+<tt class="descname">convert_accented_characters</tt><big>(</big><em>$str</em><big>)</big><a class="headerlink" href="#convert_accented_characters" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$str</strong> (<em>string</em>) -- Input string</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">A string with accented characters converted</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>将高位 ASCII 字符转换为与之相等的普通 ASCII 字符，当你的 URL 中需要使用
+非英语字符，而你的 URL 又设置了只允许出现普通 ASCII 字符时很有用。</p>
+<p>例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$string</span> <span class="o">=</span> <span class="nx">convert_accented_characters</span><span class="p">(</span><span class="nv">$string</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">该函数使用了 <cite>application/config/foreign_chars.php</cite> 配置文件来决定
+将什么字符转换为什么字符。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="word_censor">
+<tt class="descname">word_censor</tt><big>(</big><em>$str</em>, <em>$censored</em><span class="optional">[</span>, <em>$replacement = ''</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#word_censor" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$str</strong> (<em>string</em>) -- Input string</li>
+<li><strong>$censored</strong> (<em>array</em>) -- List of bad words to censor</li>
+<li><strong>$replacement</strong> (<em>string</em>) -- What to replace bad words with</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Censored string</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>对字符串中出现的敏感词进行审查。第一个参数为原始字符串，第二个参数
+为一个数组，包含你要禁用的单词，第三个参数（可选）可以设置将出现
+的敏感词替换成什么，如果未设置，默认替换为磅字符：#### 。</p>
+<p>例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$disallowed</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;darn&#39;</span><span class="p">,</span> <span class="s1">&#39;shucks&#39;</span><span class="p">,</span> <span class="s1">&#39;golly&#39;</span><span class="p">,</span> <span class="s1">&#39;phooey&#39;</span><span class="p">);</span>
+<span class="nv">$string</span> <span class="o">=</span> <span class="nx">word_censor</span><span class="p">(</span><span class="nv">$string</span><span class="p">,</span> <span class="nv">$disallowed</span><span class="p">,</span> <span class="s1">&#39;Beep!&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="highlight_code">
+<tt class="descname">highlight_code</tt><big>(</big><em>$str</em><big>)</big><a class="headerlink" href="#highlight_code" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$str</strong> (<em>string</em>) -- Input string</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">String with code highlighted via HTML</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>对一段代码（PHP、HTML 等）进行着色。例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$string</span> <span class="o">=</span> <span class="nx">highlight_code</span><span class="p">(</span><span class="nv">$string</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>该函数使用了 PHP 的 <tt class="docutils literal"><span class="pre">highlight_string()</span></tt> 函数，所以着色的颜色是在 php.ini 文件中设置的。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="highlight_phrase">
+<tt class="descname">highlight_phrase</tt><big>(</big><em>$str</em>, <em>$phrase</em><span class="optional">[</span>, <em>$tag_open = '&lt;mark&gt;'</em><span class="optional">[</span>, <em>$tag_close = '&lt;/mark&gt;'</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#highlight_phrase" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$str</strong> (<em>string</em>) -- Input string</li>
+<li><strong>$phrase</strong> (<em>string</em>) -- Phrase to highlight</li>
+<li><strong>$tag_open</strong> (<em>string</em>) -- Opening tag used for the highlight</li>
+<li><strong>$tag_close</strong> (<em>string</em>) -- Closing tag for the highlight</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">String with a phrase highlighted via HTML</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>对字符串内的一个短语进行突出显示。第一个参数是原始字符串，
+第二个参数是你想要突出显示的短语。如果要用 HTML 标签对短语进行标记，
+那么第三个和第四个参数分别是你想要对短语使用的 HTML 开始和结束标签。</p>
+<p>例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$string</span> <span class="o">=</span> <span class="s2">&quot;Here is a nice text string about nothing in particular.&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nx">highlight_phrase</span><span class="p">(</span><span class="nv">$string</span><span class="p">,</span> <span class="s2">&quot;nice text&quot;</span><span class="p">,</span> <span class="s1">&#39;&lt;span style=&quot;color:#990000;&quot;&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/span&gt;&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>上面的代码将输出:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nx">Here</span> <span class="nx">is</span> <span class="nx">a</span> <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">style</span><span class="o">=</span><span class="s2">&quot;color:#990000;&quot;</span><span class="o">&gt;</span><span class="nx">nice</span> <span class="nx">text</span><span class="o">&lt;/</span><span class="nx">span</span><span class="o">&gt;</span> <span class="nx">string</span> <span class="nx">about</span> <span class="nx">nothing</span> <span class="nx">in</span> <span class="nx">particular</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p>该函数默认是使用 <tt class="docutils literal"><span class="pre">&lt;strong&gt;</span></tt> 标签，老版本的浏览器可能不支持 <tt class="docutils literal"><span class="pre">&lt;mark&gt;</span></tt>
+这个 HTML5 新标签，所以如果你想支持这些老的浏览器，推荐你在你的样式文件
+中添加如下 CSS 代码:</p>
+<div class="last highlight-ci"><div class="highlight"><pre><span class="nx">mark</span> <span class="p">{</span>
+    <span class="nx">background</span><span class="o">:</span> <span class="c1">#ff0;</span>
+    <span class="nx">color</span><span class="o">:</span> <span class="c1">#000;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="word_wrap">
+<tt class="descname">word_wrap</tt><big>(</big><em>$str</em><span class="optional">[</span>, <em>$charlim = 76</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#word_wrap" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$str</strong> (<em>string</em>) -- Input string</li>
+<li><strong>$charlim</strong> (<em>int</em>) -- Character limit</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Word-wrapped string</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>根据指定的 <em>字符</em> 数目对文本进行换行操作，并且保持单词的完整性。</p>
+<p>例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$string</span> <span class="o">=</span> <span class="s2">&quot;Here is a simple string of text that will help us demonstrate this function.&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nx">word_wrap</span><span class="p">(</span><span class="nv">$string</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+
+<span class="c1">// Would produce:</span>
+<span class="c1">// Here is a simple string</span>
+<span class="c1">// of text that will help us</span>
+<span class="c1">// demonstrate this</span>
+<span class="c1">// function.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="ellipsize">
+<tt class="descname">ellipsize</tt><big>(</big><em>$str</em>, <em>$max_length</em><span class="optional">[</span>, <em>$position = 1</em><span class="optional">[</span>, <em>$ellipsis = '&amp;hellip;'</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#ellipsize" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$str</strong> (<em>string</em>) -- Input string</li>
+<li><strong>$max_length</strong> (<em>int</em>) -- String length limit</li>
+<li><strong>$position</strong> (<em>mixed</em>) -- Position to split at (int or float)</li>
+<li><strong>$ellipsis</strong> (<em>string</em>) -- What to use as the ellipsis character</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Ellipsized string</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>该函数移除字符串中出现的标签，并根据指定的长度裁剪字符串，并插入省略号。</p>
+<p>第一个参数是要处理的字符串，第二个参数为最终处理完后的字符串长度，
+第三个参数为插入省略号的位置，值为 0-1 表示从左到右。例如设置为 1
+省略号将插入到字符串的右侧，0.5 将插入到中间，0 将插入到左侧。</p>
+<p>第四个参数是可选的，表示省略号的类型，默认是 &amp;hellip; 。</p>
+<p>例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$str</span> <span class="o">=</span> <span class="s1">&#39;this_string_is_entirely_too_long_and_might_break_my_design.jpg&#39;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nx">ellipsize</span><span class="p">(</span><span class="nv">$str</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>输出结果:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nx">this_string_is_e</span><span class="o">&amp;</span><span class="nx">hellip</span><span class="p">;</span><span class="nx">ak_my_design</span><span class="o">.</span><span class="nx">jpg</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="typography_helper.html" class="btn btn-neutral float-right" title="排版辅助函数">下一个主题 <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="string_helper.html" class="btn btn-neutral" title="字符串辅助函数"><span class="fa fa-arrow-circle-left"></span> 上一个主题</a>
+      
+    </div>
+  
+
+  
+  <div id="notes">
+  
+  <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="userguide3/helpers/text_helper" data-title="文本辅助函数" data-url="http://codeigniter.org.cn/user_guide/helpers/text_helper.html"></div>
+  <!-- 多说评论框 end -->
+  
+
+  <div class="ds-share flat" data-thread-key="userguide3/helpers/text_helper" data-title="文本辅助函数 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" data-url="http://codeigniter.org.cn/user_guide/helpers/text_helper.html" data-images="" data-content="">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+  </div>
+
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codeigniter"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+  <!-- 多说公共JS代码 end -->
+  </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2014 - 2015, 不列颠哥伦比亚理工学院.
+       最后修改: 2015-10-11.
+    </p>
+
+    <p>以 <a href="http://www.aneasystone.com/" target="_blank">aneasystone</a> 制作的手册为基础构建</p>
+  </div>
+
+  
+    <p>基于 <a href="http://sphinx-doc.org/">Sphinx</a> 并使用 <a href="https://readthedocs.org">Read the Docs</a> 提供的<a href="https://github.com/snide/sphinx_rtd_theme">风格</a>构建</p>
+    <p>
+        <a href="https://github.com/CodeIgniter-Chinese/codeigniter-user-guide" target="_blank">Github 简体中文翻译</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/codeigniter_user_guide.zip">离线版压缩包下载</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/CodeIgniter.pdf">PDF 版下载</a>
+    </p>
+  
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.0.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-272152-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+  
+
+</body>
+</html>

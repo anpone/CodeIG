@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>输入类 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档</title>
+  
+
+  
+  
+  <link rel="shortcut icon" href="../_static/ci-icon.ico" />
+  
+
+  
+  <link href="../_static/css/fonts.css" rel="stylesheet" type="text/css" />
+
+  
+  
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme_cn.css" type="text/css" />
+    <link rel="top" title="CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" href="../index.html"/>
+        <link rel="up" title="类库参考" href="index.html"/>
+        <link rel="next" title="Javascript 类" href="javascript.html"/>
+        <link rel="prev" title="图像处理类" href="image_lib.html"/> 
+
+  
+  <script src="../_static/js/modernizr.2.6.2.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">类库参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">图像处理类</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAICAgICAgICAgICAgICAgMCAgICAwMDAwMDAwMEAwMDAwMDBAQEBAUEBAQFBQYGBQUHBwcHBwcHBwcHBwcHBwf/2wBDAQICAgMDAwUEBAUHBgUGBwgICAgICAgHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwf/wAARCAArAJoDAREAAhEBAxEB/8QAHgABAAAGAwEAAAAAAAAAAAAAAAQFBgcICQECAwr/xAA/EAAABAQCBgcFBAsBAAAAAAACAwQFAAEGBxESExZRU5XVCBQZIlWi0gkVITFCIzJSchgzQUNUVmFiZYWy1P/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDCEXygIE47JKAmEAgEAgEAgEAgEAgEAgEAgEBBnGBCcEH9kBEAnjAekBusU9DWxoACnKgx8ZqLmMBaWquivZhvLMmXRYy8v+XfRf8AS+A1WwCAQCAQGdrZby3DbbG0T0bRllHB4q2kVb0+r7nV5U1PLz1Jb+4oQCSoW96RJ9AEhOWHMAqXekLHGeMBQHSCoei6doG0FTUxTlDMLpVTpWaN9Mt5UbxUjOpLZxsoW+QFTs4OGQwrrZ2eRYg/e72OAcAxRgL79Hy3Rtwq1EnU0Y51hTrciNMfAoUlQKikYjijOomKJU2ES2WkNLmEEpYSn8Zz+AZwGdrf0V7fuZqhEK0TylGY1uI0xxbddJIKSopvPOSSCodpBRhmI8AA4HTwFjl+c5QGrN/p98pV4XU/UjUuZHtsMCS4NTkUIhSnGIATQhNKHgIM5gEEXx/ZOAk8AgEAgMwujjZygLjMDg51XT/vZanqE9uJO685pcqctKlNADIiVEA++aL6YDNZq6HlkDygzFQoxf7moP8A3wE7/QysZ/IY+M1FzKAzzWtJehF3YDHe4DNiSdkD9AoD5j9aFm/8ofTANaFm/wDKH0wDWhZv/KH0wDWhZv8Ayh9MA1oWb/yh9MBsYJujb8VobCIFlyujsgeGu3y1M8tdxqPfawdkZ46pdzgFDPp9ndC0IZkjAOSc8ZZve0uTIYAQgtz0l7j0s62nsI30rWtrqmXtb3cI16T2taVbCiRAVmU91GalidUaFcmEfoTsDDEwQnZBTLEOQZ4BhbrQs3/lD6YC+Vh7g0vS9VDqer6nPRSbtCiR0sVTDNUJNSFOGkTLkC4x/UJWxuSyLyyOPNmIcgDnMoOYOaQZtvV+LEW/bbdW4emWnzimtFUL5T1Y0q6Uxc9bb55dHw6adaZ1AsinXctWQACkxFIOZJMJcwBEMJQoDWtWFQJk1U1AQxVSGrGgDqo6hUoGwTQFyKmZMUlgWw4OdJI3HGRQviGXwwl8oCm9aFm/8ofTANaFm/8AKH0wDWhZv/KH0wHOtCz+I2/MIMP6fTjjAba/Z9SMe7eVAsOFpNHXytPmy/hamsf0fmgNtzA0l6EPd+iAqn3SVsgJ6eXIYBSywFq6oZOtFmSwgPn3e/ZrX1b3BcS21ZbdwbCVh4W1YqUvaNUelCaLqxylGU1qgJjRg7wiwnmhCLuaUf34Cmx+z0v4GeHvy2nEHrk0B17Pa/vjluOIPfJoB2e1+vG7b8Qe+TwDs9r++OW44g98mgHZ7X98ctxxB75NAOz2v745bjiD3yaAdntfrxu2/EHvk8A7Pa/Xjdt+IPfJ4B2e1+vG7b8Qe+TwDs9r9eN234g98ngHZ7X68btvxB75PAOz2v143bfiD3yeAdntf3xy3HEHvk0BHEezo6QKmeAKgtiH8zk+8kgNrHQv6OlSWHtyqpurXZqeH52qpdUqwTIFQJCkCclSt5KYlSqCQcp+xRhPEIRBXeN0WQeTTDDYU2JpFlBllgJ1hL8MAnLNKAlalFI6QsQwFLqqaLOmLEuAlI6MInP9TAeepabcwDUtNuYBqWm3MA1LTbmAalptzANS025gGpabcwDUtNuYBqWm3MA1LTbmAalptzANTCJfuYCOIpQkuYfs4CpkbSAjLgGAnxQMksID2gEB1FAJylsgOcJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUBzAIBAf/Z" title="切换目录" alt="切换目录" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索手册" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">类库参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">图像处理类</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">首页</a> &raquo; </li>
+    
+    <li><a href="index.html">类库参考</a> &raquo; </li>
+    
+    <li>输入类</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;">
+      <div style="text-decoration:underline;color:blue;margin-left:5px;cursor:pointer;" id="closeMe">
+        <img title="目录" alt="toc" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+      </div>
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="id1">
+<h1>输入类<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>输入类有两个用途：</p>
+<ol class="arabic simple">
+<li>为了安全性，对输入数据进行预处理</li>
+<li>提供了一些辅助方法来获取输入数据并处理</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">该类由系统自动加载，你无需手工加载</p>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#id2" id="id6">对输入进行过滤</a><ul>
+<li><a class="reference internal" href="#id3" id="id7">安全性过滤</a></li>
+<li><a class="reference internal" href="#xss" id="id8">XSS 过滤</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4" id="id9">访问表单数据</a><ul>
+<li><a class="reference internal" href="#postgetcookie-server" id="id10">使用 POST、GET、COOKIE 和 SERVER 数据</a></li>
+<li><a class="reference internal" href="#php-input" id="id11">使用 php://input 流</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5" id="id12">类参考</a></li>
+</ul>
+</div>
+<div class="custom-index container"></div><div class="section" id="id2">
+<h2><a class="toc-backref" href="#id6">对输入进行过滤</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id7">安全性过滤</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>当访问 <a class="reference internal" href="../general/controllers.html"><em>控制器</em></a> 时，安全过滤方法会自动被调用，
+它做了以下几件事情：</p>
+<ul class="simple">
+<li>如果 <tt class="docutils literal"><span class="pre">$config['allow_get_array']</span></tt> 设置为 FALSE （默认是 TRUE），销毁全局的 GET 数组。</li>
+<li>当开启 register_globals 时，销毁所有的全局变量。</li>
+<li>过滤 GET/POST/COOKIE 数据的键值，只允许出现字母和数字（和其他一些）字符。</li>
+<li>提供了 XSS （跨站脚本攻击）过滤，可全局启用，或按需启用。</li>
+<li>将换行符统一为 <tt class="docutils literal"><span class="pre">PHP_EOL</span></tt> （基于 UNIX 的系统下为 \n，Windows 系统下为 \r\n），这个是可配置的。</li>
+</ul>
+</div>
+<div class="section" id="xss">
+<h3><a class="toc-backref" href="#id8">XSS 过滤</a><a class="headerlink" href="#xss" title="永久链接至标题">¶</a></h3>
+<p>输入类可以自动的对输入数据进行过滤，来阻止跨站脚本攻击。如果你希望在每次遇到 POST 或 COOKIE
+数据时自动运行过滤，你可以在 <em>application/config/config.php</em> 配置文件中设置如下参数:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;global_xss_filtering&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">TRUE</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>关于 XSS 过滤的信息，请参考 <a class="reference internal" href="security.html"><em>安全类</em></a> 文档。</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">参数 'global_xss_filtering' 已经废弃，保留它只是为了实现向前兼容。
+XSS 过滤应该在*输出*的时候进行，而不是*输入*的时候！</p>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id9">访问表单数据</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<div class="section" id="postgetcookie-server">
+<h3><a class="toc-backref" href="#id10">使用 POST、GET、COOKIE 和 SERVER 数据</a><a class="headerlink" href="#postgetcookie-server" title="永久链接至标题">¶</a></h3>
+<p>CodeIgniter 提供了几个辅助方法来从 POST、GET、COOKIE 和 SERVER 数组中获取数据。
+使用这些方法来获取数据而不是直接访问数组（<tt class="docutils literal"><span class="pre">$_POST['something']</span></tt>）的最大的好处是，
+这些方法会检查获取的数据是否存在，如果不存在则返回 NULL 。这使用起来将很方便，
+你不再需要去检查数据是否存在。换句话说，通常你需要像下面这样做:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$something</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;something&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;something&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="k">NULL</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>使用 CodeIgniter 的方法，你可以简单的写成:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$something</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;something&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>主要有下面几个方法：</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">$this-&gt;input-&gt;post()</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">$this-&gt;input-&gt;get()</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">$this-&gt;input-&gt;cookie()</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">$this-&gt;input-&gt;server()</span></tt></li>
+</ul>
+</div>
+<div class="section" id="php-input">
+<h3><a class="toc-backref" href="#id11">使用 php://input 流</a><a class="headerlink" href="#php-input" title="永久链接至标题">¶</a></h3>
+<p>如果你需要使用 PUT、DELETE、PATCH 或其他的请求方法，你只能通过一个特殊的输入流来访问，
+这个流只能被读一次，这和从诸如 <tt class="docutils literal"><span class="pre">$_POST</span></tt> 数组中读取数据相比起来要复杂一点，因为 POST
+数组可以被访问多次来获取多个变量，而不用担心它会消失。</p>
+<p>CodeIgniter 为你解决了这个问题，你只需要使用下面的 <tt class="docutils literal"><span class="pre">$raw_input_stream</span></tt> 属性即可，
+就可以在任何时候读取 <strong>php://input</strong> 流中的数据:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">raw_input_stream</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>另外，如果输入流的格式和 $_POST 数组一样，你也可以通过 <tt class="docutils literal"><span class="pre">input_stream()</span></tt> 方法来访问它的值:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">input_stream</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>和其他的 <tt class="docutils literal"><span class="pre">get()</span></tt> 和 <tt class="docutils literal"><span class="pre">post()</span></tt> 方法类似，如果请求的数据不存在，则返回 NULL 。
+你也可以将第二个参数设置为 TRUE ，来让数据经过 <tt class="docutils literal"><span class="pre">xss_clean()</span></tt> 的检查:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">input_stream</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span> <span class="c1">// XSS Clean</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">input_stream</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span> <span class="c1">// No XSS filter</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">你可以使用 <tt class="docutils literal"><span class="pre">method()</span></tt> 方法来获取你读取的是什么数据，PUT、DELETE 还是 PATCH 。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id12">类参考</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="CI_Input">
+<em class="property">class </em><tt class="descname">CI_Input</tt><a class="headerlink" href="#CI_Input" title="永久链接至目标">¶</a></dt>
+<dd><dl class="attribute">
+<dt>
+<tt class="descname">$raw_input_stream</tt></dt>
+<dd><p>返回只读的 php://input 流数据。</p>
+<p>该属性可以被多次读取。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Input::post">
+<tt class="descname">post</tt><big>(</big><span class="optional">[</span><em>$index = NULL</em><span class="optional">[</span>, <em>$xss_clean = NULL</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Input::post" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$index</strong> (<em>mixed</em>) -- POST parameter name</li>
+<li><strong>$xss_clean</strong> (<em>bool</em>) -- Whether to apply XSS filtering</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">$_POST if no parameters supplied, otherwise the POST value if found or NULL if not</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>第一个参数为你想要获取的 POST 数据名:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;some_data&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>如果获取的数据不存在，该方法返回 NULL 。</p>
+<p>第二个参数可选，用于决定是否使用 XSS 过滤器对数据进行过滤。
+要使用过滤器，可以将第二个参数设置为 TRUE ，或者将
+<tt class="docutils literal"><span class="pre">$config['global_xss_filtering']</span></tt> 参数设置为 TRUE 。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;some_data&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>如果不带任何参数该方法将返回 POST 中的所有元素。</p>
+<p>如果希望返回 POST 所有元素并将它们通过 XSS 过滤器进行过滤，
+可以将第一个参数设为 NULL ，第二个参数设为 TRUE</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span> <span class="c1">// returns all POST items with XSS filter</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span> <span class="c1">// returns all POST items without XSS filter</span>
+</pre></div>
+</div>
+<p>如果要返回 POST 中的多个元素，将所有需要的键值作为数组传给它:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;field1&#39;</span><span class="p">,</span> <span class="s1">&#39;field2&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>和上面一样，如果希望数据通过 XSS 过滤器进行过滤，将第二个参数设置为 TRUE:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;field1&#39;</span><span class="p">,</span> <span class="s1">&#39;field2&#39;</span><span class="p">),</span> <span class="k">TRUE</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Input::get">
+<tt class="descname">get</tt><big>(</big><span class="optional">[</span><em>$index = NULL</em><span class="optional">[</span>, <em>$xss_clean = NULL</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Input::get" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$index</strong> (<em>mixed</em>) -- GET parameter name</li>
+<li><strong>$xss_clean</strong> (<em>bool</em>) -- Whether to apply XSS filtering</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">$_GET if no parameters supplied, otherwise the GET value if found or NULL if not</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>该函数和 <tt class="docutils literal"><span class="pre">post()</span></tt> 一样，只是它用于获取 GET 数据。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;some_data&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>如果不带任何参数该方法将返回 GET 中的所有元素。</p>
+<p>如果希望返回 GET 所有元素并将它们通过 XSS 过滤器进行过滤，
+可以将第一个参数设为 NULL ，第二个参数设为 TRUE</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span> <span class="c1">// returns all GET items with XSS filter</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span> <span class="c1">// returns all GET items without XSS filtering</span>
+</pre></div>
+</div>
+<p>如果要返回 GET 中的多个元素，将所有需要的键值作为数组传给它:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;field1&#39;</span><span class="p">,</span> <span class="s1">&#39;field2&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>和上面一样，如果希望数据通过 XSS 过滤器进行过滤，将第二个参数设置为 TRUE:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;field1&#39;</span><span class="p">,</span> <span class="s1">&#39;field2&#39;</span><span class="p">),</span> <span class="k">TRUE</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Input::post_get">
+<tt class="descname">post_get</tt><big>(</big><em>$index</em><span class="optional">[</span>, <em>$xss_clean = NULL</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Input::post_get" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$index</strong> (<em>string</em>) -- POST/GET parameter name</li>
+<li><strong>$xss_clean</strong> (<em>bool</em>) -- Whether to apply XSS filtering</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">POST/GET value if found, NULL if not</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>该方法和 <tt class="docutils literal"><span class="pre">post()</span></tt> 和 <tt class="docutils literal"><span class="pre">get()</span></tt> 方法类似，它会同时查找 POST 和 GET 两个数组来获取数据，
+先查找 POST ，再查找 GET:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">post_get</span><span class="p">(</span><span class="s1">&#39;some_data&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Input::get_post">
+<tt class="descname">get_post</tt><big>(</big><em>$index</em><span class="optional">[</span>, <em>$xss_clean = NULL</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Input::get_post" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$index</strong> (<em>string</em>) -- GET/POST parameter name</li>
+<li><strong>$xss_clean</strong> (<em>bool</em>) -- Whether to apply XSS filtering</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">GET/POST value if found, NULL if not</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>该方法和 <tt class="docutils literal"><span class="pre">post_get()</span></tt> 方法一样，只是它先查找 GET 数据:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">get_post</span><span class="p">(</span><span class="s1">&#39;some_data&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这个方法在之前的版本中和 <tt class="docutils literal"><span class="pre">post_get()</span></tt> 方法是完全一样的，在 CodeIgniter 3.0 中有所修改。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Input::cookie">
+<tt class="descname">cookie</tt><big>(</big><span class="optional">[</span><em>$index = NULL</em><span class="optional">[</span>, <em>$xss_clean = NULL</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Input::cookie" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$index</strong> (<em>mixed</em>) -- COOKIE name</li>
+<li><strong>$xss_clean</strong> (<em>bool</em>) -- Whether to apply XSS filtering</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">$_COOKIE if no parameters supplied, otherwise the COOKIE value if found or NULL if not</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>该方法和 <tt class="docutils literal"><span class="pre">post()</span></tt> 和 <tt class="docutils literal"><span class="pre">get()</span></tt> 方法一样，只是它用于获取 COOKIE 数据:</p>
+<div class="highlight-ci"><div class="highlight"><pre>$this-&gt;input-&gt;cookie(&#39;some_cookie&#39;);
+$this-&gt;input-&gt;cookie(&#39;some_cookie, TRUE); // with XSS filter
+</pre></div>
+</div>
+<p>如果要返回 COOKIE 中的多个元素，将所有需要的键值作为数组传给它:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">cookie</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;some_cookie&#39;</span><span class="p">,</span> <span class="s1">&#39;some_cookie2&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">和 <a class="reference internal" href="../helpers/cookie_helper.html"><em>Cookie 辅助函数</em></a> 中的 <tt class="xref php php-func docutils literal"><span class="pre">get_cookie()</span></tt>
+函数不同的是，这个方法不会根据 <tt class="docutils literal"><span class="pre">$config['cookie_prefix']</span></tt> 来添加前缀。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Input::server">
+<tt class="descname">server</tt><big>(</big><em>$index</em><span class="optional">[</span>, <em>$xss_clean = NULL</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Input::server" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$index</strong> (<em>mixed</em>) -- Value name</li>
+<li><strong>$xss_clean</strong> (<em>bool</em>) -- Whether to apply XSS filtering</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">$_SERVER item value if found, NULL if not</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>该方法和 <tt class="docutils literal"><span class="pre">post()</span></tt> 、 <tt class="docutils literal"><span class="pre">get()</span></tt> 和 <tt class="docutils literal"><span class="pre">cookie()</span></tt> 方法一样，只是它用于获取 SERVER 数据:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">server</span><span class="p">(</span><span class="s1">&#39;some_data&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>如果要返回 SERVER 中的多个元素，将所有需要的键值作为数组传给它:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">server</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;SERVER_PROTOCOL&#39;</span><span class="p">,</span> <span class="s1">&#39;REQUEST_URI&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Input::input_stream">
+<tt class="descname">input_stream</tt><big>(</big><span class="optional">[</span><em>$index = NULL</em><span class="optional">[</span>, <em>$xss_clean = NULL</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Input::input_stream" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$index</strong> (<em>mixed</em>) -- Key name</li>
+<li><strong>$xss_clean</strong> (<em>bool</em>) -- Whether to apply XSS filtering</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Input stream array if no parameters supplied, otherwise the specified value if found or NULL if not</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>该方法和 <tt class="docutils literal"><span class="pre">get()</span></tt> 、 <tt class="docutils literal"><span class="pre">post()</span></tt> 和 <tt class="docutils literal"><span class="pre">cookie()</span></tt> 方法一样，只是它用于获取 <em>php://input</em> 流数据。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Input::set_cookie">
+<tt class="descname">set_cookie</tt><big>(</big><em>$name = ''</em><span class="optional">[</span>, <em>$value = ''</em><span class="optional">[</span>, <em>$expire = ''</em><span class="optional">[</span>, <em>$domain = ''</em><span class="optional">[</span>, <em>$path = '/'</em><span class="optional">[</span>, <em>$prefix = ''</em><span class="optional">[</span>, <em>$secure = FALSE</em><span class="optional">[</span>, <em>$httponly = FALSE</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Input::set_cookie" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$name</strong> (<em>mixed</em>) -- Cookie name or an array of parameters</li>
+<li><strong>$value</strong> (<em>string</em>) -- Cookie value</li>
+<li><strong>$expire</strong> (<em>int</em>) -- Cookie expiration time in seconds</li>
+<li><strong>$domain</strong> (<em>string</em>) -- Cookie domain</li>
+<li><strong>$path</strong> (<em>string</em>) -- Cookie path</li>
+<li><strong>$prefix</strong> (<em>string</em>) -- Cookie name prefix</li>
+<li><strong>$secure</strong> (<em>bool</em>) -- Whether to only transfer the cookie through HTTPS</li>
+<li><strong>$httponly</strong> (<em>bool</em>) -- Whether to only make the cookie accessible for HTTP requests (no JavaScript)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>设置 COOKIE 的值，有两种方法来设置 COOKIE 值：数组方式和参数方式。</p>
+<p><strong>数组方式</strong></p>
+<p>使用这种方式，可以将第一个参数设置为一个关联数组:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$cookie</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;name&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;The Cookie Name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;value&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;The Value&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;expire&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;86500&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;domain&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;.some-domain.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;path&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;prefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;myprefix_&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;secure&#39;</span> <span class="o">=&gt;</span> <span class="k">TRUE</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">set_cookie</span><span class="p">(</span><span class="nv">$cookie</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>注意</strong></p>
+<p>只有 name 和 value 两项是必须的，要删除 COOKIE 的话，将 expire 设置为空。</p>
+<p>COOKIE 的过期时间是 <strong>秒</strong> ，将它加到当前时间上就是 COOKIE 的过期时间。
+记住不要把它设置成时间了，只要设置成距离当前时间的秒数即可，那么在这段
+时间内，COOKIE 都将保持有效。如果将过期时间设置为 0 ，那么 COOKIE 只在
+浏览器打开的期间是有效的，关闭后就失效了。</p>
+<p>如果需要设置一个全站范围内的 COOKIE ，而不关心用户是如何访问你的站点的，
+可以将 <strong>domain</strong> 参数设置为你的 URL 前面以句点开头，如：.your-domain.com</p>
+<p>path 参数通常不用设，上面的例子设置为根路径。</p>
+<p>prefix 只在你想避免和其他相同名称的 COOKIE 冲突时才需要使用。</p>
+<p>secure 参数只有当你需要使用安全的 COOKIE 时使用。</p>
+<p><strong>参数方式</strong></p>
+<p>如果你喜欢，你也可以使用下面的方式来设置 COOKIE:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">set_cookie</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$value</span><span class="p">,</span> <span class="nv">$expire</span><span class="p">,</span> <span class="nv">$domain</span><span class="p">,</span> <span class="nv">$path</span><span class="p">,</span> <span class="nv">$prefix</span><span class="p">,</span> <span class="nv">$secure</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Input::ip_address">
+<tt class="descname">ip_address</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Input::ip_address" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">Visitor's IP address or '0.0.0.0' if not valid</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>返回当前用户的 IP 地址，如果 IP 地址无效，则返回 '0.0.0.0':</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">ip_address</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">该方法会根据 <tt class="docutils literal"><span class="pre">$config['proxy_ips']</span></tt> 配置，来返回 HTTP_X_FORWARDED_FOR、
+HTTP_CLIENT_IP、HTTP_X_CLIENT_IP 或 HTTP_X_CLUSTER_CLIENT_IP 。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Input::valid_ip">
+<tt class="descname">valid_ip</tt><big>(</big><em>$ip</em><span class="optional">[</span>, <em>$which = ''</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Input::valid_ip" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$ip</strong> (<em>string</em>) -- IP address</li>
+<li><strong>$which</strong> (<em>string</em>) -- IP protocol ('ipv4' or 'ipv6')</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">TRUE if the address is valid, FALSE if not</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>判断一个 IP 地址是否有效，返回 TRUE/FALSE 。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">上面的 $this-&gt;input-&gt;ip_address() 方法会自动验证 IP 地址的有效性。</p>
+</div>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">valid_ip</span><span class="p">(</span><span class="nv">$ip</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;Not Valid&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;Valid&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>第二个参数可选，可以是字符串 'ipv4' 或 'ipv6' 用于指定 IP 的格式，默认两种格式都会检查。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Input::user_agent">
+<tt class="descname">user_agent</tt><big>(</big><span class="optional">[</span><em>$xss_clean = NULL</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Input::user_agent" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body"><p class="first">User agent string or NULL if not set</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$xss_clean</strong> (<em>bool</em>) -- Whether to apply XSS filtering</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>返回当前用户的用户代理字符串（Web 浏览器），如果不可用则返回 FALSE 。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">user_agent</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>关于用户代理的相关方法请参考 <a class="reference internal" href="user_agent.html"><em>用户代理类</em></a> 。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Input::request_headers">
+<tt class="descname">request_headers</tt><big>(</big><span class="optional">[</span><em>$xss_clean = FALSE</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Input::request_headers" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$xss_clean</strong> (<em>bool</em>) -- Whether to apply XSS filtering</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">An array of HTTP request headers</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">array</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>返回 HTTP 请求头数组。当在非 Apache 环境下运行时，
+<a class="reference external" href="http://php.net/apache_request_headers">apache_request_headers()</a> 函数不可用，
+这个方法将很有用。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$headers</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">request_headers</span><span class="p">();</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Input::get_request_header">
+<tt class="descname">get_request_header</tt><big>(</big><em>$index</em><span class="optional">[</span>, <em>$xss_clean = FALSE</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Input::get_request_header" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$index</strong> (<em>string</em>) -- HTTP request header name</li>
+<li><strong>$xss_clean</strong> (<em>bool</em>) -- Whether to apply XSS filtering</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">An HTTP request header or NULL if not found</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>返回某个指定的 HTTP 请求头，如果不存在，则返回 NULL 。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">get_request_header</span><span class="p">(</span><span class="s1">&#39;some-header&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Input::is_ajax_request">
+<tt class="descname">is_ajax_request</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Input::is_ajax_request" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">TRUE if it is an Ajax request, FALSE if not</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+<p>检查服务器头中是否含有 HTTP_X_REQUESTED_WITH ，如果有返回 TRUE ，否则返回 FALSE 。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Input::is_cli_request">
+<tt class="descname">is_cli_request</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Input::is_cli_request" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">TRUE if it is a CLI request, FALSE if not</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+<p>检查程序是否从命令行界面运行。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">该方法检查当前正在使用的 PHP SAPI 名称，同时检查是否定义了 <tt class="docutils literal"><span class="pre">STDIN</span></tt> 常量，
+来判断当前 PHP 是否从命令行运行。</p>
+</div>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">is_cli_request</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">该方法已经被废弃，现在只是 <tt class="xref py py-func docutils literal"><span class="pre">is_cli()</span></tt> 函数的一个别名而已。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Input::method">
+<tt class="descname">method</tt><big>(</big><span class="optional">[</span><em>$upper = FALSE</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Input::method" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$upper</strong> (<em>bool</em>) -- Whether to return the request method name in upper or lower case</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">HTTP request method</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>返回 <tt class="docutils literal"><span class="pre">$_SERVER['REQUEST_METHOD']</span></tt> 的值，它有一个参数用于设置返回大写还是小写。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">method</span><span class="p">(</span><span class="k">TRUE</span><span class="p">);</span> <span class="c1">// Outputs: POST</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">method</span><span class="p">(</span><span class="k">FALSE</span><span class="p">);</span> <span class="c1">// Outputs: post</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">input</span><span class="o">-&gt;</span><span class="na">method</span><span class="p">();</span> <span class="c1">// Outputs: post</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="javascript.html" class="btn btn-neutral float-right" title="Javascript 类">下一个主题 <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="image_lib.html" class="btn btn-neutral" title="图像处理类"><span class="fa fa-arrow-circle-left"></span> 上一个主题</a>
+      
+    </div>
+  
+
+  
+  <div id="notes">
+  
+  <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="userguide3/libraries/input" data-title="输入类" data-url="http://codeigniter.org.cn/user_guide/libraries/input.html"></div>
+  <!-- 多说评论框 end -->
+  
+
+  <div class="ds-share flat" data-thread-key="userguide3/libraries/input" data-title="输入类 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" data-url="http://codeigniter.org.cn/user_guide/libraries/input.html" data-images="" data-content="">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+  </div>
+
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codeigniter"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+  <!-- 多说公共JS代码 end -->
+  </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2014 - 2015, 不列颠哥伦比亚理工学院.
+       最后修改: 2015-10-11.
+    </p>
+
+    <p>以 <a href="http://www.aneasystone.com/" target="_blank">aneasystone</a> 制作的手册为基础构建</p>
+  </div>
+
+  
+    <p>基于 <a href="http://sphinx-doc.org/">Sphinx</a> 并使用 <a href="https://readthedocs.org">Read the Docs</a> 提供的<a href="https://github.com/snide/sphinx_rtd_theme">风格</a>构建</p>
+    <p>
+        <a href="https://github.com/CodeIgniter-Chinese/codeigniter-user-guide" target="_blank">Github 简体中文翻译</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/codeigniter_user_guide.zip">离线版压缩包下载</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/CodeIgniter.pdf">PDF 版下载</a>
+    </p>
+  
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.0.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-272152-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+  
+
+</body>
+</html>

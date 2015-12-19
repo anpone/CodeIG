@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>XML-RPC 与 XML-RPC 服务器类 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档</title>
+  
+
+  
+  
+  <link rel="shortcut icon" href="../_static/ci-icon.ico" />
+  
+
+  
+  <link href="../_static/css/fonts.css" rel="stylesheet" type="text/css" />
+
+  
+  
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme_cn.css" type="text/css" />
+    <link rel="top" title="CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" href="../index.html"/>
+        <link rel="up" title="类库参考" href="index.html"/>
+        <link rel="next" title="Zip 编码类" href="zip.html"/>
+        <link rel="prev" title="用户代理类" href="user_agent.html"/> 
+
+  
+  <script src="../_static/js/modernizr.2.6.2.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">类库参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">用户代理类</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAICAgICAgICAgICAgICAgMCAgICAwMDAwMDAwMEAwMDAwMDBAQEBAUEBAQFBQYGBQUHBwcHBwcHBwcHBwcHBwf/2wBDAQICAgMDAwUEBAUHBgUGBwgICAgICAgHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwf/wAARCAArAJoDAREAAhEBAxEB/8QAHgABAAAGAwEAAAAAAAAAAAAAAAQFBgcICQECAwr/xAA/EAAABAQCBgcFBAsBAAAAAAACAwQFAAEGBxESExZRU5XVCBQZIlWi0gkVITFCIzJSchgzQUNUVmFiZYWy1P/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDCEXygIE47JKAmEAgEAgEAgEAgEAgEAgEAgEBBnGBCcEH9kBEAnjAekBusU9DWxoACnKgx8ZqLmMBaWquivZhvLMmXRYy8v+XfRf8AS+A1WwCAQCAQGdrZby3DbbG0T0bRllHB4q2kVb0+r7nV5U1PLz1Jb+4oQCSoW96RJ9AEhOWHMAqXekLHGeMBQHSCoei6doG0FTUxTlDMLpVTpWaN9Mt5UbxUjOpLZxsoW+QFTs4OGQwrrZ2eRYg/e72OAcAxRgL79Hy3Rtwq1EnU0Y51hTrciNMfAoUlQKikYjijOomKJU2ES2WkNLmEEpYSn8Zz+AZwGdrf0V7fuZqhEK0TylGY1uI0xxbddJIKSopvPOSSCodpBRhmI8AA4HTwFjl+c5QGrN/p98pV4XU/UjUuZHtsMCS4NTkUIhSnGIATQhNKHgIM5gEEXx/ZOAk8AgEAgMwujjZygLjMDg51XT/vZanqE9uJO685pcqctKlNADIiVEA++aL6YDNZq6HlkDygzFQoxf7moP8A3wE7/QysZ/IY+M1FzKAzzWtJehF3YDHe4DNiSdkD9AoD5j9aFm/8ofTANaFm/wDKH0wDWhZv/KH0wDWhZv8Ayh9MA1oWb/yh9MBsYJujb8VobCIFlyujsgeGu3y1M8tdxqPfawdkZ46pdzgFDPp9ndC0IZkjAOSc8ZZve0uTIYAQgtz0l7j0s62nsI30rWtrqmXtb3cI16T2taVbCiRAVmU91GalidUaFcmEfoTsDDEwQnZBTLEOQZ4BhbrQs3/lD6YC+Vh7g0vS9VDqer6nPRSbtCiR0sVTDNUJNSFOGkTLkC4x/UJWxuSyLyyOPNmIcgDnMoOYOaQZtvV+LEW/bbdW4emWnzimtFUL5T1Y0q6Uxc9bb55dHw6adaZ1AsinXctWQACkxFIOZJMJcwBEMJQoDWtWFQJk1U1AQxVSGrGgDqo6hUoGwTQFyKmZMUlgWw4OdJI3HGRQviGXwwl8oCm9aFm/8ofTANaFm/8AKH0wDWhZv/KH0wHOtCz+I2/MIMP6fTjjAba/Z9SMe7eVAsOFpNHXytPmy/hamsf0fmgNtzA0l6EPd+iAqn3SVsgJ6eXIYBSywFq6oZOtFmSwgPn3e/ZrX1b3BcS21ZbdwbCVh4W1YqUvaNUelCaLqxylGU1qgJjRg7wiwnmhCLuaUf34Cmx+z0v4GeHvy2nEHrk0B17Pa/vjluOIPfJoB2e1+vG7b8Qe+TwDs9r++OW44g98mgHZ7X98ctxxB75NAOz2v745bjiD3yaAdntfrxu2/EHvk8A7Pa/Xjdt+IPfJ4B2e1+vG7b8Qe+TwDs9r9eN234g98ngHZ7X68btvxB75PAOz2v143bfiD3yeAdntf3xy3HEHvk0BHEezo6QKmeAKgtiH8zk+8kgNrHQv6OlSWHtyqpurXZqeH52qpdUqwTIFQJCkCclSt5KYlSqCQcp+xRhPEIRBXeN0WQeTTDDYU2JpFlBllgJ1hL8MAnLNKAlalFI6QsQwFLqqaLOmLEuAlI6MInP9TAeepabcwDUtNuYBqWm3MA1LTbmAalptzANS025gGpabcwDUtNuYBqWm3MA1LTbmAalptzANTCJfuYCOIpQkuYfs4CpkbSAjLgGAnxQMksID2gEB1FAJylsgOcJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUBzAIBAf/Z" title="切换目录" alt="切换目录" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索手册" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">类库参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">用户代理类</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">首页</a> &raquo; </li>
+    
+    <li><a href="index.html">类库参考</a> &raquo; </li>
+    
+    <li>XML-RPC 与 XML-RPC 服务器类</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;">
+      <div style="text-decoration:underline;color:blue;margin-left:5px;cursor:pointer;" id="closeMe">
+        <img title="目录" alt="toc" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+      </div>
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="xml-rpc-xml-rpc">
+<h1>XML-RPC 与 XML-RPC 服务器类<a class="headerlink" href="#xml-rpc-xml-rpc" title="永久链接至标题">¶</a></h1>
+<p>CodeIgniter 的 XML-RPC  类允许你向另一个服务器发送请求，
+或者建立一个你自己的 XML-RPC 服务器来接受请求。</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#xml-rpc" id="id22">什么是 XML-RPC ？</a></li>
+<li><a class="reference internal" href="#id2" id="id23">使用 XML-RPC 类</a><ul>
+<li><a class="reference internal" href="#id3" id="id24">初始化类</a></li>
+<li><a class="reference internal" href="#id4" id="id25">发送 XML-RPC 请求</a><ul>
+<li><a class="reference internal" href="#id5" id="id26">解释</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6" id="id27">请求解析</a></li>
+<li><a class="reference internal" href="#id8" id="id28">创建一个 XML-RPC 服务器</a></li>
+<li><a class="reference internal" href="#id9" id="id29">处理服务器请求</a><ul>
+<li><a class="reference internal" href="#id10" id="id30">注意</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id11" id="id31">格式化响应</a></li>
+<li><a class="reference internal" href="#id13" id="id32">发送错误信息</a></li>
+<li><a class="reference internal" href="#id14" id="id33">创建你自己的客户端与服务端</a><ul>
+<li><a class="reference internal" href="#id15" id="id34">客户端</a></li>
+<li><a class="reference internal" href="#id16" id="id35">服务端</a></li>
+<li><a class="reference internal" href="#id17" id="id36">尝试一下</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id18" id="id37">在请求参数中使用关联数组</a></li>
+<li><a class="reference internal" href="#id19" id="id38">数据类型</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id21" id="id39">类参考</a></li>
+</ul>
+</div>
+<div class="custom-index container"></div><div class="section" id="xml-rpc">
+<h2><a class="toc-backref" href="#id22">什么是 XML-RPC ？</a><a class="headerlink" href="#xml-rpc" title="永久链接至标题">¶</a></h2>
+<p>这是一种在两台计算机之间使用 XML 通过互联网进行通信的简单方法。
+一台计算机 , 我们称之为客户端 , 发送一个 XML-RPC 请求给另外一台计算机，
+我们称之为服务器，当服务器收到请求时，对其进行处理然后将结果返回给客户端。</p>
+<p>例如，使用 MetaWeblog API 时，XML-RPC 客户端（通常是桌面发布工具）
+将会发送请求到你站点上的 XML-RPC 服务器，这个请求可能是发布一篇新博客，
+或者编辑一篇已有的博客。当 XML-RPC 服务器收到该请求时，它会决定使用
+哪个类和方法来处理该请求，请求处理完成后，服务器将发送一条回复消息。</p>
+<p>关于 XML-RPC 的规范，你可以查看 <a class="reference external" href="http://www.xmlrpc.com/">XML-RPC</a> 的网站。</p>
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id23">使用 XML-RPC 类</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id24">初始化类</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>跟 CodeIgniter 中的其他类一样，可以在你的控制器中使用 <tt class="docutils literal"><span class="pre">$this-&gt;load-&gt;library()</span></tt>
+方法加载 XML-RPC 类和 XML-RPC 服务器类。</p>
+<p>加载 XML-RPC 类如下:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpc&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>一旦加载，XML-RPC 类就可以像下面这样使用:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span>
+</pre></div>
+</div>
+<p>加载 XML-RPC 服务器类如下:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpc&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpcs&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>一旦加载，XML-RPC 服务器类就可以像下面这样使用:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpcs</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">当使用 XML-RPC 服务器类时，xmlrpc 和 xmlrpcs 都需要加载。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id25">发送 XML-RPC 请求</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p>向 XML-RPC 服务器发送一个请求，你需要指定以下信息：</p>
+<ul class="simple">
+<li>服务器的 URL</li>
+<li>你想要调用的服务器方法</li>
+<li><strong>请求</strong> 数据（下面解释）</li>
+</ul>
+<p>下面是个基本的例子，向 <a class="reference external" href="http://pingomatic.com/">Ping-o-Matic</a>
+发送一个简单的 Weblogs.com ping 请求。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpc&#39;</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">server</span><span class="p">(</span><span class="s1">&#39;http://rpc.pingomatic.com/&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">method</span><span class="p">(</span><span class="s1">&#39;weblogUpdates.ping&#39;</span><span class="p">);</span>
+
+<span class="nv">$request</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;My Photoblog&#39;</span><span class="p">,</span> <span class="s1">&#39;http://www.my-site.com/photoblog/&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">send_request</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">display_error</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="id5">
+<h4><a class="toc-backref" href="#id26">解释</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h4>
+<p>上面的代码初始化了一个 XML-RPC 类，并设置了服务器 URL 和要调用的方法
+（weblogUpdates.ping）。然后通过 request() 方法编译请求，
+例子中请求是一个数组（标题和你网站的 URL）。最后，使用 send_request()
+方法发送完整的请求。如果发送请求方法返回 FALSE ，我们会显示出 XML-RPC
+服务器返回的错误信息。</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id27">请求解析</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<p>XML-RPC 请求就是你发送给 XML-RPC 服务器的数据，请求中的每一个数据也被称为请求参数。
+上面的例子中有两个参数：你网站的 URL 和 标题。当 XML-RPC 服务器收到请求后，
+它会查找它所需要的参数。</p>
+<p>请求参数必须放在一个数组中，且数组中的每个参数都必须是 7 种数据类型中的一种
+（string、number、date 等），如果你的参数不是 string 类型，你必须在请求数组中
+指定它的数据类型。</p>
+<p>下面是三个参数的简单例子:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$request</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;Doe&#39;</span><span class="p">,</span> <span class="s1">&#39;www.some-site.com&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>如果你的数据类型不是 string ，或者你有几个不同类型的数据，那么你需要将
+每个参数放到它单独的数组中，并在数组的第二位声明其数据类型:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$request</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="k">array</span><span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span><span class="s1">&#39;Doe&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span><span class="k">FALSE</span><span class="p">,</span> <span class="s1">&#39;boolean&#39;</span><span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span><span class="mi">12345</span><span class="p">,</span> <span class="s1">&#39;int&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>下面的 <a class="reference external" href="#datatypes">数据类型</a> 一节列出了所有支持的数据类型。</p>
+</div>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id28">创建一个 XML-RPC 服务器</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p>XML-RPC 服务器扮演着类似于交通警察的角色，等待进入的请求，
+并将它们转到恰当的函数进行处理。</p>
+<p>要创建你自己的 XML-RPC 服务器，你需要先在负责处理请求的控制器中初始化
+XML-RPC 服务器类，然后设置一个映射数组，用于将请求转发到合适的类和方法，
+以便进行处理。</p>
+<p>下面是个例子:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpc&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpcs&#39;</span><span class="p">);</span>
+
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;functions&#39;</span><span class="p">][</span><span class="s1">&#39;new_post&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;function&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My_blog.new_entry&#39;</span><span class="p">);</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;functions&#39;</span><span class="p">][</span><span class="s1">&#39;update_post&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;function&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My_blog.update_entry&#39;</span><span class="p">);</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$this</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpcs</span><span class="o">-&gt;</span><span class="na">initialize</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpcs</span><span class="o">-&gt;</span><span class="na">serve</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>上例中包含了两个服务器允许的请求方法，数组的左边是允许的方法名，
+数组的右边是当请求该方法时，将会映射到的类和方法。</p>
+<p>其中，'object' 是个特殊的键，用于传递一个实例对象，当映射的方法无法使用
+CodeIgniter 超级对象时，它将是必须的。</p>
+<p>换句话说，如果 XML-RPC 客户端发送一个请求到 new_post 方法，
+你的服务器会加载 My_blog 类并调用 new_entry 函数。如果这个请求是到
+<tt class="docutils literal"><span class="pre">update_post</span></tt> 方法的，那么你的服务器会加载 My_blog 类并调用
+<tt class="docutils literal"><span class="pre">update_entry</span></tt> 方法。</p>
+<p>上面例子中的函数名是任意的。你可以决定这些函数在你的服务器上叫什么名字，
+如果你使用的是标准的 API，比如 Blogger 或者 MetaWeblog 的 API，
+你必须使用标准的函数名。</p>
+<p>这里还有两个附加的配置项，可以在服务器类初始化时配置使用。debug 设为 TRUE 以便调试，
+<tt class="docutils literal"><span class="pre">xss_clean</span></tt> 可被设置为 FALSE 以避免数据被安全类库的 <tt class="docutils literal"><span class="pre">xss_clean</span></tt> 函数过滤。</p>
+</div>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id29">处理服务器请求</a><a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<p>当 XML-RPC 服务器收到请求并加载类与方法来处理时，它会接收一个包含客户端发送的数据参数。</p>
+<p>在上面的例子中，如果请求的是 new_post 方法，服务器请求的类与方法会像这样:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">class</span> <span class="nc">My_blog</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">new_post</span><span class="p">(</span><span class="nv">$request</span><span class="p">)</span>
+    <span class="p">{</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>$request 变量是一个由服务端汇集的对象，包含由 XML-RPC 客户端发送来的数据。
+使用该对象可以让你访问到请求参数以便处理请求。请求处理完成后，
+发送一个响应返回给客户端。</p>
+<p>下面是一个实际的例子，使用 Blogger API 。Blogger API 中的一个方法是 getUserInfo()，
+XML-RPC 客户端可以使用该方法发送用户名和密码到服务器，在服务器返回的数据中，
+会包含该用户的信息（昵称，用户 ID，Email 地址等等）。下面是处理的代码:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">class</span> <span class="nc">My_blog</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getUserInfo</span><span class="p">(</span><span class="nv">$request</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$username</span> <span class="o">=</span> <span class="s1">&#39;smitty&#39;</span><span class="p">;</span>
+        <span class="nv">$password</span> <span class="o">=</span> <span class="s1">&#39;secretsmittypass&#39;</span><span class="p">;</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpc&#39;</span><span class="p">);</span>
+
+        <span class="nv">$parameters</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">output_parameters</span><span class="p">();</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="nv">$username</span> <span class="o">&amp;&amp;</span> <span class="nv">$parameters</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="nv">$password</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">send_error_message</span><span class="p">(</span><span class="s1">&#39;100&#39;</span><span class="p">,</span> <span class="s1">&#39;Invalid Access&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nv">$response</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;nickname&#39;</span>  <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;Smitty&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+                <span class="s1">&#39;userid&#39;</span>    <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;99&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+                <span class="s1">&#39;url&#39;</span>       <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;http://yoursite.com&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+                <span class="s1">&#39;email&#39;</span>     <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;jsmith@yoursite.com&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+                <span class="s1">&#39;lastname&#39;</span>  <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;Smith&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+                <span class="s1">&#39;firstname&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span>
+            <span class="p">),</span>
+                         <span class="s1">&#39;struct&#39;</span>
+        <span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">send_response</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="id10">
+<h4><a class="toc-backref" href="#id30">注意</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h4>
+<p><tt class="docutils literal"><span class="pre">output_parameters()</span></tt> 函数获取一个由客户端发送的请求参数数组。
+上面的例子中输出参数将会是用户名和密码。</p>
+<p>如果客户端发送的用户名和密码无效的话，将使用 <tt class="docutils literal"><span class="pre">send_error_message()</span></tt> 函数返回错误信息。</p>
+<p>如果操作成功，客户端会收到包含用户信息的响应数组。</p>
+</div>
+</div>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id31">格式化响应</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<p>和请求一样，响应也必须被格式化为数组。然而不同于请求信息，响应数组 <strong>只包含一项</strong>  。
+该项可以是一个包含其他数组的数组，但是只能有一个主数组，换句话说，
+响应的结果大概是下面这个样子:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$response</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;Response data&#39;</span><span class="p">,</span> <span class="s1">&#39;array&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>但是，响应通常会包含多个信息。要做到这样，我们必须把各个信息放到他们自己的数组中，
+这样主数组就始终只有一个数据项。下面是一个例子展示如何实现这样的效果:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$response</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;first_name&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;last_name&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;Doe&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;member_id&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="mi">123435</span><span class="p">,</span> <span class="s1">&#39;int&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;todo_list&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;clean house&#39;</span><span class="p">,</span> <span class="s1">&#39;call mom&#39;</span><span class="p">,</span> <span class="s1">&#39;water plants&#39;</span><span class="p">),</span> <span class="s1">&#39;array&#39;</span><span class="p">),</span>
+    <span class="p">),</span>
+    <span class="s1">&#39;struct&#39;</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>注意：上面的数组被格式化为 struct，这是响应最常见的数据类型。</p>
+<p>如同请求一样，响应可以是七种数据类型中的一种，参见 <a class="reference external" href="#datatypes">数据类型</a> 一节。</p>
+</div>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id32">发送错误信息</a><a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<p>如果你需要发送错误信息给客户端，可以使用下面的代码:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">send_error_message</span><span class="p">(</span><span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="s1">&#39;Requested data not available&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>第一个参数为错误编号，第二个参数为错误信息。</p>
+</div>
+<div class="section" id="id14">
+<h3><a class="toc-backref" href="#id33">创建你自己的客户端与服务端</a><a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
+<p>为了帮助你理解目前为止讲的这些内容，让我们来创建两个控制器，演示下 XML-RPC
+的客户端和服务端。你将用客户端来发送一个请求到服务端并从服务端收到一个响应。</p>
+<div class="section" id="id15">
+<h4><a class="toc-backref" href="#id34">客户端</a><a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h4>
+<p>使用文本编辑器创建一个控制器 Xmlrpc_client.php ，在这个控制器中，
+粘贴以下的代码并保存到 applications/controllers/ 目录:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">class</span> <span class="nc">Xmlrpc_client</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">);</span>
+        <span class="nv">$server_url</span> <span class="o">=</span> <span class="nx">site_url</span><span class="p">(</span><span class="s1">&#39;xmlrpc_server&#39;</span><span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpc&#39;</span><span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">server</span><span class="p">(</span><span class="nv">$server_url</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">method</span><span class="p">(</span><span class="s1">&#39;Greetings&#39;</span><span class="p">);</span>
+
+        <span class="nv">$request</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;How is it going?&#39;</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">send_request</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">display_error</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="k">echo</span> <span class="s1">&#39;&lt;pre&gt;&#39;</span><span class="p">;</span>
+            <span class="nb">print_r</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">display_response</span><span class="p">());</span>
+            <span class="k">echo</span> <span class="s1">&#39;&lt;/pre&gt;&#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">上面的代码中我们使用了一个 URL 辅助函数，更多关于辅助函数的信息，
+你可以阅读 <a class="reference internal" href="../general/helpers.html"><em>这里</em></a> 。</p>
+</div>
+</div>
+<div class="section" id="id16">
+<h4><a class="toc-backref" href="#id35">服务端</a><a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h4>
+<p>使用文本编辑器创建一个控制器 Xmlrpc_server.php ，在这个控制器中，
+粘贴以下的代码并保存到 applications/controllers/ 目录:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">class</span> <span class="nc">Xmlrpc_server</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpc&#39;</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;xmlrpcs&#39;</span><span class="p">);</span>
+
+        <span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;functions&#39;</span><span class="p">][</span><span class="s1">&#39;Greetings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;function&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Xmlrpc_server.process&#39;</span><span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpcs</span><span class="o">-&gt;</span><span class="na">initialize</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpcs</span><span class="o">-&gt;</span><span class="na">serve</span><span class="p">();</span>
+    <span class="p">}</span>
+
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">process</span><span class="p">(</span><span class="nv">$request</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$parameters</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">output_parameters</span><span class="p">();</span>
+
+        <span class="nv">$response</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">&#39;you_said&#39;</span>  <span class="o">=&gt;</span> <span class="nv">$parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s1">&#39;i_respond&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Not bad at all.&#39;</span>
+            <span class="p">),</span>
+            <span class="s1">&#39;struct&#39;</span>
+        <span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">send_response</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id17">
+<h4><a class="toc-backref" href="#id36">尝试一下</a><a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h4>
+<p>现在使用类似于下面这样的链接访问你的站点:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nx">example</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span><span class="o">/</span><span class="nx">xmlrpc_client</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>你应该能看到你发送到服务端的信息，以及服务器返回的响应信息。</p>
+<p>在客户端，你发送了一条消息（&quot;How's is going?&quot;）到服务端，
+随着一个请求发送到 &quot;Greetings&quot; 方法。服务端收到这个请求并映射到
+&quot;process&quot; 函数，然后返回响应信息。</p>
+</div>
+</div>
+<div class="section" id="id18">
+<h3><a class="toc-backref" href="#id37">在请求参数中使用关联数组</a><a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h3>
+<p>如果你希望在你的方法参数中使用关联数组，那么你需要使用 struct 数据类型:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$request</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="c1">// Param 0</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;John&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;struct&#39;</span>
+    <span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="c1">// Param 1</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">&#39;size&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;large&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;shape&#39;</span><span class="o">=&gt;</span><span class="s1">&#39;round&#39;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;struct&#39;</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>你可以在服务端处理请求信息时获取该关联数组。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$parameters</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">output_parameters</span><span class="p">();</span>
+<span class="nv">$name</span> <span class="o">=</span> <span class="nv">$parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">];</span>
+<span class="nv">$size</span> <span class="o">=</span> <span class="nv">$parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;size&#39;</span><span class="p">];</span>
+<span class="nv">$shape</span> <span class="o">=</span> <span class="nv">$parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;shape&#39;</span><span class="p">];</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id19">
+<h3><a class="toc-backref" href="#id38">数据类型</a><a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h3>
+<p>根据 <a class="reference external" href="http://www.xmlrpc.com/spec">XML-RPC 规范</a> 一共有七种不同的数据类型可以在 XML-RPC 中使用：</p>
+<ul class="simple">
+<li><em>int</em> or <em>i4</em></li>
+<li><em>boolean</em></li>
+<li><em>string</em></li>
+<li><em>double</em></li>
+<li><em>dateTime.iso8601</em></li>
+<li><em>base64</em></li>
+<li><em>struct</em> (contains array of values)</li>
+<li><em>array</em> (contains array of values)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id21">
+<h2><a class="toc-backref" href="#id39">类参考</a><a class="headerlink" href="#id21" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="CI_Xmlrpc">
+<em class="property">class </em><tt class="descname">CI_Xmlrpc</tt><a class="headerlink" href="#CI_Xmlrpc" title="永久链接至目标">¶</a></dt>
+<dd><dl class="method">
+<dt id="CI_Xmlrpc::initialize">
+<tt class="descname">initialize</tt><big>(</big><span class="optional">[</span><em>$config = array()</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Xmlrpc::initialize" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$config</strong> (<em>array</em>) -- Configuration data</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>初始化 XML-RPC 类，接受一个包含你设置的参数的关联数组。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Xmlrpc::server">
+<tt class="descname">server</tt><big>(</big><em>$url</em><span class="optional">[</span>, <em>$port = 80</em><span class="optional">[</span>, <em>$proxy = FALSE</em><span class="optional">[</span>, <em>$proxy_port = 8080</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Xmlrpc::server" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$url</strong> (<em>string</em>) -- XML-RPC server URL</li>
+<li><strong>$port</strong> (<em>int</em>) -- Server port</li>
+<li><strong>$proxy</strong> (<em>string</em>) -- Optional proxy</li>
+<li><strong>$proxy_port</strong> (<em>int</em>) -- Proxy listening port</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>用于设置 XML-RPC 服务器端的 URL 和端口:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">server</span><span class="p">(</span><span class="s1">&#39;http://www.sometimes.com/pings.php&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>支持基本的 HTTP 身份认证，只需简单的将其添加到 URL中:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">server</span><span class="p">(</span><span class="s1">&#39;http://user:pass@localhost/&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Xmlrpc::timeout">
+<tt class="descname">timeout</tt><big>(</big><em>$seconds = 5</em><big>)</big><a class="headerlink" href="#CI_Xmlrpc::timeout" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$seconds</strong> (<em>int</em>) -- Timeout in seconds</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>设置一个超时时间（单位为秒），超过该时间，请求将被取消:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">timeout</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Xmlrpc::method">
+<tt class="descname">method</tt><big>(</big><em>$function</em><big>)</big><a class="headerlink" href="#CI_Xmlrpc::method" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$function</strong> (<em>string</em>) -- Method name</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>设置 XML-RPC 服务器接受的请求方法:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">method</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>其中 method 参数为请求方法名。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Xmlrpc::request">
+<tt class="descname">request</tt><big>(</big><em>$incoming</em><big>)</big><a class="headerlink" href="#CI_Xmlrpc::request" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$incoming</strong> (<em>array</em>) -- Request data</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>接受一个数组参数，并创建一个发送到 XML-RPC 服务器的请求:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$request</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;My Photoblog&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span> <span class="s1">&#39;http://www.yoursite.com/photoblog/&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Xmlrpc::send_request">
+<tt class="descname">send_request</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Xmlrpc::send_request" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">TRUE on success, FALSE on failure</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+<p>发送请求的方法，成功返回 TRUE，失败返回 FALSE ，可以用在条件判断里。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Xmlrpc::display_error">
+<tt class="descname">display_error</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Xmlrpc::display_error" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">Error message string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>当请求失败后，返回错误信息。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">display_error</span><span class="p">();</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Xmlrpc::display_response">
+<tt class="descname">display_response</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Xmlrpc::display_response" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">Response</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">mixed</td>
+</tr>
+</tbody>
+</table>
+<p>远程服务器接收请求后返回的响应，返回的数据通常是一个关联数组。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">display_response</span><span class="p">();</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Xmlrpc::send_error_message">
+<tt class="descname">send_error_message</tt><big>(</big><em>$number</em>, <em>$message</em><big>)</big><a class="headerlink" href="#CI_Xmlrpc::send_error_message" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$number</strong> (<em>int</em>) -- Error number</li>
+<li><strong>$message</strong> (<em>string</em>) -- Error message</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">XML_RPC_Response instance</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">XML_RPC_Response</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>这个方法允许你从服务器发送一个错误消息到客户端。
+第一个参数是错误编号，第二个参数是错误信息。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xmlrpc</span><span class="o">-&gt;</span><span class="na">send_error_message</span><span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="s1">&#39;Requested data not available&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="zip.html" class="btn btn-neutral float-right" title="Zip 编码类">下一个主题 <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="user_agent.html" class="btn btn-neutral" title="用户代理类"><span class="fa fa-arrow-circle-left"></span> 上一个主题</a>
+      
+    </div>
+  
+
+  
+  <div id="notes">
+  
+  <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="userguide3/libraries/xmlrpc" data-title="XML-RPC 与 XML-RPC 服务器类" data-url="http://codeigniter.org.cn/user_guide/libraries/xmlrpc.html"></div>
+  <!-- 多说评论框 end -->
+  
+
+  <div class="ds-share flat" data-thread-key="userguide3/libraries/xmlrpc" data-title="XML-RPC 与 XML-RPC 服务器类 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" data-url="http://codeigniter.org.cn/user_guide/libraries/xmlrpc.html" data-images="" data-content="">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+  </div>
+
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codeigniter"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+  <!-- 多说公共JS代码 end -->
+  </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2014 - 2015, 不列颠哥伦比亚理工学院.
+       最后修改: 2015-10-11.
+    </p>
+
+    <p>以 <a href="http://www.aneasystone.com/" target="_blank">aneasystone</a> 制作的手册为基础构建</p>
+  </div>
+
+  
+    <p>基于 <a href="http://sphinx-doc.org/">Sphinx</a> 并使用 <a href="https://readthedocs.org">Read the Docs</a> 提供的<a href="https://github.com/snide/sphinx_rtd_theme">风格</a>构建</p>
+    <p>
+        <a href="https://github.com/CodeIgniter-Chinese/codeigniter-user-guide" target="_blank">Github 简体中文翻译</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/codeigniter_user_guide.zip">离线版压缩包下载</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/CodeIgniter.pdf">PDF 版下载</a>
+    </p>
+  
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.0.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-272152-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+  
+
+</body>
+</html>

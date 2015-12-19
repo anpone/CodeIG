@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PHP 开发规范 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档</title>
+  
+
+  
+  
+  <link rel="shortcut icon" href="../_static/ci-icon.ico" />
+  
+
+  
+  <link href="../_static/css/fonts.css" rel="stylesheet" type="text/css" />
+
+  
+  
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme_cn.css" type="text/css" />
+    <link rel="top" title="CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" href="../index.html"/>
+        <link rel="up" title="常规主题" href="index.html"/>
+        <link rel="next" title="类库参考" href="../libraries/index.html"/>
+        <link rel="prev" title="安全" href="security.html"/> 
+
+  
+  <script src="../_static/js/modernizr.2.6.2.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">常规主题</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">安全</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">类库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAICAgICAgICAgICAgICAgMCAgICAwMDAwMDAwMEAwMDAwMDBAQEBAUEBAQFBQYGBQUHBwcHBwcHBwcHBwcHBwf/2wBDAQICAgMDAwUEBAUHBgUGBwgICAgICAgHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwf/wAARCAArAJoDAREAAhEBAxEB/8QAHgABAAAGAwEAAAAAAAAAAAAAAAQFBgcICQECAwr/xAA/EAAABAQCBgcFBAsBAAAAAAACAwQFAAEGBxESExZRU5XVCBQZIlWi0gkVITFCIzJSchgzQUNUVmFiZYWy1P/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDCEXygIE47JKAmEAgEAgEAgEAgEAgEAgEAgEBBnGBCcEH9kBEAnjAekBusU9DWxoACnKgx8ZqLmMBaWquivZhvLMmXRYy8v+XfRf8AS+A1WwCAQCAQGdrZby3DbbG0T0bRllHB4q2kVb0+r7nV5U1PLz1Jb+4oQCSoW96RJ9AEhOWHMAqXekLHGeMBQHSCoei6doG0FTUxTlDMLpVTpWaN9Mt5UbxUjOpLZxsoW+QFTs4OGQwrrZ2eRYg/e72OAcAxRgL79Hy3Rtwq1EnU0Y51hTrciNMfAoUlQKikYjijOomKJU2ES2WkNLmEEpYSn8Zz+AZwGdrf0V7fuZqhEK0TylGY1uI0xxbddJIKSopvPOSSCodpBRhmI8AA4HTwFjl+c5QGrN/p98pV4XU/UjUuZHtsMCS4NTkUIhSnGIATQhNKHgIM5gEEXx/ZOAk8AgEAgMwujjZygLjMDg51XT/vZanqE9uJO685pcqctKlNADIiVEA++aL6YDNZq6HlkDygzFQoxf7moP8A3wE7/QysZ/IY+M1FzKAzzWtJehF3YDHe4DNiSdkD9AoD5j9aFm/8ofTANaFm/wDKH0wDWhZv/KH0wDWhZv8Ayh9MA1oWb/yh9MBsYJujb8VobCIFlyujsgeGu3y1M8tdxqPfawdkZ46pdzgFDPp9ndC0IZkjAOSc8ZZve0uTIYAQgtz0l7j0s62nsI30rWtrqmXtb3cI16T2taVbCiRAVmU91GalidUaFcmEfoTsDDEwQnZBTLEOQZ4BhbrQs3/lD6YC+Vh7g0vS9VDqer6nPRSbtCiR0sVTDNUJNSFOGkTLkC4x/UJWxuSyLyyOPNmIcgDnMoOYOaQZtvV+LEW/bbdW4emWnzimtFUL5T1Y0q6Uxc9bb55dHw6adaZ1AsinXctWQACkxFIOZJMJcwBEMJQoDWtWFQJk1U1AQxVSGrGgDqo6hUoGwTQFyKmZMUlgWw4OdJI3HGRQviGXwwl8oCm9aFm/8ofTANaFm/8AKH0wDWhZv/KH0wHOtCz+I2/MIMP6fTjjAba/Z9SMe7eVAsOFpNHXytPmy/hamsf0fmgNtzA0l6EPd+iAqn3SVsgJ6eXIYBSywFq6oZOtFmSwgPn3e/ZrX1b3BcS21ZbdwbCVh4W1YqUvaNUelCaLqxylGU1qgJjRg7wiwnmhCLuaUf34Cmx+z0v4GeHvy2nEHrk0B17Pa/vjluOIPfJoB2e1+vG7b8Qe+TwDs9r++OW44g98mgHZ7X98ctxxB75NAOz2v745bjiD3yaAdntfrxu2/EHvk8A7Pa/Xjdt+IPfJ4B2e1+vG7b8Qe+TwDs9r9eN234g98ngHZ7X68btvxB75PAOz2v143bfiD3yeAdntf3xy3HEHvk0BHEezo6QKmeAKgtiH8zk+8kgNrHQv6OlSWHtyqpurXZqeH52qpdUqwTIFQJCkCclSt5KYlSqCQcp+xRhPEIRBXeN0WQeTTDDYU2JpFlBllgJ1hL8MAnLNKAlalFI6QsQwFLqqaLOmLEuAlI6MInP9TAeepabcwDUtNuYBqWm3MA1LTbmAalptzANS025gGpabcwDUtNuYBqWm3MA1LTbmAalptzANTCJfuYCOIpQkuYfs4CpkbSAjLgGAnxQMksID2gEB1FAJylsgOcJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUBzAIBAf/Z" title="切换目录" alt="切换目录" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索手册" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">常规主题</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">安全</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">类库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">首页</a> &raquo; </li>
+    
+    <li><a href="index.html">常规主题</a> &raquo; </li>
+    
+    <li>PHP 开发规范</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;">
+      <div style="text-decoration:underline;color:blue;margin-left:5px;cursor:pointer;" id="closeMe">
+        <img title="目录" alt="toc" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+      </div>
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="php">
+<h1><a class="toc-backref" href="#id27">PHP 开发规范</a><a class="headerlink" href="#php" title="永久链接至标题">¶</a></h1>
+<p>CodeIgniter 的开发遵循本页所描述的编码规范，我们也推荐在你自己的应用程序开发中使用
+这些规范，但不做强求。</p>
+<div class="contents topic" id="id1">
+<p class="topic-title first">目录</p>
+<ul class="simple">
+<li><a class="reference internal" href="#php" id="id27">PHP 开发规范</a><ul>
+<li><a class="reference internal" href="#id2" id="id28">文件格式</a><ul>
+<li><a class="reference internal" href="#textmate" id="id29">TextMate</a></li>
+<li><a class="reference internal" href="#bbedit" id="id30">BBEdit</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3" id="id31">PHP 结束标签</a></li>
+<li><a class="reference internal" href="#id4" id="id32">文件的命名</a></li>
+<li><a class="reference internal" href="#id5" id="id33">类和方法的命名</a></li>
+<li><a class="reference internal" href="#id6" id="id34">变量的命名</a></li>
+<li><a class="reference internal" href="#id7" id="id35">注释</a></li>
+<li><a class="reference internal" href="#id8" id="id36">常量</a></li>
+<li><a class="reference internal" href="#truefalse-null" id="id37">TRUE、FALSE 和 NULL</a></li>
+<li><a class="reference internal" href="#id9" id="id38">逻辑操作符</a></li>
+<li><a class="reference internal" href="#id10" id="id39">对返回值进行比较以及类型转换</a></li>
+<li><a class="reference internal" href="#id12" id="id40">调试代码</a></li>
+<li><a class="reference internal" href="#id13" id="id41">文件中的空格</a></li>
+<li><a class="reference internal" href="#id14" id="id42">兼容性</a></li>
+<li><a class="reference internal" href="#id15" id="id43">一个类一个文件</a></li>
+<li><a class="reference internal" href="#id16" id="id44">空格</a></li>
+<li><a class="reference internal" href="#id17" id="id45">换行</a></li>
+<li><a class="reference internal" href="#id18" id="id46">代码缩进</a></li>
+<li><a class="reference internal" href="#id19" id="id47">中括号和小括号内的空格</a></li>
+<li><a class="reference internal" href="#id20" id="id48">本地化文本</a></li>
+<li><a class="reference internal" href="#id21" id="id49">私有方法和变量</a></li>
+<li><a class="reference internal" href="#id22" id="id50">PHP 错误</a></li>
+<li><a class="reference internal" href="#id23" id="id51">短标记</a></li>
+<li><a class="reference internal" href="#id24" id="id52">每行只有一条语句</a></li>
+<li><a class="reference internal" href="#id25" id="id53">字符串</a></li>
+<li><a class="reference internal" href="#sql" id="id54">SQL 查询</a></li>
+<li><a class="reference internal" href="#id26" id="id55">缺省的函数参数</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id28">文件格式</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>文件应该保存为 Unicode（UTF-8）编码格式，<em>不要使用</em> 字节序标记（BOM），和 UTF-16 和 UTF-32 不一样，
+UTF-8 编码格式的文件不需要指定字节序。而且 BOM 会在 PHP 的输出中产生副作用，
+它会阻止应用程序设置它的头信息。另外，所有的换行符应该使用 Unix 格式换行符（LF）。</p>
+<p>以下是在一些常见的文本编辑器中更改这些设置的方法。针对你的编辑器，方法也许会有所不同，
+请参考你的编辑器的说明。</p>
+<div class="section" id="textmate">
+<h3><a class="toc-backref" href="#id29">TextMate</a><a class="headerlink" href="#textmate" title="永久链接至标题">¶</a></h3>
+<ol class="arabic simple">
+<li>打开应用程序设置</li>
+<li>点击 &quot;高级&quot; ，切换到 &quot;保存&quot; 标签页。</li>
+<li>在 &quot;文件编码&quot; 中，选择 &quot;UTF-8（推荐）&quot;</li>
+<li>在 &quot;换行符&quot; 中，选择 &quot;LF（推荐）&quot;</li>
+<li><em>可选</em>：如果你想对现有文件也能自动作此设置，勾上 &quot;同时应用到已有文件&quot; 选项</li>
+</ol>
+</div>
+<div class="section" id="bbedit">
+<h3><a class="toc-backref" href="#id30">BBEdit</a><a class="headerlink" href="#bbedit" title="永久链接至标题">¶</a></h3>
+<ol class="arabic simple">
+<li>打开应用程序设置</li>
+<li>选择左侧的 &quot;文本编码&quot;</li>
+<li>在 &quot;新文档的默认编码&quot;，选择 &quot;Unicode (UTF-8, no BOM)&quot;</li>
+<li><em>可选</em>：在 &quot;如果无法检测文件编码，使用...&quot;，选择 &quot;Unicode (UTF-8, no BOM)&quot;</li>
+<li>选择左侧的 &quot;文本文件&quot;</li>
+<li>在 &quot;默认的换行符&quot; 中，选择 &quot;Mac OS X and Unix (LF)&quot;</li>
+</ol>
+</div>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id31">PHP 结束标签</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>PHP 结束标签 <strong>?&gt;</strong> 对于 PHP 解析器来说是可选的，但是只要使用了，结束标签之后的空格
+有可能会导致不想要的输出，这个空格可能是由开发者或者用户又或者 FTP 应用程序引入的，
+甚至可能导致出现 PHP 错误，如果配置了不显示 PHP 错误，就会出现空白页面。基于这个原因，
+所有的 PHP 文件将不使用结束标签，而是以一个空行代替。</p>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id32">文件的命名</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>类文件的命名必须以大写字母开头，其他文件（配置文件，视图，一般的脚本文件等）的命名是全小写。</p>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nx">somelibrary</span><span class="o">.</span><span class="nx">php</span>
+<span class="nx">someLibrary</span><span class="o">.</span><span class="nx">php</span>
+<span class="nx">SOMELIBRARY</span><span class="o">.</span><span class="nx">php</span>
+<span class="nx">Some_Library</span><span class="o">.</span><span class="nx">php</span>
+
+<span class="nx">Application_config</span><span class="o">.</span><span class="nx">php</span>
+<span class="nx">Application_Config</span><span class="o">.</span><span class="nx">php</span>
+<span class="nx">applicationConfig</span><span class="o">.</span><span class="nx">php</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nx">Somelibrary</span><span class="o">.</span><span class="nx">php</span>
+<span class="nx">Some_library</span><span class="o">.</span><span class="nx">php</span>
+
+<span class="nx">applicationconfig</span><span class="o">.</span><span class="nx">php</span>
+<span class="nx">application_config</span><span class="o">.</span><span class="nx">php</span>
+</pre></div>
+</div>
+<p>另外，类文件的名称必须和类的名称保持一致，例如，如果你有一个类名为 <cite>Myclass</cite> ，
+那么文件名应该是 <strong>Myclass.php</strong> 。</p>
+</div>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id33">类和方法的命名</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>类名必须以大写字母开头，多个单词之间使用下划线分割，不要使用驼峰命名法。</p>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">class</span> <span class="nc">superclass</span>
+<span class="k">class</span> <span class="nc">SuperClass</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Super_class</span>
+</pre></div>
+</div>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Super_class</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span>
+    <span class="p">{</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>类的方法应该使用全小写，并且应该明确指出该方法的功能，最好包含一个动词。
+避免使用冗长的名称，多个单词之间使用下划线分割。</p>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">function</span> <span class="nf">fileproperties</span><span class="p">()</span>       <span class="c1">// not descriptive and needs underscore separator</span>
+<span class="k">function</span> <span class="nf">fileProperties</span><span class="p">()</span>       <span class="c1">// not descriptive and uses CamelCase</span>
+<span class="k">function</span> <span class="nf">getfileproperties</span><span class="p">()</span>        <span class="c1">// Better!  But still missing underscore separator</span>
+<span class="k">function</span> <span class="nf">getFileProperties</span><span class="p">()</span>        <span class="c1">// uses CamelCase</span>
+<span class="k">function</span> <span class="nf">get_the_file_properties_from_the_file</span><span class="p">()</span>    <span class="c1">// wordy</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">function</span> <span class="nf">get_file_properties</span><span class="p">()</span>  <span class="c1">// descriptive, underscore separator, and all lowercase letters</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id34">变量的命名</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>变量的命名规则和类方法的命名规则非常接近，使用全小写，使用下划线分割，
+并且应该明确指出该变量的用途。非常短的无意义的变量只应该在 for
+循环中作为迭代器使用。</p>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$j</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span><span class="p">;</span>     <span class="c1">// single letter variables should only be used in for() loops</span>
+<span class="nv">$Str</span>            <span class="c1">// contains uppercase letters</span>
+<span class="nv">$bufferedText</span>       <span class="c1">// uses CamelCasing, and could be shortened without losing semantic meaning</span>
+<span class="nv">$groupid</span>        <span class="c1">// multiple words, needs underscore separator</span>
+<span class="nv">$name_of_last_city_used</span> <span class="c1">// too long</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">for</span> <span class="p">(</span><span class="nv">$j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$j</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$j</span><span class="o">++</span><span class="p">)</span>
+<span class="nv">$str</span>
+<span class="nv">$buffer</span>
+<span class="nv">$group_id</span>
+<span class="nv">$last_city</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id35">注释</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>通常情况下，应该多写点注释，这不仅可以向那些缺乏经验的程序员描述代码的流程和意图，
+而且当你几个月后再回过头来看自己的代码时仍能帮你很好的理解。
+注释并没有强制规定的格式，但是我们建议以下的形式。</p>
+<p><a class="reference external" href="http://manual.phpdoc.org/HTMLSmartyConverter/HandS/phpDocumentor/tutorial_phpDocumentor.howto.pkg.html#basics.docblock">DocBlock</a>
+风格的注释，写在类、方法和属性定义的前面，可以被 IDE 识别:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="sd">/**</span>
+<span class="sd"> * Super Class</span>
+<span class="sd"> *</span>
+<span class="sd"> * @package Package Name</span>
+<span class="sd"> * @subpackage  Subpackage</span>
+<span class="sd"> * @category    Category</span>
+<span class="sd"> * @author  Author Name</span>
+<span class="sd"> * @link    http://example.com</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">Super_class</span> <span class="p">{</span>
+</pre></div>
+</div>
+<div class="highlight-ci"><div class="highlight"><pre><span class="sd">/**</span>
+<span class="sd"> * Encodes string for use in XML</span>
+<span class="sd"> *</span>
+<span class="sd"> * @param   string  $str    Input string</span>
+<span class="sd"> * @return  string</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">xml_encode</span><span class="p">(</span><span class="nv">$str</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ci"><div class="highlight"><pre><span class="sd">/**</span>
+<span class="sd"> * Data for class manipulation</span>
+<span class="sd"> *</span>
+<span class="sd"> * @var array</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>单行注释应该和代码合在一起，大块的注释和代码之间应该留一个空行。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="c1">// break up the string by newlines</span>
+<span class="nv">$parts</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nv">$str</span><span class="p">);</span>
+
+<span class="c1">// A longer comment that needs to give greater detail on what is</span>
+<span class="c1">// occurring and why can use multiple single-line comments.  Try to</span>
+<span class="c1">// keep the width reasonable, around 70 characters is the easiest to</span>
+<span class="c1">// read.  Don&#39;t hesitate to link to permanent external resources</span>
+<span class="c1">// that may provide greater detail:</span>
+<span class="c1">//</span>
+<span class="c1">// http://example.com/information_about_something/in_particular/</span>
+
+<span class="nv">$parts</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">foo</span><span class="p">(</span><span class="nv">$parts</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id36">常量</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p>常量遵循和变量一样的命名规则，除了它需要全部大写。<strong>尽量使用 CodeIgniter 已经定义好的常量，
+如：SLASH、LD、RD、PATH_CACHE 等。</strong></p>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nx">myConstant</span>  <span class="c1">// missing underscore separator and not fully uppercase</span>
+<span class="nx">N</span>       <span class="c1">// no single-letter constants</span>
+<span class="nx">S_C_VER</span>     <span class="c1">// not descriptive</span>
+<span class="nv">$str</span> <span class="o">=</span> <span class="nb">str_replace</span><span class="p">(</span><span class="s1">&#39;{foo}&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="nv">$str</span><span class="p">);</span>   <span class="c1">// should use LD and RD constants</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nx">MY_CONSTANT</span>
+<span class="nx">NEWLINE</span>
+<span class="nx">SUPER_CLASS_VERSION</span>
+<span class="nv">$str</span> <span class="o">=</span> <span class="nb">str_replace</span><span class="p">(</span><span class="nx">LD</span><span class="o">.</span><span class="s1">&#39;foo&#39;</span><span class="o">.</span><span class="nx">RD</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="nv">$str</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="truefalse-null">
+<h2><a class="toc-backref" href="#id37">TRUE、FALSE 和 NULL</a><a class="headerlink" href="#truefalse-null" title="永久链接至标题">¶</a></h2>
+<p><strong>TRUE</strong> 、 <strong>FALSE</strong> 和 <strong>NULL</strong> 这几个关键字全部使用大写。</p>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nv">$foo</span> <span class="o">==</span> <span class="k">true</span><span class="p">)</span>
+<span class="nv">$bar</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$bar</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nv">$foo</span> <span class="o">==</span> <span class="k">TRUE</span><span class="p">)</span>
+<span class="nv">$bar</span> <span class="o">=</span> <span class="k">FALSE</span><span class="p">;</span>
+<span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$bar</span> <span class="o">=</span> <span class="k">NULL</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h2><a class="toc-backref" href="#id38">逻辑操作符</a><a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+<p>不要使用 <tt class="docutils literal"><span class="pre">||</span></tt> 操作符，它在一些设备上看不清（可能看起来像是数字 11），
+使用 <tt class="docutils literal"><span class="pre">&amp;&amp;</span></tt> 操作符比使用 <tt class="docutils literal"><span class="pre">AND</span></tt> 要好一点，但是两者都可以接受。
+另外，在 <tt class="docutils literal"><span class="pre">!</span></tt> 操作符的前后都应该加一个空格。</p>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nv">$foo</span> <span class="o">||</span> <span class="nv">$bar</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$foo</span> <span class="k">AND</span> <span class="nv">$bar</span><span class="p">)</span>  <span class="c1">// okay but not recommended for common syntax highlighting applications</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$foo</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nb">is_array</span><span class="p">(</span><span class="nv">$foo</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nv">$foo</span> <span class="k">OR</span> <span class="nv">$bar</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$foo</span> <span class="o">&amp;&amp;</span> <span class="nv">$bar</span><span class="p">)</span> <span class="c1">// recommended</span>
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nv">$foo</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">is_array</span><span class="p">(</span><span class="nv">$foo</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h2><a class="toc-backref" href="#id39">对返回值进行比较以及类型转换</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
+<p>有一些 PHP 函数在失败时返回 FALSE ，但是也可能会返回 &quot;&quot; 或 0 这样的有效值，
+这些值在松散类型比较时和 FALSE 是相等的。所以当你在条件中使用这些返回值作比较时，
+一定要使用严格类型比较，确保返回值确实是你想要的，而不是松散类型的其他值。</p>
+<p>在检查你自己的返回值和变量时也要遵循这种严格的方式，必要时使用 <strong>===</strong> 和 <strong>!==</strong> 。</p>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="c1">// If &#39;foo&#39; is at the beginning of the string, strpos will return a 0,</span>
+<span class="c1">// resulting in this conditional evaluating as TRUE</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">strpos</span><span class="p">(</span><span class="nv">$str</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="k">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nb">strpos</span><span class="p">(</span><span class="nv">$str</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">function</span> <span class="nf">build_string</span><span class="p">(</span><span class="nv">$str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$str</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="c1">// uh-oh!  What if FALSE or the integer 0 is passed as an argument?</span>
+    <span class="p">{</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">function</span> <span class="nf">build_string</span><span class="p">(</span><span class="nv">$str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$str</span> <span class="o">===</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">{</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>另外关于 <a class="reference external" href="http://php.net/manual/en/language.types.type-juggling.php#language.types.typecasting">类型转换</a> 的信息也将很有用。
+类型转换会对变量产生一点轻微的影响，但可能也是期望的。例如 NULL 和 布尔值 FALSE 会转换为空字符串，
+数字 0 （和其他数字）将会转换为数字字符串，布尔值 TRUE 会变成 &quot;1&quot;:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$str</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$str</span><span class="p">;</span> <span class="c1">// cast $str as a string</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2><a class="toc-backref" href="#id40">调试代码</a><a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h2>
+<p>不要在你的提交中包含调试代码，就算是注释掉了也不行。
+像 <tt class="docutils literal"><span class="pre">var_dump()</span></tt> 、 <tt class="docutils literal"><span class="pre">print_r()</span></tt> 、 <tt class="docutils literal"><span class="pre">die()</span></tt> 和 <tt class="docutils literal"><span class="pre">exit()</span></tt> 这样的函数，都不应该包含在你的代码里，
+除非它们用于除调试之外的其他特殊用途。</p>
+</div>
+<div class="section" id="id13">
+<h2><a class="toc-backref" href="#id41">文件中的空格</a><a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h2>
+<p>PHP 起始标签的前面和结束标签的后面都不要留空格，输出是被缓存的，所以如果你的文件中有空格的话，
+这些空格会在 CodeIgniter 输出它的内容之前被输出，从而会导致错误，而且也会导致 CodeIgniter
+无法发送正确的头信息。</p>
+</div>
+<div class="section" id="id14">
+<h2><a class="toc-backref" href="#id42">兼容性</a><a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h2>
+<p>CodeIgniter 推荐使用 PHP 5.4 或更新版本，但是它还得同时兼容 PHP 5.2.4 。
+你的代码要么提供适当的回退来兼容这点，要么提供一些可选的功能，当不兼容时能安静的退出而不影响用户的程序。</p>
+<p>另外，不要使用那些需要额外安装的库的 PHP 函数，除非你能给出当该函数不存在时，有其他的函数能替代它。</p>
+</div>
+<div class="section" id="id15">
+<h2><a class="toc-backref" href="#id43">一个类一个文件</a><a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h2>
+<p>除非几个类是*紧密相关的*，否则每个类应该单独使用一个文件。
+在 CodeIgniter 中一个文件包含多个类的一个例子是 Xmlrpc 类文件。</p>
+</div>
+<div class="section" id="id16">
+<h2><a class="toc-backref" href="#id44">空格</a><a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h2>
+<p>在代码中使用制表符（tab）来代替空格，这虽然看起来是一件小事，但是使用制表符代替空格，
+可以让开发者阅读你代码的时候，可以根据他们的喜好在他们的程序中自定义缩进。
+此外还有一个好处是，这样文件可以更紧凑一点，也就是本来是四个空格字符，
+现在只要一个制表符就可以了。</p>
+</div>
+<div class="section" id="id17">
+<h2><a class="toc-backref" href="#id45">换行</a><a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h2>
+<p>文件必须使用 Unix 的换行格式保存。这对于那些在 Windows 环境下的开发者可能是个问题，
+但是不管在什么环境下，你都应该确认下你的文本编辑器已经配置好使用 Unix 换行符了。</p>
+</div>
+<div class="section" id="id18">
+<h2><a class="toc-backref" href="#id46">代码缩进</a><a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h2>
+<p>使用 Allman 代码缩进风格。除了类的定义之外，其他的所有大括号都应该独占一行，
+并且和它对应的控制语句保持相同的缩进。</p>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$bar</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$arr</span> <span class="k">as</span> <span class="nv">$key</span> <span class="o">=&gt;</span> <span class="nv">$val</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$foo</span> <span class="o">==</span> <span class="nv">$bar</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nv">$j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$j</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$j</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+        <span class="c1">// ...</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+<span class="k">catch</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$bar</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$arr</span> <span class="k">as</span> <span class="nv">$key</span> <span class="o">=&gt;</span> <span class="nv">$val</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$foo</span> <span class="o">==</span> <span class="nv">$bar</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nv">$j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$j</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nv">$j</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">try</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+<span class="k">catch</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id19">
+<h2><a class="toc-backref" href="#id47">中括号和小括号内的空格</a><a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h2>
+<p>一般情况下，使用中括号和小括号的时候不应该使用多余的空格。
+唯一的例外是，在那些接受一个括号和参数的 PHP 的控制结构（declare、do-while、elseif、for、
+foreach、if、switch、while）的后面应该加一个空格，这样做可以和函数区分开来，并增加可读性。</p>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$arr</span><span class="p">[</span> <span class="nv">$foo</span> <span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$arr</span><span class="p">[</span><span class="nv">$foo</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span><span class="p">;</span> <span class="c1">// no spaces around array keys</span>
+</pre></div>
+</div>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">function</span> <span class="nf">foo</span> <span class="p">(</span> <span class="nv">$bar</span> <span class="p">)</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$bar</span><span class="p">)</span> <span class="c1">// no spaces around parenthesis in function declarations</span>
+<span class="p">{</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">foreach</span><span class="p">(</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">foreach</span> <span class="p">(</span><span class="nv">$query</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="c1">// single space following PHP control structures, but not in interior parenthesis</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id20">
+<h2><a class="toc-backref" href="#id48">本地化文本</a><a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h2>
+<p>CodeIgniter 的类库应该尽可能的使用相应的语言文件。</p>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">return</span> <span class="s2">&quot;Invalid Selection&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">line</span><span class="p">(</span><span class="s1">&#39;invalid_selection&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id21">
+<h2><a class="toc-backref" href="#id49">私有方法和变量</a><a class="headerlink" href="#id21" title="永久链接至标题">¶</a></h2>
+<p>那些只能在内部访问的方法和变量，例如供共有方法使用的那些工具方法或辅助函数，应该以下划线开头。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">public</span> <span class="k">function</span> <span class="nf">convert_text</span><span class="p">()</span>
+<span class="k">private</span> <span class="k">function</span> <span class="nf">_convert_text</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id22">
+<h2><a class="toc-backref" href="#id50">PHP 错误</a><a class="headerlink" href="#id22" title="永久链接至标题">¶</a></h2>
+<p>运行代码时不应该出现任何错误信息，并不是把警告和提示信息关掉来满足这一点。
+例如，绝不要直接访问一个你没设置过的变量（例如，<tt class="docutils literal"><span class="pre">$_POST</span></tt> 数组），
+你应该先使用 <tt class="docutils literal"><span class="pre">isset()</span></tt> 函数判断下。</p>
+<p>确保你的开发环境对所有人都开启了错误报告，PHP 环境的 display_errors 参数也开启了，
+你可以通过下面的代码来检查:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="nb">ini_get</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">exit</span> <span class="s2">&quot;Enabled&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>有些服务器上 <em>display_errors</em> 参数可能是禁用的，而且你没有权限修改 php.ini 文件，
+你可以使用下面的方法来启用它:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">使用 <tt class="docutils literal"><span class="pre">ini_set()</span></tt> 函数在运行时设置 <a class="reference external" href="http://php.net/manual/en/errorfunc.configuration.php#ini.display-errors">display_errors</a>
+参数和通过 php.ini 配置文件来设置是不一样的，换句话说，当出现致命错误（fatal errors）时，这种方法没用。</p>
+</div>
+</div>
+<div class="section" id="id23">
+<h2><a class="toc-backref" href="#id51">短标记</a><a class="headerlink" href="#id23" title="永久链接至标题">¶</a></h2>
+<p>使用 PHP 的完整标记，防止服务器不支持短标记（ <em>short_open_tag</em> ）参数。</p>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;?</span> <span class="k">echo</span> <span class="nv">$foo</span><span class="p">;</span> <span class="cp">?&gt;</span>
+
+<span class="cp">&lt;?</span><span class="o">=</span><span class="nv">$foo</span><span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nv">$foo</span><span class="p">;</span> <span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">PHP 5.4 下 <strong>&lt;?=</strong> 标记是永远可用的。</p>
+</div>
+</div>
+<div class="section" id="id24">
+<h2><a class="toc-backref" href="#id52">每行只有一条语句</a><a class="headerlink" href="#id24" title="永久链接至标题">¶</a></h2>
+<p>切记不要在同一行内写多条语句。</p>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$foo</span> <span class="o">=</span> <span class="s1">&#39;this&#39;</span><span class="p">;</span> <span class="nv">$bar</span> <span class="o">=</span> <span class="s1">&#39;that&#39;</span><span class="p">;</span> <span class="nv">$bat</span> <span class="o">=</span> <span class="nb">str_replace</span><span class="p">(</span><span class="nv">$foo</span><span class="p">,</span> <span class="nv">$bar</span><span class="p">,</span> <span class="nv">$bag</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$foo</span> <span class="o">=</span> <span class="s1">&#39;this&#39;</span><span class="p">;</span>
+<span class="nv">$bar</span> <span class="o">=</span> <span class="s1">&#39;that&#39;</span><span class="p">;</span>
+<span class="nv">$bat</span> <span class="o">=</span> <span class="nb">str_replace</span><span class="p">(</span><span class="nv">$foo</span><span class="p">,</span> <span class="nv">$bar</span><span class="p">,</span> <span class="nv">$bag</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id25">
+<h2><a class="toc-backref" href="#id53">字符串</a><a class="headerlink" href="#id25" title="永久链接至标题">¶</a></h2>
+<p>字符串使用单引号引起来，当字符串中有变量时使用双引号，并且使用大括号将变量包起来。
+另外，当字符串中有单引号时，也应该使用双引号，这样就不用使用转义符。</p>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="s2">&quot;My String&quot;</span>                 <span class="c1">// no variable parsing, so no use for double quotes</span>
+<span class="s2">&quot;My string </span><span class="si">$foo</span><span class="s2">&quot;</span>                <span class="c1">// needs braces</span>
+<span class="s1">&#39;SELECT foo FROM bar WHERE baz = \&#39;bag\&#39;&#39;</span>   <span class="c1">// ugly</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="s1">&#39;My String&#39;</span>
+<span class="s2">&quot;My string </span><span class="si">{</span><span class="nv">$foo</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="s2">&quot;SELECT foo FROM bar WHERE baz = &#39;bag&#39;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sql">
+<h2><a class="toc-backref" href="#id54">SQL 查询</a><a class="headerlink" href="#sql" title="永久链接至标题">¶</a></h2>
+<p>SQL 关键字永远使用大写：SELECT、INSERT、UPDATE、WHERE、AS、JOIN、ON、IN 等。</p>
+<p>考虑到易读性，把长的查询分成多行，最好是每行只有一个从句或子从句。</p>
+<p><strong>错误的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="c1">// keywords are lowercase and query is too long for</span>
+<span class="c1">// a single line (... indicates continuation of line)</span>
+<span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;select foo, bar, baz, foofoo, foobar as raboof, foobaz from exp_pre_email_addresses</span>
+<span class="s2">...where foo != &#39;oof&#39; and baz != &#39;zab&#39; order by foobaz limit 5, 100&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>正确的</strong>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;SELECT foo, bar, baz, foofoo, foobar AS raboof, foobaz</span>
+<span class="s2">                FROM exp_pre_email_addresses</span>
+<span class="s2">                WHERE foo != &#39;oof&#39;</span>
+<span class="s2">                AND baz != &#39;zab&#39;</span>
+<span class="s2">                ORDER BY foobaz</span>
+<span class="s2">                LIMIT 5, 100&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id26">
+<h2><a class="toc-backref" href="#id55">缺省的函数参数</a><a class="headerlink" href="#id26" title="永久链接至标题">¶</a></h2>
+<p>适当的时候，提供函数参数的缺省值，这有助于防止因错误的函数调用引起的PHP错误，
+另外提供常见的备选值可以节省几行代码。例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">function</span> <span class="nf">foo</span><span class="p">(</span><span class="nv">$bar</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nv">$baz</span> <span class="o">=</span> <span class="k">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../libraries/index.html" class="btn btn-neutral float-right" title="类库参考">下一个主题 <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="security.html" class="btn btn-neutral" title="安全"><span class="fa fa-arrow-circle-left"></span> 上一个主题</a>
+      
+    </div>
+  
+
+  
+  <div id="notes">
+  
+  <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="userguide3/general/styleguide" data-title="PHP 开发规范" data-url="http://codeigniter.org.cn/user_guide/general/styleguide.html"></div>
+  <!-- 多说评论框 end -->
+  
+
+  <div class="ds-share flat" data-thread-key="userguide3/general/styleguide" data-title="PHP 开发规范 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" data-url="http://codeigniter.org.cn/user_guide/general/styleguide.html" data-images="" data-content="">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+  </div>
+
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codeigniter"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+  <!-- 多说公共JS代码 end -->
+  </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2014 - 2015, 不列颠哥伦比亚理工学院.
+       最后修改: 2015-10-11.
+    </p>
+
+    <p>以 <a href="http://www.aneasystone.com/" target="_blank">aneasystone</a> 制作的手册为基础构建</p>
+  </div>
+
+  
+    <p>基于 <a href="http://sphinx-doc.org/">Sphinx</a> 并使用 <a href="https://readthedocs.org">Read the Docs</a> 提供的<a href="https://github.com/snide/sphinx_rtd_theme">风格</a>构建</p>
+    <p>
+        <a href="https://github.com/CodeIgniter-Chinese/codeigniter-user-guide" target="_blank">Github 简体中文翻译</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/codeigniter_user_guide.zip">离线版压缩包下载</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/CodeIgniter.pdf">PDF 版下载</a>
+    </p>
+  
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.0.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-272152-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+  
+
+</body>
+</html>

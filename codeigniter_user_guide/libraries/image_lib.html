@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>图像处理类 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档</title>
+  
+
+  
+  
+  <link rel="shortcut icon" href="../_static/ci-icon.ico" />
+  
+
+  
+  <link href="../_static/css/fonts.css" rel="stylesheet" type="text/css" />
+
+  
+  
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme_cn.css" type="text/css" />
+    <link rel="top" title="CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" href="../index.html"/>
+        <link rel="up" title="类库参考" href="index.html"/>
+        <link rel="next" title="输入类" href="input.html"/>
+        <link rel="prev" title="FTP 类" href="ftp.html"/> 
+
+  
+  <script src="../_static/js/modernizr.2.6.2.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">类库参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 类</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAICAgICAgICAgICAgICAgMCAgICAwMDAwMDAwMEAwMDAwMDBAQEBAUEBAQFBQYGBQUHBwcHBwcHBwcHBwcHBwf/2wBDAQICAgMDAwUEBAUHBgUGBwgICAgICAgHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwf/wAARCAArAJoDAREAAhEBAxEB/8QAHgABAAAGAwEAAAAAAAAAAAAAAAQFBgcICQECAwr/xAA/EAAABAQCBgcFBAsBAAAAAAACAwQFAAEGBxESExZRU5XVCBQZIlWi0gkVITFCIzJSchgzQUNUVmFiZYWy1P/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDCEXygIE47JKAmEAgEAgEAgEAgEAgEAgEAgEBBnGBCcEH9kBEAnjAekBusU9DWxoACnKgx8ZqLmMBaWquivZhvLMmXRYy8v+XfRf8AS+A1WwCAQCAQGdrZby3DbbG0T0bRllHB4q2kVb0+r7nV5U1PLz1Jb+4oQCSoW96RJ9AEhOWHMAqXekLHGeMBQHSCoei6doG0FTUxTlDMLpVTpWaN9Mt5UbxUjOpLZxsoW+QFTs4OGQwrrZ2eRYg/e72OAcAxRgL79Hy3Rtwq1EnU0Y51hTrciNMfAoUlQKikYjijOomKJU2ES2WkNLmEEpYSn8Zz+AZwGdrf0V7fuZqhEK0TylGY1uI0xxbddJIKSopvPOSSCodpBRhmI8AA4HTwFjl+c5QGrN/p98pV4XU/UjUuZHtsMCS4NTkUIhSnGIATQhNKHgIM5gEEXx/ZOAk8AgEAgMwujjZygLjMDg51XT/vZanqE9uJO685pcqctKlNADIiVEA++aL6YDNZq6HlkDygzFQoxf7moP8A3wE7/QysZ/IY+M1FzKAzzWtJehF3YDHe4DNiSdkD9AoD5j9aFm/8ofTANaFm/wDKH0wDWhZv/KH0wDWhZv8Ayh9MA1oWb/yh9MBsYJujb8VobCIFlyujsgeGu3y1M8tdxqPfawdkZ46pdzgFDPp9ndC0IZkjAOSc8ZZve0uTIYAQgtz0l7j0s62nsI30rWtrqmXtb3cI16T2taVbCiRAVmU91GalidUaFcmEfoTsDDEwQnZBTLEOQZ4BhbrQs3/lD6YC+Vh7g0vS9VDqer6nPRSbtCiR0sVTDNUJNSFOGkTLkC4x/UJWxuSyLyyOPNmIcgDnMoOYOaQZtvV+LEW/bbdW4emWnzimtFUL5T1Y0q6Uxc9bb55dHw6adaZ1AsinXctWQACkxFIOZJMJcwBEMJQoDWtWFQJk1U1AQxVSGrGgDqo6hUoGwTQFyKmZMUlgWw4OdJI3HGRQviGXwwl8oCm9aFm/8ofTANaFm/8AKH0wDWhZv/KH0wHOtCz+I2/MIMP6fTjjAba/Z9SMe7eVAsOFpNHXytPmy/hamsf0fmgNtzA0l6EPd+iAqn3SVsgJ6eXIYBSywFq6oZOtFmSwgPn3e/ZrX1b3BcS21ZbdwbCVh4W1YqUvaNUelCaLqxylGU1qgJjRg7wiwnmhCLuaUf34Cmx+z0v4GeHvy2nEHrk0B17Pa/vjluOIPfJoB2e1+vG7b8Qe+TwDs9r++OW44g98mgHZ7X98ctxxB75NAOz2v745bjiD3yaAdntfrxu2/EHvk8A7Pa/Xjdt+IPfJ4B2e1+vG7b8Qe+TwDs9r9eN234g98ngHZ7X68btvxB75PAOz2v143bfiD3yeAdntf3xy3HEHvk0BHEezo6QKmeAKgtiH8zk+8kgNrHQv6OlSWHtyqpurXZqeH52qpdUqwTIFQJCkCclSt5KYlSqCQcp+xRhPEIRBXeN0WQeTTDDYU2JpFlBllgJ1hL8MAnLNKAlalFI6QsQwFLqqaLOmLEuAlI6MInP9TAeepabcwDUtNuYBqWm3MA1LTbmAalptzANS025gGpabcwDUtNuYBqWm3MA1LTbmAalptzANTCJfuYCOIpQkuYfs4CpkbSAjLgGAnxQMksID2gEB1FAJylsgOcJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUBzAIBAf/Z" title="切换目录" alt="切换目录" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索手册" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">类库参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 类</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">首页</a> &raquo; </li>
+    
+    <li><a href="index.html">类库参考</a> &raquo; </li>
+    
+    <li>图像处理类</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;">
+      <div style="text-decoration:underline;color:blue;margin-left:5px;cursor:pointer;" id="closeMe">
+        <img title="目录" alt="toc" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+      </div>
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="id1">
+<h1>图像处理类<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>CodeIgniter 的图像处理类可以使你完成以下的操作：</p>
+<ul class="simple">
+<li>调整图像大小</li>
+<li>创建缩略图</li>
+<li>图像裁剪</li>
+<li>图像旋转</li>
+<li>添加图像水印</li>
+</ul>
+<p>可以很好的支持三个主流的图像库：GD/GD2、NetPBM 和 ImageMagick 。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">添加水印操作仅仅在使用 GD/GD2 时可用。另外，即使支持其他的图像处理库，
+但是为了计算图像的属性，GD 仍是必需的。然而在进行图像处理操作时，
+还是会使用你指定的库。</p>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#id2" id="id12">初始化类</a><ul>
+<li><a class="reference internal" href="#id3" id="id13">处理图像</a></li>
+<li><a class="reference internal" href="#id4" id="id14">处理函数</a></li>
+<li><a class="reference internal" href="#processing-preferences" id="id15">参数</a></li>
+<li><a class="reference internal" href="#id6" id="id16">在配置文件中设置参数</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id7" id="id17">添加图像水印</a><ul>
+<li><a class="reference internal" href="#id8" id="id18">水印的两种类型</a></li>
+<li><a class="reference internal" href="#watermarking" id="id19">给图像添加水印</a></li>
+<li><a class="reference internal" href="#id10" id="id20">水印处理参数</a><ul>
+<li><a class="reference internal" href="#text" id="id21">Text 参数</a></li>
+<li><a class="reference internal" href="#overlay" id="id22">Overlay 参数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id11" id="id23">类参考</a></li>
+</ul>
+</div>
+<div class="custom-index container"></div><div class="section" id="id2">
+<h2><a class="toc-backref" href="#id12">初始化类</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>跟 CodeIgniter 中的其他类一样，可以在你的控制器中使用 <tt class="docutils literal"><span class="pre">$this-&gt;load-&gt;library()</span></tt>
+方法加载图像处理类:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;image_lib&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>一旦加载，图像处理类就可以像下面这样使用:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span>
+</pre></div>
+</div>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id13">处理图像</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>不管你想进行何种图像处理操作（调整大小，图像裁剪，图像旋转，添加水印），
+通常过程都是一样的。你会先设置一些你想进行的图像操作的参数，
+然后调用四个可用方法中的一个。例如，创建一个图像缩略图:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;image_library&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gd2&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;source_image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/path/to/image/mypic.jpg&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;create_thumb&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">TRUE</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;maintain_ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">TRUE</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="mi">75</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span>   <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;image_lib&#39;</span><span class="p">,</span> <span class="nv">$config</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">resize</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>以上代码告诉 image_resize 函数去查找位于 source_image 目录下的名为 mypic.jpg
+的图片，然后运用 GD2 图像库创建一个 75 X 50 像素的缩略图。 当 maintain_ratio
+选项设为 TRUE 时，生成的缩略图将保持图像的纵横比例，同时尽可能的在宽度和
+高度上接近所设定的 width 和 height 。
+缩略图将被命名为类似 mypic_thumb.jpg 的形式。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">为了让图像类能进行所有操作，包含图片的文件夹必须开启可写权限。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">图像处理的某些操作可能需要大量的服务器内存。如果在处理图像时，
+你遇到了内存不足错误，您可能需要限制图像大小的最大值，
+和/或调整 PHP 的内存限制。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id14">处理函数</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p>有五个处理函数可以调用：</p>
+<ul class="simple">
+<li>$this-&gt;image_lib-&gt;resize()</li>
+<li>$this-&gt;image_lib-&gt;crop()</li>
+<li>$this-&gt;image_lib-&gt;rotate()</li>
+<li>$this-&gt;image_lib-&gt;watermark()</li>
+</ul>
+<p>当调用成功时，这些函数会返回 TRUE ，否则会返回 FALSE 。
+如果调用失败时，用以下函数可以获取错误信息:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">display_errors</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>下面是一个好的做法，将函数调用放在条件判断里，当调用失败时显示错误的信息:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">resize</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">display_errors</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p>你也可以给错误信息指定 HTML 格式，像下面这样添加起始和结束标签:</p>
+<div class="last highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">display_errors</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/p&gt;&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="processing-preferences">
+<span id="id5"></span><h3><a class="toc-backref" href="#id15">参数</a><a class="headerlink" href="#processing-preferences" title="永久链接至标题">¶</a></h3>
+<p>你可以用下面的参数来对图像处理进行配置，满足你的要求。</p>
+<p>注意，不是所有的参数都可以应用到每一个函数中。例如，x/y 轴参数只能被图像裁剪使用。
+但是，宽度和高度参数对裁剪函数是无效的。下表的 &quot;可用性&quot; 一栏将指明哪些函数可以使用对应的参数。</p>
+<p>&quot;可用性&quot; 符号说明：</p>
+<ul class="simple">
+<li>R - 调整图像大小</li>
+<li>C - 图像裁剪</li>
+<li>X - 图像旋转</li>
+<li>W - 添加图像水印</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="19%" />
+<col width="45%" />
+<col width="9%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数</th>
+<th class="head">默认值</th>
+<th class="head">选项</th>
+<th class="head">描述</th>
+<th class="head">可用性</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>image_library</strong></td>
+<td>GD2</td>
+<td>GD, GD2, ImageMagick, NetPBM</td>
+<td>设置要使用的图像库</td>
+<td>R, C, X, W</td>
+</tr>
+<tr class="row-odd"><td><strong>library_path</strong></td>
+<td>None</td>
+<td>None</td>
+<td>设置 ImageMagick 或 NetPBM 库在服务器上的路径。
+要使用它们中的其中任何一个，你都需要设置它们的路径。</td>
+<td>R, C, X</td>
+</tr>
+<tr class="row-even"><td><strong>source_image</strong></td>
+<td>None</td>
+<td>None</td>
+<td>设置原始图像的名称和路径。
+路径只能是相对或绝对的服务器路径，不能使用URL 。</td>
+<td>R, C, S, W</td>
+</tr>
+<tr class="row-odd"><td><strong>dynamic_output</strong></td>
+<td>FALSE</td>
+<td>TRUE/FALSE (boolean)</td>
+<td>决定新生成的图像是要写入硬盘还是内存中。
+注意，如果是生成到内存的话，一次只能显示一副图像，而且
+不能调整它在你页面中的位置，它只是简单的将图像数据以及图像的
+HTTP 头发送到浏览器。</td>
+<td>R, C, X, W</td>
+</tr>
+<tr class="row-even"><td><strong>file_permissions</strong></td>
+<td>0644</td>
+<td>(integer)</td>
+<td>设置生成图像文件的权限。
+注意：权限值为八进制表示法。</td>
+<td>R, C, X, W</td>
+</tr>
+<tr class="row-odd"><td><strong>quality</strong></td>
+<td>90%</td>
+<td>1 - 100%</td>
+<td>设置图像的品质。品质越高，图像文件越大。</td>
+<td>R, C, X, W</td>
+</tr>
+<tr class="row-even"><td><strong>new_image</strong></td>
+<td>None</td>
+<td>None</td>
+<td>设置目标图像的名称和路径。
+创建图像副本时使用该参数，路径只能是相对或绝对的服务器路径，
+不能使用URL 。</td>
+<td>R, C, X, W</td>
+</tr>
+<tr class="row-odd"><td><strong>width</strong></td>
+<td>None</td>
+<td>None</td>
+<td>设置你想要的图像宽度。</td>
+<td>R, C</td>
+</tr>
+<tr class="row-even"><td><strong>height</strong></td>
+<td>None</td>
+<td>None</td>
+<td>设置你想要的图像高度。</td>
+<td>R, C</td>
+</tr>
+<tr class="row-odd"><td><strong>create_thumb</strong></td>
+<td>FALSE</td>
+<td>TRUE/FALSE (boolean)</td>
+<td>告诉图像处理函数生成缩略图。</td>
+<td>R</td>
+</tr>
+<tr class="row-even"><td><strong>thumb_marker</strong></td>
+<td>_thumb</td>
+<td>None</td>
+<td>指定缩略图后缀，它会被插入到文件扩展名的前面，
+所以 mypic.jpg 文件会变成 mypic_thumb.jpg</td>
+<td>R</td>
+</tr>
+<tr class="row-odd"><td><strong>maintain_ratio</strong></td>
+<td>TRUE</td>
+<td>TRUE/FALSE (boolean)</td>
+<td>指定是否在缩放或使用硬值的时候
+使图像保持原始的纵横比例。</td>
+<td>R, C</td>
+</tr>
+<tr class="row-even"><td><strong>master_dim</strong></td>
+<td>auto</td>
+<td>auto, width, height</td>
+<td>指定一个选项作为缩放和创建缩略图时的主轴。
+例如，你想要将一张图片缩放到 100×75 像素。
+如果原来的图像的大小不能完美的缩放到这个尺寸，
+那么由这个参数决定把哪个轴作为硬值。
+&quot;auto&quot; 依据图片到底是过高还是过长自动设定轴。</td>
+<td>R</td>
+</tr>
+<tr class="row-odd"><td><strong>rotation_angle</strong></td>
+<td>None</td>
+<td>90, 180, 270, vrt, hor</td>
+<td>指定图片旋转的角度。
+注意，旋转是逆时针的，如果想向右转 90 度，
+就得把这个参数定义为 270 。</td>
+<td>X</td>
+</tr>
+<tr class="row-even"><td><strong>x_axis</strong></td>
+<td>None</td>
+<td>None</td>
+<td>为图像的裁剪设定 X 轴上的长度。
+例如，设为 30 就是将图片左边的 30 像素裁去。</td>
+<td>C</td>
+</tr>
+<tr class="row-odd"><td><strong>y_axis</strong></td>
+<td>None</td>
+<td>None</td>
+<td>为图像的裁剪设定Y轴上的长度。
+例如，设为30就是将图片顶端的30像素裁去。</td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id16">在配置文件中设置参数</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<p>如果你不喜欢使用上面的方法来设置参数，你可以将参数保存到配置文件中。你只需简单的创建一个文件
+image_lib.php 并将 $config 数组放到该文件中，然后保存文件到 <strong>config/image_lib.php</strong> ，这些参数将会自动被使用。
+如果你在配置文件中设置参数，那么你就不需要使用 <tt class="docutils literal"><span class="pre">$this-&gt;image_lib-&gt;initialize()</span></tt> 方法了。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id17">添加图像水印</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>水印处理功能需要 GD/GD2 库的支持。</p>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id18">水印的两种类型</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p>你可以使用以下两种图像水印处理方式：</p>
+<ul class="simple">
+<li><strong>Text</strong>：水印信息将以文字方式生成，要么使用你所指定的 TrueType 字体，
+要么使用 GD 库所支持的内部字体。如果你要使用 TrueType 版本，
+那么你安装的 GD 库必须是以支持 TrueType 的形式编译的（大多数都是，但不是所有）。</li>
+<li><strong>Overlay</strong>：水印信息将以图像方式生成，新生成的水印图像
+（通常是透明的 PNG 或者 GIF）将覆盖在原图像上。</li>
+</ul>
+</div>
+<div class="section" id="watermarking">
+<span id="id9"></span><h3><a class="toc-backref" href="#id19">给图像添加水印</a><a class="headerlink" href="#watermarking" title="永久链接至标题">¶</a></h3>
+<p>类似使用其他类型的图像处理函数（resizing、cropping 和 rotating），
+你也要对水印处理函数进行参数设置来生成你要的结果，例子如下:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;source_image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/path/to/image/mypic.jpg&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;wm_text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Copyright 2006 - John Doe&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;wm_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;text&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;wm_font_path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;./system/fonts/texb.ttf&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;wm_font_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;16&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;wm_font_color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;ffffff&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;wm_vrt_alignment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;bottom&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;wm_hor_alignment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;center&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;wm_padding&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;20&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">initialize</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">watermark</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>上面的例子是使用 16 像素 True Type 字体来生成文本水印 &quot;Copyright 2006 - John Doe&quot; ，
+该水印将出现在离图像底部 20 像素的中下部位置。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">当调用图像类处理图像时，所有的目标图片必须有 &quot;写入&quot; 权限， 例如：777</p>
+</div>
+</div>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id20">水印处理参数</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<p>下表列举的参数对于两种水印处理方式（text 或 overlay）都适用。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="14%" />
+<col width="17%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数</th>
+<th class="head">默认值</th>
+<th class="head">选项</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>wm_type</strong></td>
+<td>text</td>
+<td>text, overlay</td>
+<td>设置想要使用的水印处理类型。</td>
+</tr>
+<tr class="row-odd"><td><strong>source_image</strong></td>
+<td>None</td>
+<td>None</td>
+<td>设置原图像的名称和路径，路径必须是相对或绝对路径，不能是 URL 。</td>
+</tr>
+<tr class="row-even"><td><strong>dynamic_output</strong></td>
+<td>FALSE</td>
+<td>TRUE/FALSE (boolean)</td>
+<td>决定新生成的图像是要写入硬盘还是内存中。
+注意，如果是生成到内存的话，一次只能显示一副图像，而且
+不能调整它在你页面中的位置，它只是简单的将图像数据以及图像的
+HTTP 头发送到浏览器。</td>
+</tr>
+<tr class="row-odd"><td><strong>quality</strong></td>
+<td>90%</td>
+<td>1 - 100%</td>
+<td>设置图像的品质。品质越高，图像文件越大。</td>
+</tr>
+<tr class="row-even"><td><strong>wm_padding</strong></td>
+<td>None</td>
+<td>A number</td>
+<td>内边距，以像素为单位，是水印与图片边缘之间的距离。</td>
+</tr>
+<tr class="row-odd"><td><strong>wm_vrt_alignment</strong></td>
+<td>bottom</td>
+<td>top, middle, bottom</td>
+<td>设置水印图像的垂直对齐方式。</td>
+</tr>
+<tr class="row-even"><td><strong>wm_hor_alignment</strong></td>
+<td>center</td>
+<td>left, center, right</td>
+<td>设置水印图像的水平对齐方式。</td>
+</tr>
+<tr class="row-odd"><td><strong>wm_hor_offset</strong></td>
+<td>None</td>
+<td>None</td>
+<td>你可以指定一个水平偏移量（以像素为单位），
+用于设置水印的位置。偏移量通常是向右移动水印，
+除非你把水平对齐方式设置为 &quot;right&quot; ，那么你的偏移量将会向左移动水印。</td>
+</tr>
+<tr class="row-even"><td><strong>wm_vrt_offset</strong></td>
+<td>None</td>
+<td>None</td>
+<td>你可以指定一个垂直偏移量（以像素为单位），
+用于设置水印的位置。偏移量通常是向下移动水印，
+除非你把垂直对齐方式设置为 &quot;bottom&quot;，那么你的偏移量将会向上移动水印。</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="text">
+<h4><a class="toc-backref" href="#id21">Text 参数</a><a class="headerlink" href="#text" title="永久链接至标题">¶</a></h4>
+<p>下表列举的参数只适用于 text 水印处理方式。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="14%" />
+<col width="14%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数</th>
+<th class="head">默认值</th>
+<th class="head">选项</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>wm_text</strong></td>
+<td>None</td>
+<td>None</td>
+<td>你想作为水印显示的文本。通常是一份版权声明。</td>
+</tr>
+<tr class="row-odd"><td><strong>wm_font_path</strong></td>
+<td>None</td>
+<td>None</td>
+<td>你想使用的 TTF 字体（TrueType）在服务器上的路径。
+如果你没有使用这个选项，系统将使用原生的GD字体。</td>
+</tr>
+<tr class="row-even"><td><strong>wm_font_size</strong></td>
+<td>16</td>
+<td>None</td>
+<td>字体大小。 说明：如果你没有使用上面的 TTF 字体选项，
+那么这个数值必须是 1-5 之间的一个数字，如果使用了 TTF ，
+你可以使用任意有效的字体大小。</td>
+</tr>
+<tr class="row-odd"><td><strong>wm_font_color</strong></td>
+<td>ffffff</td>
+<td>None</td>
+<td>字体颜色，以十六进制给出。
+注意，你必须给出完整的 6 位数的十六进制值（如：993300），
+而不能使用 3 位数的简化值（如：fff）。</td>
+</tr>
+<tr class="row-even"><td><strong>wm_shadow_color</strong></td>
+<td>None</td>
+<td>None</td>
+<td>阴影的颜色, 以十六进制给出。如果此项为空，将不使用阴影。
+注意，你必须给出完整的 6 位数的十六进制值（如：993300），
+而不能使用 3 位数的简化值（如：fff）。</td>
+</tr>
+<tr class="row-odd"><td><strong>wm_shadow_distance</strong></td>
+<td>3</td>
+<td>None</td>
+<td>阴影与文字之间的距离（以像素为单位）。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="overlay">
+<h4><a class="toc-backref" href="#id22">Overlay 参数</a><a class="headerlink" href="#overlay" title="永久链接至标题">¶</a></h4>
+<p>下表列举的参数只适用于 overlay 水印处理方式。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="14%" />
+<col width="14%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数</th>
+<th class="head">默认值</th>
+<th class="head">选项</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>wm_overlay_path</strong></td>
+<td>None</td>
+<td>None</td>
+<td>你想要用作水印的图片在你服务器上的路径。
+只在你使用了 overlay 方法时需要。</td>
+</tr>
+<tr class="row-odd"><td><strong>wm_opacity</strong></td>
+<td>50</td>
+<td>1 - 100</td>
+<td>图像不透明度。你可以指定你的水印图片的不透明度。
+这将使水印模糊化，从而不会掩盖住底层原始图片，通常设置为 50 。</td>
+</tr>
+<tr class="row-even"><td><strong>wm_x_transp</strong></td>
+<td>4</td>
+<td>A number</td>
+<td>如果你的水印图片是一个 PNG 或 GIF 图片，
+你可以指定一种颜色用来使图片变得 &quot;透明&quot; 。这项设置
+（以及下面那项）将允许你指定这种颜色。它的原理是，通过指定
+&quot;X&quot; 和 &quot;Y&quot; 坐标值（从左上方开始测量）来确定图片上对应位置的某个像素，
+这个像素所代表的颜色就是你要设置为透明的颜色。</td>
+</tr>
+<tr class="row-odd"><td><strong>wm_y_transp</strong></td>
+<td>4</td>
+<td>A number</td>
+<td>与前一个选项一起，允许你指定某个像素的坐标值，
+这个像素所代表的颜色就是你要设置为透明的颜色。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h2><a class="toc-backref" href="#id23">类参考</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="CI_Image_lib">
+<em class="property">class </em><tt class="descname">CI_Image_lib</tt><a class="headerlink" href="#CI_Image_lib" title="永久链接至目标">¶</a></dt>
+<dd><dl class="method">
+<dt id="CI_Image_lib::initialize">
+<tt class="descname">initialize</tt><big>(</big><span class="optional">[</span><em>$props = array()</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Image_lib::initialize" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$props</strong> (<em>array</em>) -- Image processing preferences</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">TRUE on success, FALSE in case of invalid settings</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>初始化图像处理类。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Image_lib::resize">
+<tt class="descname">resize</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Image_lib::resize" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">TRUE on success, FALSE on failure</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+<p>该函数让你能调整原始图像的大小，创建一个副本（调整或未调整过的），
+或者创建一个缩略图。</p>
+<p>创建一个副本和创建一个缩略图之间没有实际上的区别，
+除了缩略图的文件名会有一个自定义的后缀（如：mypic_thumb.jpg）。</p>
+<p>所有列在上面 <a class="reference internal" href="#processing-preferences"><em>参数</em></a> 表中的参数对这个函数都可用，
+除了这三个： <em>rotation_angle</em> 、 <em>x_axis</em> 和 <em>y_axis</em> 。</p>
+<p><strong>创建一个缩略图</strong></p>
+<p>resize 函数能用来创建缩略图（并保留原图），只要你把这个参数设为 TRUE</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;create_thumb&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">TRUE</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>这一个参数决定是否创建一个缩略图。</p>
+<p><strong>创建一个副本</strong></p>
+<p>resize 函数能创建一个图像的副本（并保留原图），
+只要你通过以下参数设置一个新的路径或者文件名:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;new_image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/path/to/new_image.jpg&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>注意以下规则：</p>
+<ul class="simple">
+<li>如果只指定新图像的名字，那么它会被放在原图像所在的文件夹下。</li>
+<li>如果只指定路径，新图像会被放在指定的文件夹下，并且名字和原图像相同。</li>
+<li>如果同时定义了路径和新图像的名字，那么新图像会以指定的名字放在指定的文件夹下。</li>
+</ul>
+<p><strong>调整原图像的大小</strong></p>
+<p>如果上述两个参数（create_thumb 和 new_image）均未被指定，
+resize 函数的处理将直接作用于原图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Image_lib::crop">
+<tt class="descname">crop</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Image_lib::crop" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">TRUE on success, FALSE on failure</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+<p>crop 函数的用法与 resize 函数十分接近，除了它需要你设置用于裁剪的 X 和 Y 值
+（单位是像素），如下:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;x_axis&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;y_axis&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>前面那张 <a class="reference internal" href="#processing-preferences"><em>参数</em></a> 表中所列的所有参数都可以用于这个函数，
+除了这些：<em>rotation_angle</em> 、<em>width</em> 、<em>height</em> 、<em>create_thumb</em> 、<em>new_image</em> 。</p>
+<p>这是一个如何裁剪一张图片的示例:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;image_library&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;imagemagick&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;library_path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/usr/X11R6/bin/&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;source_image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/path/to/image/mypic.jpg&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;x_axis&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;y_axis&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">60</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">initialize</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">crop</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">display_errors</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">如果没有一个可视化的界面，是很难裁剪一张图片的。
+因此，除非你打算制作这么一个界面，否则这个函数并不是很有用。
+事实上我们在自己开发的 CMS 系统 ExpressionEngine 的相册模块中
+添加的一个基于 JavaScript 的用户界面来选择裁剪的区域。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Image_lib::rotate">
+<tt class="descname">rotate</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Image_lib::rotate" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">TRUE on success, FALSE on failure</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+<p>rotate 函数需要通过参数设置旋转的角度:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;rotation_angle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;90&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>以下是 5 个可选项：</p>
+<ol class="arabic simple">
+<li>90 - 逆时针旋转90度。</li>
+<li>180 - 逆时针旋转180度。</li>
+<li>270 - 逆时针旋转270度。</li>
+<li>hor - 水平翻转。</li>
+<li>vrt - 垂直翻转。</li>
+</ol>
+<p>下面是旋转图片的一个例子:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;image_library&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;netpbm&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;library_path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/usr/bin/&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;source_image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/path/to/image/mypic.jpg&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;rotation_angle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;hor&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">initialize</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">rotate</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">display_errors</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Image_lib::watermark">
+<tt class="descname">watermark</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Image_lib::watermark" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">TRUE on success, FALSE on failure</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+<p>在图像上添加一个水印，更多信息请参考 <a class="reference internal" href="#watermarking"><em>给图像添加水印</em></a> 。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Image_lib::clear">
+<tt class="descname">clear</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Image_lib::clear" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body">void</td>
+</tr>
+</tbody>
+</table>
+<p>clear 函数重置所有之前用于处理图片的值。当你用循环来处理一批图片时，你可能会想使用它。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">clear</span><span class="p">();</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Image_lib::display_errors">
+<tt class="descname">display_errors</tt><big>(</big><span class="optional">[</span><em>$open = '&lt;p&gt;</em><span class="optional">[</span>, <em>$close = '&lt;/p&gt;'</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Image_lib::display_errors" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$open</strong> (<em>string</em>) -- Error message opening tag</li>
+<li><strong>$close</strong> (<em>string</em>) -- Error message closing tag</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Error messages</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>返回所有检测到的错误信息。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">image_lib</span><span class="o">-&gt;</span><span class="na">diplay_errors</span><span class="p">();</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="input.html" class="btn btn-neutral float-right" title="输入类">下一个主题 <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ftp.html" class="btn btn-neutral" title="FTP 类"><span class="fa fa-arrow-circle-left"></span> 上一个主题</a>
+      
+    </div>
+  
+
+  
+  <div id="notes">
+  
+  <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="userguide3/libraries/image_lib" data-title="图像处理类" data-url="http://codeigniter.org.cn/user_guide/libraries/image_lib.html"></div>
+  <!-- 多说评论框 end -->
+  
+
+  <div class="ds-share flat" data-thread-key="userguide3/libraries/image_lib" data-title="图像处理类 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" data-url="http://codeigniter.org.cn/user_guide/libraries/image_lib.html" data-images="" data-content="">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+  </div>
+
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codeigniter"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+  <!-- 多说公共JS代码 end -->
+  </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2014 - 2015, 不列颠哥伦比亚理工学院.
+       最后修改: 2015-10-11.
+    </p>
+
+    <p>以 <a href="http://www.aneasystone.com/" target="_blank">aneasystone</a> 制作的手册为基础构建</p>
+  </div>
+
+  
+    <p>基于 <a href="http://sphinx-doc.org/">Sphinx</a> 并使用 <a href="https://readthedocs.org">Read the Docs</a> 提供的<a href="https://github.com/snide/sphinx_rtd_theme">风格</a>构建</p>
+    <p>
+        <a href="https://github.com/CodeIgniter-Chinese/codeigniter-user-guide" target="_blank">Github 简体中文翻译</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/codeigniter_user_guide.zip">离线版压缩包下载</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/CodeIgniter.pdf">PDF 版下载</a>
+    </p>
+  
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.0.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-272152-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+  
+
+</body>
+</html>

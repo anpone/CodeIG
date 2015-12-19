@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Session 类 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档</title>
+  
+
+  
+  
+  <link rel="shortcut icon" href="../_static/ci-icon.ico" />
+  
+
+  
+  <link href="../_static/css/fonts.css" rel="stylesheet" type="text/css" />
+
+  
+  
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme_cn.css" type="text/css" />
+    <link rel="top" title="CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" href="../index.html"/>
+        <link rel="up" title="类库参考" href="index.html"/>
+        <link rel="next" title="HTML 表格类" href="table.html"/>
+        <link rel="prev" title="安全类" href="security.html"/> 
+
+  
+  <script src="../_static/js/modernizr.2.6.2.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">类库参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">安全类</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAICAgICAgICAgICAgICAgMCAgICAwMDAwMDAwMEAwMDAwMDBAQEBAUEBAQFBQYGBQUHBwcHBwcHBwcHBwcHBwf/2wBDAQICAgMDAwUEBAUHBgUGBwgICAgICAgHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwf/wAARCAArAJoDAREAAhEBAxEB/8QAHgABAAAGAwEAAAAAAAAAAAAAAAQFBgcICQECAwr/xAA/EAAABAQCBgcFBAsBAAAAAAACAwQFAAEGBxESExZRU5XVCBQZIlWi0gkVITFCIzJSchgzQUNUVmFiZYWy1P/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDCEXygIE47JKAmEAgEAgEAgEAgEAgEAgEAgEBBnGBCcEH9kBEAnjAekBusU9DWxoACnKgx8ZqLmMBaWquivZhvLMmXRYy8v+XfRf8AS+A1WwCAQCAQGdrZby3DbbG0T0bRllHB4q2kVb0+r7nV5U1PLz1Jb+4oQCSoW96RJ9AEhOWHMAqXekLHGeMBQHSCoei6doG0FTUxTlDMLpVTpWaN9Mt5UbxUjOpLZxsoW+QFTs4OGQwrrZ2eRYg/e72OAcAxRgL79Hy3Rtwq1EnU0Y51hTrciNMfAoUlQKikYjijOomKJU2ES2WkNLmEEpYSn8Zz+AZwGdrf0V7fuZqhEK0TylGY1uI0xxbddJIKSopvPOSSCodpBRhmI8AA4HTwFjl+c5QGrN/p98pV4XU/UjUuZHtsMCS4NTkUIhSnGIATQhNKHgIM5gEEXx/ZOAk8AgEAgMwujjZygLjMDg51XT/vZanqE9uJO685pcqctKlNADIiVEA++aL6YDNZq6HlkDygzFQoxf7moP8A3wE7/QysZ/IY+M1FzKAzzWtJehF3YDHe4DNiSdkD9AoD5j9aFm/8ofTANaFm/wDKH0wDWhZv/KH0wDWhZv8Ayh9MA1oWb/yh9MBsYJujb8VobCIFlyujsgeGu3y1M8tdxqPfawdkZ46pdzgFDPp9ndC0IZkjAOSc8ZZve0uTIYAQgtz0l7j0s62nsI30rWtrqmXtb3cI16T2taVbCiRAVmU91GalidUaFcmEfoTsDDEwQnZBTLEOQZ4BhbrQs3/lD6YC+Vh7g0vS9VDqer6nPRSbtCiR0sVTDNUJNSFOGkTLkC4x/UJWxuSyLyyOPNmIcgDnMoOYOaQZtvV+LEW/bbdW4emWnzimtFUL5T1Y0q6Uxc9bb55dHw6adaZ1AsinXctWQACkxFIOZJMJcwBEMJQoDWtWFQJk1U1AQxVSGrGgDqo6hUoGwTQFyKmZMUlgWw4OdJI3HGRQviGXwwl8oCm9aFm/8ofTANaFm/8AKH0wDWhZv/KH0wHOtCz+I2/MIMP6fTjjAba/Z9SMe7eVAsOFpNHXytPmy/hamsf0fmgNtzA0l6EPd+iAqn3SVsgJ6eXIYBSywFq6oZOtFmSwgPn3e/ZrX1b3BcS21ZbdwbCVh4W1YqUvaNUelCaLqxylGU1qgJjRg7wiwnmhCLuaUf34Cmx+z0v4GeHvy2nEHrk0B17Pa/vjluOIPfJoB2e1+vG7b8Qe+TwDs9r++OW44g98mgHZ7X98ctxxB75NAOz2v745bjiD3yaAdntfrxu2/EHvk8A7Pa/Xjdt+IPfJ4B2e1+vG7b8Qe+TwDs9r9eN234g98ngHZ7X68btvxB75PAOz2v143bfiD3yeAdntf3xy3HEHvk0BHEezo6QKmeAKgtiH8zk+8kgNrHQv6OlSWHtyqpurXZqeH52qpdUqwTIFQJCkCclSt5KYlSqCQcp+xRhPEIRBXeN0WQeTTDDYU2JpFlBllgJ1hL8MAnLNKAlalFI6QsQwFLqqaLOmLEuAlI6MInP9TAeepabcwDUtNuYBqWm3MA1LTbmAalptzANS025gGpabcwDUtNuYBqWm3MA1LTbmAalptzANTCJfuYCOIpQkuYfs4CpkbSAjLgGAnxQMksID2gEB1FAJylsgOcJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUBzAIBAf/Z" title="切换目录" alt="切换目录" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索手册" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">类库参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">加密类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">安全类</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">首页</a> &raquo; </li>
+    
+    <li><a href="index.html">类库参考</a> &raquo; </li>
+    
+    <li>Session 类</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;">
+      <div style="text-decoration:underline;color:blue;margin-left:5px;cursor:pointer;" id="closeMe">
+        <img title="目录" alt="toc" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+      </div>
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="session">
+<h1>Session 类<a class="headerlink" href="#session" title="永久链接至标题">¶</a></h1>
+<p>Session（会话）类可以让你保持一个用户的 &quot;状态&quot; ，并跟踪他在浏览你的网站时的活动。</p>
+<p>CodeIgniter 自带了几个存储 session 的驱动：</p>
+<blockquote>
+<div><ul class="simple">
+<li>文件（默认的，基于文件系统）</li>
+<li>数据库</li>
+<li>Redis</li>
+<li>Memcached</li>
+</ul>
+</div></blockquote>
+<p>另外，你也可以基于其他的存储机制来创建你自己的自定义 session 存储驱动，
+使用自定义的驱动，同样也可以使用 Session 类提供的那些功能。</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#id1" id="id22">使用 Session 类</a><ul>
+<li><a class="reference internal" href="#id2" id="id23">初始化 Session 类</a></li>
+<li><a class="reference internal" href="#id3" id="id24">Session 是如何工作的？</a><ul>
+<li><a class="reference internal" href="#id4" id="id25">关于并发的注意事项</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5" id="id26">什么是 Session 数据？</a></li>
+<li><a class="reference internal" href="#id7" id="id27">获取 Session 数据</a></li>
+<li><a class="reference internal" href="#id8" id="id28">添加 Session 数据</a></li>
+<li><a class="reference internal" href="#id9" id="id29">删除 Session 数据</a></li>
+<li><a class="reference internal" href="#flashdata" id="id30">Flashdata</a></li>
+<li><a class="reference internal" href="#tempdata" id="id31">Tempdata</a></li>
+<li><a class="reference internal" href="#id10" id="id32">销毁 Session</a></li>
+<li><a class="reference internal" href="#id11" id="id33">访问 session 元数据</a></li>
+<li><a class="reference internal" href="#id12" id="id34">Session 参数</a></li>
+<li><a class="reference internal" href="#id13" id="id35">Session 驱动</a><ul>
+<li><a class="reference internal" href="#id14" id="id36">文件驱动</a><ul>
+<li><a class="reference internal" href="#id15" id="id37">小提示</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id16" id="id38">数据库驱动</a></li>
+<li><a class="reference internal" href="#redis" id="id39">Redis 驱动</a></li>
+<li><a class="reference internal" href="#memcached" id="id40">Memcached 驱动</a><ul>
+<li><a class="reference internal" href="#id18" id="id41">小提示</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id19" id="id42">自定义驱动</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id20" id="id43">类参考</a></li>
+</ul>
+</div>
+<div class="custom-index container"></div><div class="section" id="id1">
+<h2><a class="toc-backref" href="#id22">使用 Session 类</a><a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id2">
+<h3><a class="toc-backref" href="#id23">初始化 Session 类</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<p>Session 通常会在每个页面载入的时候全局运行，所以 Session 类必须首先被初始化。
+您可以在 <a class="reference internal" href="../general/controllers.html"><em>控制器</em></a> 的构造函数中初始化它，
+也可以在系统中 <a class="reference internal" href="../general/autoloader.html"><em>自动加载</em></a>。Session 类基本上都是在后台运行，
+你不会注意到。所以当初始化 session 之后，系统会自动读取、创建和更新 session 数据 。</p>
+<p>要手动初始化 Session 类，你可以在控制器的构造函数中使用 <tt class="docutils literal"><span class="pre">$this-&gt;load-&gt;library()</span></tt>
+方法:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;session&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>初始化之后，就可以使用下面的方法来访问 Session 对象了:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">由于 <a class="reference internal" href="loader.html"><em>加载类</em></a> 是在 CodeIgniter 的控制器基类中实例化的，
+所以如果要在你的控制器构造函数中加载类库的话，确保先调用 <tt class="docutils literal"><span class="pre">parent::__construct()</span></tt> 方法。</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id24">Session 是如何工作的？</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>当页面载入后，Session 类就会检查用户的 cookie 中是否存在有效的 session 数据。
+如果 session 数据不存在（或者与服务端不匹配，或者已经过期），
+那么就会创建一个新的 session 并保存起来。</p>
+<p>如果 session 数据存在并且有效，那么就会更新 session 的信息。
+根据你的配置，每一次更新都会生成一个新的 Session ID 。</p>
+<p>有一点非常重要，你需要了解一下，Session 类一旦被初始化，它就会自动运行。
+上面所说的那些，你完全不用做任何操作。正如接下来你将看到的那样，
+你可以正常的使用 session 数据，至于读、写和更新 session 的操作都是自动完成的。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">在 CLI 模式下，Session 类将自动关闭，这种做法完全是基于 HTTP 协议的。</p>
+</div>
+<div class="section" id="id4">
+<h4><a class="toc-backref" href="#id25">关于并发的注意事项</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h4>
+<p>如果你开发的网站并不是大量的使用 AJAX 技术，那么你可以跳过这一节。
+如果你的网站是大量的使用了 AJAX，并且遇到了性能问题，那么下面的注意事项，
+可能正是你需要的。</p>
+<p>在 CodeIgniter 之前的版本中，Session 类并没有实现锁机制，这也就意味着，
+两个 HTTP 请求可能会同时使用同一个 session 。说的更专业点就是，
+请求是非阻塞的。（requests were non-blocking）</p>
+<p>在处理 session 时使用非阻塞的请求同样意味着不安全，因为在一个请求中修改 session
+数据（或重新生成 Session ID）会对并发的第二个请求造成影响。这是导致很多问题的根源，
+同时也是为什么 CodeIgniter 3.0 对 Session 类完全重写的原因。</p>
+<p>那么为什么要告诉你这些呢？这是因为在你查找性能问题的原因时，
+可能会发现加锁机制正是导致性能问题的罪魁祸首，因此就想着如何去掉锁 ...</p>
+<p><strong>请不要这样做！</strong> 去掉加锁机制是完全错误的，它会给你带来更多的问题！</p>
+<p>锁并不是问题，它是一种解决方案。你的问题是当 session 已经处理完毕不再需要时，
+你还将 session 保持是打开的状态。所以，你需要做的其实是，当结束当前请求时，
+将不再需要的 session 关闭掉。</p>
+<p>简单来说就是：当你不再需要使用某个 session 变量时，就使用 <tt class="docutils literal"><span class="pre">session_write_close()</span></tt> 方法来关闭它。</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id26">什么是 Session 数据？</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<p>Session 数据是个简单的数组，带有一个特定的 session ID （cookie）。</p>
+<p>如果你之前在 PHP 里使用过 session ，你应该对 PHP 的 <a class="reference external" href="http://php.net/manual/en/reserved.variables.session.php">$_SESSION 全局变量</a>
+很熟悉（如果没有，请阅读下链接中的内容）。</p>
+<p>CodeIgniter 使用了相同的方式来访问 session 数据，同时使用了 PHP 自带的 session 处理机制，
+使用 session 数据和操作 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组一样简单（包括读取，设置，取消设置）。</p>
+<p>另外，CodeIgniter 还提供了两种特殊类型的 session 数据：flashdata 和 tempdata ，在下面将有介绍。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">在之前的 CodeIgniter 版本中，常规的 session 数据被称之为 'userdata' ，当文档中出现这个词时请记住这一点。
+大部分都是用于解释自定义 'userdata' 方法是如何工作的。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id27">获取 Session 数据</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<p>session 数组中的任何信息都可以通过 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 全局变量获取:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>或使用下面的方法（magic getter）:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">item</span>
+</pre></div>
+</div>
+<p>同时，为了和之前的版本兼容，也可以使用 <tt class="docutils literal"><span class="pre">userdata()</span></tt> 方法:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">userdata</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>其中，item 是你想获取的数组的键值。例如，将 'name' 键值对应的项赋值给 <tt class="docutils literal"><span class="pre">$name</span></tt> 变量，
+你可以这样:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$name</span> <span class="o">=</span> <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">];</span>
+
+<span class="c1">// or:</span>
+
+<span class="nv">$name</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">name</span>
+
+<span class="c1">// or:</span>
+
+<span class="nv">$name</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">userdata</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">如果你访问的项不存在，<tt class="docutils literal"><span class="pre">userdata()</span></tt> 方法返回 NULL 。</p>
+</div>
+<p>如果你想获取所有已存在的 userdata ，你可以忽略 item 参数:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$_SESSION</span>
+
+<span class="c1">// or:</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">userdata</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id28">添加 Session 数据</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p>假设某个用户访问你的网站，当他完成认证之后，你可以将他的用户名和 email 地址添加到 session 中，
+这样当你需要的时候你就可以直接访问这些数据，而无法查询数据库了。</p>
+<p>你可以简单的将数据赋值给 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组，或赋值给 <tt class="docutils literal"><span class="pre">$this-&gt;session</span></tt> 的某个属性。</p>
+<p>同时，老版本中的通过 &quot;userdata&quot; 来赋值的方法也还可以用，只不过是需要传递一个包含你的数据的数组
+给 <tt class="docutils literal"><span class="pre">set_userdata()</span></tt> 方法:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">set_userdata</span><span class="p">(</span><span class="nv">$array</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>其中，<tt class="docutils literal"><span class="pre">$array</span></tt> 是包含新增数据的一个关联数组，下面是个例子:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$newdata</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;username&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;johndoe&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;email&#39;</span>     <span class="o">=&gt;</span> <span class="s1">&#39;johndoe@some-site.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;logged_in&#39;</span> <span class="o">=&gt;</span> <span class="k">TRUE</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">set_userdata</span><span class="p">(</span><span class="nv">$newdata</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>如果你想一次只添加一个值，<tt class="docutils literal"><span class="pre">set_userdata()</span></tt> 也支持这种语法:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">set_userdata</span><span class="p">(</span><span class="s1">&#39;some_name&#39;</span><span class="p">,</span> <span class="s1">&#39;some_value&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>如果你想检查某个 session 值是否存在，可以使用 <tt class="docutils literal"><span class="pre">isset()</span></tt>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="c1">// returns FALSE if the &#39;some_name&#39; item doesn&#39;t exist or is NULL,</span>
+<span class="c1">// TRUE otherwise:</span>
+<span class="nb">isset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;some_name&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>或者，你也可以使用 <tt class="docutils literal"><span class="pre">has_userdata()</span></tt>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">has_userdata</span><span class="p">(</span><span class="s1">&#39;some_name&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id29">删除 Session 数据</a><a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<p>和其他的变量一样，可以使用 <tt class="docutils literal"><span class="pre">unset()</span></tt> 方法来删除 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组中的某个值:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nb">unset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;some_name&#39;</span><span class="p">]);</span>
+
+<span class="c1">// or multiple values:</span>
+
+<span class="nb">unset</span><span class="p">(</span>
+    <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;some_name&#39;</span><span class="p">],</span>
+    <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;another_name&#39;</span><span class="p">]</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>同时，正如 <tt class="docutils literal"><span class="pre">set_userdata()</span></tt> 方法可用于向 session 中添加数据，<tt class="docutils literal"><span class="pre">unset_userdata()</span></tt>
+方法可用于删除指定键值的数据。例如，如果你想从你的 session 数组中删除 'some_name':</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">unset_userdata</span><span class="p">(</span><span class="s1">&#39;some_name&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>这个方法也可以使用一个数组来同时删除多个值:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$array_items</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">unset_userdata</span><span class="p">(</span><span class="nv">$array_items</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">在 CodeIgniter 之前的版本中，<tt class="docutils literal"><span class="pre">unset_userdata()</span></tt> 方法接受一个关联数组，
+包含 <tt class="docutils literal"><span class="pre">key</span> <span class="pre">=&gt;</span> <span class="pre">'dummy</span> <span class="pre">value'</span></tt> 这样的键值对，这种方式不再支持。</p>
+</div>
+</div>
+<div class="section" id="flashdata">
+<h3><a class="toc-backref" href="#id30">Flashdata</a><a class="headerlink" href="#flashdata" title="永久链接至标题">¶</a></h3>
+<p>CodeIgniter 支持 &quot;flashdata&quot; ，它指的是一种只对下一次请求有效的 session 数据，
+之后将会自动被清除。</p>
+<p>这用于一次性的信息时特别有用，例如错误或状态信息（诸如 &quot;第二条记录删除成功&quot; 这样的信息）。</p>
+<p>要注意的是，flashdata 就是常规的 session 变量，只不过以特殊的方式保存在 '__ci_vars' 键下
+（警告：请不要乱动这个值）。</p>
+<p>将已有的值标记为 &quot;flashdata&quot;:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">mark_as_flash</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>通过传一个数组，同时标记多个值为 flashdata:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">mark_as_flash</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="s1">&#39;item2&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>使用下面的方法来添加 flashdata:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span><span class="p">;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">mark_as_flash</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>或者，也可以使用 <tt class="docutils literal"><span class="pre">set_flashdata()</span></tt> 方法:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">set_flashdata</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>你还可以传一个数组给 <tt class="docutils literal"><span class="pre">set_flashdata()</span></tt> 方法，和 <tt class="docutils literal"><span class="pre">set_userdata()</span></tt> 方法一样。</p>
+<p>读取 flashdata 和读取常规的 session 数据一样，通过 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last"><tt class="docutils literal"><span class="pre">userdata()</span></tt> 方法不会返回 flashdata 数据。</p>
+</div>
+<p>如果你要确保你读取的就是 &quot;flashdata&quot; 数据，而不是其他类型的数据，可以使用 <tt class="docutils literal"><span class="pre">flashdata()</span></tt> 方法:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">flashdata</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>或者不传参数，直接返回所有的 flashdata 数组:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">flashdata</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">如果读取的值不存在，<tt class="docutils literal"><span class="pre">flashdata()</span></tt> 方法返回 NULL 。</p>
+</div>
+<p>如果你需要在另一个请求中还继续保持 flashdata 变量，你可以使用 <tt class="docutils literal"><span class="pre">keep_flashdata()</span></tt> 方法。
+可以传一个值，或包含多个值的一个数组。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">keep_flashdata</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">keep_flashdata</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;item1&#39;</span><span class="p">,</span> <span class="s1">&#39;item2&#39;</span><span class="p">,</span> <span class="s1">&#39;item3&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tempdata">
+<h3><a class="toc-backref" href="#id31">Tempdata</a><a class="headerlink" href="#tempdata" title="永久链接至标题">¶</a></h3>
+<p>CodeIgniter 还支持 &quot;tempdata&quot; ，它指的是一种带有有效时间的 session 数据，
+当它的有效时间已过期，或在有效时间内被删除，都会自动被清除。</p>
+<p>和 flashdata 一样， tempdata 也是常规的 session 变量，只不过以特殊的方式保存在 '__ci_vars' 键下
+（再次警告：请不要乱动这个值）。</p>
+<p>将已有的值标记为 &quot;tempdata&quot; ，只需简单的将要标记的键值和过期时间（单位为秒）传给
+<tt class="docutils literal"><span class="pre">mark_as_temp()</span></tt> 方法即可:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="c1">// &#39;item&#39; will be erased after 300 seconds</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">mark_as_temp</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>你也可以同时标记多个值为 tempdata ，有下面两种不同的方式，
+这取决于你是否要将所有的值都设置成相同的过期时间:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="c1">// Both &#39;item&#39; and &#39;item2&#39; will expire after 300 seconds</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">mark_as_temp</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="s1">&#39;item2&#39;</span><span class="p">),</span> <span class="mi">300</span><span class="p">);</span>
+
+<span class="c1">// &#39;item&#39; will be erased after 300 seconds, while &#39;item2&#39;</span>
+<span class="c1">// will do so after only 240 seconds</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">mark_as_temp</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;item&#39;</span>  <span class="o">=&gt;</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="s1">&#39;item2&#39;</span> <span class="o">=&gt;</span> <span class="mi">240</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+<p>使用下面的方法来添加 tempdata:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span><span class="p">;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">mark_as_temp</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span> <span class="c1">// Expire in 5 minutes</span>
+</pre></div>
+</div>
+<p>或者，也可以使用 <tt class="docutils literal"><span class="pre">set_tempdata()</span></tt> 方法:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">set_tempdata</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>你还可以传一个数组给 <tt class="docutils literal"><span class="pre">set_tempdata()</span></tt> 方法:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$tempdata</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;newuser&#39;</span> <span class="o">=&gt;</span> <span class="k">TRUE</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Thanks for joining!&#39;</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">set_tempdata</span><span class="p">(</span><span class="nv">$tempdata</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="nv">$expire</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">如果没有设置 expiration 参数，或者设置为 0 ，将默认使用 300秒（5分钟）作为生存时间（time-to-live）。</p>
+</div>
+<p>要读取 tempdata 数据，你可以再一次通过 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last"><tt class="docutils literal"><span class="pre">userdata()</span></tt> 方法不会返回 tempdata 数据。</p>
+</div>
+<p>如果你要确保你读取的就是 &quot;tempdata&quot; 数据，而不是其他类型的数据，可以使用 <tt class="docutils literal"><span class="pre">tempdata()</span></tt> 方法:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">tempdata</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>或者不传参数，直接返回所有的 tempdata 数组:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">tempdata</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">如果读取的值不存在，<tt class="docutils literal"><span class="pre">tempdata()</span></tt> 方法返回 NULL 。</p>
+</div>
+<p>如果你需要在某个 tempdata 过期之前删除它，你可以直接通过 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组来删除:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nb">unset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>但是，这不会删除这个值的 tempdata 标记（会在下一次 HTTP 请求时失效），所以，
+如果你打算在相同的请求中重用这个值，你可以使用 <tt class="docutils literal"><span class="pre">unset_tempdata()</span></tt>:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">unset_tempdata</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id32">销毁 Session</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<p>要清除当前的 session（例如：退出登录时），你可以简单的使用 PHP 自带的
+<a class="reference external" href="http://php.net/session_destroy">session_destroy()</a> 函数或者 <tt class="docutils literal"><span class="pre">sess_destroy()</span></tt> 方法。
+两种方式效果完全一样:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nb">session_destroy</span><span class="p">();</span>
+
+<span class="c1">// or</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">sess_destroy</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这必须是同一个请求中关于 session 的最后一次操作，所有的 session 数据（包括 flashdata
+和 tempdata）都被永久性销毁，销毁之后，关于 session 的方法将不可用。</p>
+</div>
+</div>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id33">访问 session 元数据</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<p>在之前的 CodeIgniter 版本中，session 数据默认包含 4 项：'session_id' 、 'ip_address' 、 'user_agent' 、 'last_activity' 。</p>
+<p>这是由 session 具体的工作方式决定的，但是我们现在的实现没必要这样做了。
+尽管如此，你的应用程序可能还依赖于这些值，所以下面提供了访问这些值的替代方法：</p>
+<blockquote>
+<div><ul class="simple">
+<li>session_id: <tt class="docutils literal"><span class="pre">session_id()</span></tt></li>
+<li>ip_address: <tt class="docutils literal"><span class="pre">$_SERVER['REMOTE_ADDR']</span></tt></li>
+<li>user_agent: <tt class="docutils literal"><span class="pre">$this-&gt;input-&gt;user_agent()</span></tt> (unused by sessions)</li>
+<li>last_activity: 取决于 session 的存储方式，没有直接的方法，抱歉！</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id12">
+<h3><a class="toc-backref" href="#id34">Session 参数</a><a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<p>在 CodeIgniter 中通常所有的东西都是拿来直接就可以用的，尽管如此，session 对于所有的程序来说，
+都是一个非常敏感的部分，所以必须要小心的配置它。请花点时间研究下下面所有的选项以及每个选项的作用。</p>
+<p>你可以在你的配置文件 <strong>application/config/config.php</strong> 中找到下面的关于 session 的配置参数：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="9%" />
+<col width="23%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数</th>
+<th class="head">默认值</th>
+<th class="head">选项</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>sess_driver</strong></td>
+<td>files</td>
+<td>files/database/redis/memcached/<em>custom</em></td>
+<td>使用的存储 session 的驱动</td>
+</tr>
+<tr class="row-odd"><td><strong>sess_cookie_name</strong></td>
+<td>ci_session</td>
+<td>[A-Za-z_-] characters only</td>
+<td>session cookie 的名称</td>
+</tr>
+<tr class="row-even"><td><strong>sess_expiration</strong></td>
+<td>7200 (2 hours)</td>
+<td>Time in seconds (integer)</td>
+<td>你希望 session 持续的秒数
+如果你希望 session 不过期（直到浏览器关闭），将其设置为 0</td>
+</tr>
+<tr class="row-odd"><td><strong>sess_save_path</strong></td>
+<td>NULL</td>
+<td>None</td>
+<td>指定存储位置，取决于使用的存储 session 的驱动</td>
+</tr>
+<tr class="row-even"><td><strong>sess_match_ip</strong></td>
+<td>FALSE</td>
+<td>TRUE/FALSE (boolean)</td>
+<td>读取 session cookie 时，是否验证用户的 IP 地址
+注意有些 ISP 会动态的修改 IP ，所以如果你想要一个不过期的 session，将其设置为 FALSE</td>
+</tr>
+<tr class="row-odd"><td><strong>sess_time_to_update</strong></td>
+<td>300</td>
+<td>Time in seconds (integer)</td>
+<td>该选项用于控制过多久将重新生成一个新 session ID
+设置为 0 将禁用 session ID 的重新生成</td>
+</tr>
+<tr class="row-even"><td><strong>sess_regenerate_destroy</strong></td>
+<td>FALSE</td>
+<td>TRUE/FALSE (boolean)</td>
+<td>当自动重新生成 session ID 时，是否销毁老的 session ID 对应的数据
+如果设置为 FALSE ，数据之后将自动被垃圾回收器删除</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">如果上面的某个参数没有配置，Session 类将会试图读取 php.ini 配置文件中的 session 相关的配置
+（例如 'sess_expire_on_close'）。但是，请不要依赖于这个行为，因为这可能会导致不可预期的结果，而且
+这也有可能在未来的版本中修改。请合理的配置每一个参数。</p>
+</div>
+<p>除了上面的这些参数之外，cookie 和 session 原生的驱动还会公用下面这些
+由 <a class="reference internal" href="input.html"><em>输入类</em></a> 和 <a class="reference internal" href="security.html"><em>安全类</em></a> 提供的配置参数。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="14%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数</th>
+<th class="head">默认值</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>cookie_domain</strong></td>
+<td>''</td>
+<td>session 可用的域</td>
+</tr>
+<tr class="row-odd"><td><strong>cookie_path</strong></td>
+<td>/</td>
+<td>session 可用的路径</td>
+</tr>
+<tr class="row-even"><td><strong>cookie_secure</strong></td>
+<td>FALSE</td>
+<td>是否只在加密连接（HTTPS）时创建 session cookie</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">'cookie_httponly' 配置对 session 没有影响。出于安全原因，HttpOnly 参数将一直启用。
+另外，'cookie_prefix' 参数完全可以忽略。</p>
+</div>
+</div>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id35">Session 驱动</a><a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<p>正如上面提到的，Session 类自带了 4 种不同的驱动（或叫做存储引擎）可供使用：</p>
+<blockquote>
+<div><ul class="simple">
+<li>files</li>
+<li>database</li>
+<li>redis</li>
+<li>memcached</li>
+</ul>
+</div></blockquote>
+<p>默认情况下，初始化 session 时将使用 <a class="reference internal" href="#id14">文件驱动</a> ，因为这是最安全的选择，可以在所有地方按预期工作
+（几乎所有的环境下都有文件系统）。</p>
+<p>但是，你也可以通过 <strong>application/config/config.php</strong> 配置文件中的 <tt class="docutils literal"><span class="pre">$config['sess_driver']</span></tt>
+参数来使用任何其他的驱动。特别提醒的是，每一种驱动都有它自己的注意事项，所以在你选择之前，
+确定你熟悉它们。</p>
+<p>另外，如果默认提供的这些不能满足你的需求，你也可以创建和使用 <a class="reference internal" href="#id19">自定义驱动</a> 。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">在之前版本的 CodeIgniter 中，只有 &quot;cookie 驱动&quot; 这唯一的一种选择，
+因为这个我们收到了大量的负面的反馈。因此，我们吸取了社区的反馈意见，同时也要提醒你，
+因为它**不安全**，所以已经被废弃了，建议你不要试着通过 自定义驱动 来重新实现它。</p>
+</div>
+<div class="section" id="id14">
+<h4><a class="toc-backref" href="#id36">文件驱动</a><a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h4>
+<p>文件驱动利用你的文件系统来存储 session 数据。</p>
+<p>可以说，文件驱动和 PHP 自带的默认 session 实现非常类似，但是有一个很重要的细节要注意的是，
+实际上它们的代码并不相同，而且有一些局限性（以及优势）。</p>
+<p>说的更具体点，它不支持 PHP 的 <a class="reference external" href="http://php.net/manual/en/session.configuration.php#ini.session.save-path">session.save_path 参数的 目录分级（directory level）和 mode 格式</a> ，
+另外为了安全性大多数的参数都被硬编码。只提供了 <tt class="docutils literal"><span class="pre">$config['sess_save_path']</span></tt> 参数用于设置绝对路径。</p>
+<p>另一个很重要的事情是，确保存储 session 文件的目录不能被公开访问到或者是共享目录，确保 <strong>只有你</strong>
+能访问并查看配置的 <em>sess_save_path</em> 目录中的内容。否则，如果任何人都能访问，
+他们就可以从中窃取到当前的 session （这也被称为 session 固定（session fixation）攻击）</p>
+<p>在类 UNIX 操作系统中，这可以通过在该目录上执行 <cite>chmod</cite> 命令，将权限设置为 0700 来实现，
+这样就可以只允许目录的所有者执行读取和写入操作。但是要注意的是，脚本的执行者通常不是你自己，
+而是类似于 'www-data' 这样的用户，所以只设置权限可能会破坏你的程序。</p>
+<p>根据你的环境，你应该像下面这样来操作。</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nb">mkdir</span> <span class="o">/&lt;</span><span class="nx">path</span> <span class="nx">to</span> <span class="nx">your</span> <span class="nx">application</span> <span class="nx">directory</span><span class="o">&gt;/</span><span class="nx">sessions</span><span class="o">/</span>
+<span class="nb">chmod</span> <span class="mo">0700</span> <span class="o">/&lt;</span><span class="nx">path</span> <span class="nx">to</span> <span class="nx">your</span> <span class="nx">application</span> <span class="nx">directory</span><span class="o">&gt;/</span><span class="nx">sessions</span><span class="o">/</span>
+<span class="nb">chown</span> <span class="nx">www</span><span class="o">-</span><span class="nx">data</span> <span class="o">/&lt;</span><span class="nx">path</span> <span class="nx">to</span> <span class="nx">your</span> <span class="nx">application</span> <span class="nx">directory</span><span class="o">&gt;/</span><span class="nx">sessions</span><span class="o">/</span>
+</pre></div>
+</div>
+<div class="section" id="id15">
+<h5><a class="toc-backref" href="#id37">小提示</a><a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h5>
+<p>有些人可能会选择使用其他的 session 驱动，他们认为文件存储通常比较慢。其实这并不总是对的。</p>
+<p>执行一些简单的测试可能会让你真的相信 SQL 数据库更快一点，但是在 99% 的情况下，这只是当你的
+session 并发非常少的时候是对的。当 session 的并发数越来越大，服务器的负载越来越高，
+这时就不一样了，文件系统将会胜过几乎所有的关系型数据库。</p>
+<p>另外，如果性能是你唯一关心的，你可以看下 <a class="reference external" href="http://eddmann.com/posts/storing-php-sessions-file-caches-in-memory-using-tmpfs/">tmpfs</a>
+（注意：外部资源），它可以让你的 session 非常快。</p>
+</div>
+</div>
+<div class="section" id="id16">
+<h4><a class="toc-backref" href="#id38">数据库驱动</a><a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h4>
+<p>数据库驱动使用诸如 MySQL 或 PostgreSQL 这样的关系型数据库来存储 session ，
+这是一个非常常见的选择，因为它可以让开发者非常方便的访问应用中的 session 数据，
+因为它只是你的数据库中的一个表而已。</p>
+<p>但是，还是有几点要求必须满足：</p>
+<blockquote>
+<div><ul class="simple">
+<li>只有设置为 <strong>default</strong> 的数据库连接可以使用（或者在控制器中使用 <tt class="docutils literal"><span class="pre">$this-&gt;db</span></tt> 来访问的连接）</li>
+<li>你必须启用 <a class="reference internal" href="../database/query_builder.html"><em>查询构造器</em></a></li>
+<li>不能使用持久连接</li>
+<li>使用的数据库连接不能启用 <em>cache_on</em> 参数</li>
+</ul>
+</div></blockquote>
+<p>为了使用数据库驱动，你还需要创建一个我们刚刚已经提到的数据表，然后将 <tt class="docutils literal"><span class="pre">$config['sess_save_path']</span></tt>
+参数设置为表名。例如，如果你想使用 'ci_sessions' 这个表名，你可以这样:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;sess_driver&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;database&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;sess_save_path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;ci_sessions&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">如果你从 CodeIgniter 之前的版本中升级过来的，并且没有配置 'sess_save_path' 参数，
+Session 类将查找并使用老的 'sess_table_name' 参数替代。请不要依赖这个行为，
+因为它可能会在以后的版本中移除。</p>
+</div>
+<p>然后，新建数据表 。</p>
+<p>对于 MySQL:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="nx">EXISTS</span> <span class="sb">`ci_sessions`</span> <span class="p">(</span>
+    <span class="sb">`id`</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="sb">`ip_address`</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="sb">`timestamp`</span> <span class="nx">int</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="nx">unsigned</span> <span class="k">DEFAULT</span> <span class="mi">0</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="sb">`data`</span> <span class="nx">blob</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="nx">KEY</span> <span class="sb">`ci_sessions_timestamp`</span> <span class="p">(</span><span class="sb">`timestamp`</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>对于 PostgreSQL:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="s2">&quot;ci_sessions&quot;</span> <span class="p">(</span>
+    <span class="s2">&quot;id&quot;</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="s2">&quot;ip_address&quot;</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="s2">&quot;timestamp&quot;</span> <span class="nx">bigint</span> <span class="k">DEFAULT</span> <span class="mi">0</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="s2">&quot;data&quot;</span> <span class="nx">text</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span> <span class="k">NOT</span> <span class="k">NULL</span>
+<span class="p">);</span>
+
+<span class="nx">CREATE</span> <span class="nx">INDEX</span> <span class="s2">&quot;ci_sessions_timestamp&quot;</span> <span class="nx">ON</span> <span class="s2">&quot;ci_sessions&quot;</span> <span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You will also need to add a PRIMARY KEY <strong>depending on your 'sess_match_ip'
+setting</strong>. The examples below work both on MySQL and PostgreSQL:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="c1">// When sess_match_ip = TRUE</span>
+<span class="nx">ALTER</span> <span class="nx">TABLE</span> <span class="nx">ci_sessions</span> <span class="nx">ADD</span> <span class="nx">PRIMARY</span> <span class="nx">KEY</span> <span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">ip_address</span><span class="p">);</span>
+
+<span class="c1">// When sess_match_ip = FALSE</span>
+<span class="nx">ALTER</span> <span class="nx">TABLE</span> <span class="nx">ci_sessions</span> <span class="nx">ADD</span> <span class="nx">PRIMARY</span> <span class="nx">KEY</span> <span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+
+<span class="c1">// To drop a previously created primary key (use when changing the setting)</span>
+<span class="nx">ALTER</span> <span class="nx">TABLE</span> <span class="nx">ci_sessions</span> <span class="nx">DROP</span> <span class="nx">PRIMARY</span> <span class="nx">KEY</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">只有 MySQL 和 PostgreSQL 数据库是被正式支持的，因为其他数据库平台都缺乏合适的锁机制。
+在没锁的情况下使用 session 可能会导致大量的问题，特别是使用了大量的 AJAX ，
+所以我们并不打算支持这种情况。如果你遇到了性能问题，请你在完成 session 数据的处理之后，
+调用 <tt class="docutils literal"><span class="pre">session_write_close()</span></tt> 方法。</p>
+</div>
+</div>
+<div class="section" id="redis">
+<h4><a class="toc-backref" href="#id39">Redis 驱动</a><a class="headerlink" href="#redis" title="永久链接至标题">¶</a></h4>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">由于 Redis 没有锁机制，这个驱动的锁是通过一个保持 300 秒的值来模拟的
+（emulated by a separate value that is kept for up to 300 seconds）。</p>
+</div>
+<p>Redis 是一种存储引擎，通常用于缓存，并由于他的高性能而流行起来，这可能也正是你使用 Redis 驱动的原因。</p>
+<p>缺点是它并不像关系型数据库那样普遍，需要你的系统中安装了 <a class="reference external" href="https://github.com/phpredis/phpredis">phpredis</a>
+这个 PHP 扩展，它并不是 PHP 程序自带的。
+可能的情况是，你使用 Redis 驱动的原因是你已经非常熟悉 Redis 了并且你使用它还有其他的目的。</p>
+<p>和文件驱动和数据库驱动一样，你必须通过 <tt class="docutils literal"><span class="pre">$config['sess_save_path']</span></tt> 参数来配置存储 session 的位置。
+这里的格式有些不同，同时也要复杂一点，这在 <em>phpredis</em> 扩展的 README 文件中有很好的解释，链接如下:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nx">https</span><span class="o">://</span><span class="nx">github</span><span class="o">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">phpredis</span><span class="o">/</span><span class="nx">phpredis</span><span class="c1">#php-session-handler</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">CodeIgniter 的 Session 类并没有真的用到 'redis' 的 <tt class="docutils literal"><span class="pre">session.save_handler</span></tt> ，
+<strong>只是</strong> 采用了它的路径的格式而已。</p>
+</div>
+<p>最常见的情况是，一个简单 <tt class="docutils literal"><span class="pre">host:port</span></tt> 对就可以了:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;sess_driver&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;redis&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;sess_save_path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;tcp://localhost:6379&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="memcached">
+<h4><a class="toc-backref" href="#id40">Memcached 驱动</a><a class="headerlink" href="#memcached" title="永久链接至标题">¶</a></h4>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">由于 Memcache 没有锁机制，这个驱动的锁是通过一个保持 300 秒的值来模拟的
+（emulated by a separate value that is kept for up to 300 seconds）。</p>
+</div>
+<p>Memcached 驱动和 Redis 驱动非常相似，除了它的可用性可能要好点，因为 PHP 的 <a class="reference external" href="http://php.net/memcached">Memcached</a> 扩展已经通过 PECL 发布了，并且在某些 Linux 发行版本中，
+可以非常方便的安装它。</p>
+<p>除了这一点，以及排除任何对 Redis 的偏见，关于 Memcached 要说的真的没什么区别，
+它也是一款通常用于缓存的产品，而且以它的速度而闻名。</p>
+<p>不过，值得注意的是，使用 Memcached 设置 X 的过期时间为 Y 秒，它只能保证 X 会在 Y 秒过后被删除
+（但不会早于这个时间）。这个是非常少见的，但是应该注意一下，因为它可能会导致 session 的丢失。</p>
+<p><tt class="docutils literal"><span class="pre">$config['sess_save_path']</span></tt> 参数的格式相当简单，使用 <tt class="docutils literal"><span class="pre">host:port</span></tt> 对即可:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;sess_driver&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;memcached&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;sess_save_path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;localhost:11211&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="section" id="id18">
+<h5><a class="toc-backref" href="#id41">小提示</a><a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h5>
+<p>也可以使用一个可选的 <em>权重</em> 参数来支持多服务器的配置，权重参数使用冒号分割（<tt class="docutils literal"><span class="pre">:weight</span></tt>），
+但是我们并没有测试这是绝对可靠的。</p>
+<p>如果你想体验这个特性（风险自负），只需简单的将多个服务器使用逗号分隔:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="c1">// localhost will be given higher priority (5) here,</span>
+<span class="c1">// compared to 192.0.2.1 with a weight of 1.</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;sess_save_path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;localhost:11211:5,192.0.2.1:11211:1&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id19">
+<h4><a class="toc-backref" href="#id42">自定义驱动</a><a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h4>
+<p>你也可以创建你自己的自定义 session 驱动，但是要记住的是，这通常来说都不是那么简单，
+因为需要用到很多知识来正确实现它。</p>
+<p>你不仅要知道 session 一般的工作原理，而且要知道它在 PHP 中是如何实现的，
+还要知道它的内部存储机制是如何工作的，如何去处理并发，如何去避免死锁（不是通过去掉锁机制），
+以及最后一点但也是很重要的一点，如何去处理潜在的安全问题。</p>
+<p>总的来说，如果你不知道怎么在原生的 PHP 中实现这些，那么你也不应该在 CodeIgniter 中尝试实现它。
+我已经警告过你了。</p>
+<p>如果你只想给你的 session 添加一些额外的功能，你只要扩展 Session 基类就可以了，这要容易的多。
+要学习如何实现这点，请阅读 <a class="reference internal" href="../general/creating_libraries.html"><em>创建你的类库</em></a> 这一节。</p>
+<p>言归正传，当你为 CodeIgniter 创建 session 驱动时，有三条规则你必须遵循：</p>
+<blockquote>
+<div><ul>
+<li><p class="first">将你的驱动文件放在 <strong>application/libraries/Session/drivers/</strong> 目录下，并遵循 Session 类所使用的命名规范。</p>
+<p>例如，如果你想创建一个名为 'dummy' 的驱动，那么你需要创建一个名为 <tt class="docutils literal"><span class="pre">Session_dummy_driver</span></tt> 的类，
+并将其放在 <em>application/libraries/Session/drivers/Session_dummy_driver.php</em> 文件中。</p>
+</li>
+<li><p class="first">扩展 <tt class="docutils literal"><span class="pre">CI_Session_driver</span></tt> 类。</p>
+<p>这只是一个拥有几个内部辅助方法的基本类，同样可以和其他类库一样被扩展。如果你真的需要这样做，
+我们并不打算在这里多做解释，因为如果你知道如何在 CI 中扩展或覆写类，那么你已经知道这样做的方法了。
+如果你还不知道，那么可能你根本就不应该这样做。</p>
+</li>
+<li><p class="first">实现 <a class="reference external" href="http://php.net/sessionhandlerinterface">SessionHandlerInterface</a> 接口。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">你可能已经注意到 <tt class="docutils literal"><span class="pre">SessionHandlerInterface</span></tt> 接口已经在 PHP 5.4.0 之后的版本中提供了。
+CodeIgniter 会在你运行老版本的 PHP 时自动声明这个接口。</p>
+</div>
+<p>参考连接中的内容，了解为什么以及如何实现。</p>
+</li>
+</ul>
+</div></blockquote>
+<p>所以，使用我们上面的 'dummy' 驱动的例子，你可能会写如下代码:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="c1">// application/libraries/Session/drivers/Session_dummy_driver.php:</span>
+
+<span class="k">class</span> <span class="nc">CI_Session_dummy_driver</span> <span class="k">extends</span> <span class="nx">CI_Session_driver</span> <span class="k">implements</span> <span class="nx">SessionHandlerInterface</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="o">&amp;</span><span class="nv">$params</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// DO NOT forget this</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">(</span><span class="nv">$params</span><span class="p">);</span>
+
+        <span class="c1">// Configuration &amp; other initializations</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">open</span><span class="p">(</span><span class="nv">$save_path</span><span class="p">,</span> <span class="nv">$name</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Initialize storage mechanism (connection)</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">read</span><span class="p">(</span><span class="nv">$session_id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Read session data (if exists), acquire locks</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">write</span><span class="p">(</span><span class="nv">$session_id</span><span class="p">,</span> <span class="nv">$session_data</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Create / update session data (it might not exist!)</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">close</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// Free locks, close connections / streams / etc.</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">destroy</span><span class="p">(</span><span class="nv">$session_id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Call close() method &amp; destroy data for current session (order may differ)</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">gc</span><span class="p">(</span><span class="nv">$maxlifetime</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Erase data for expired sessions</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>如果一切顺利，现在你就可以将 <em>sess_driver</em> 参数设置为 'dummy' ，来使用你自定义的驱动。恭喜你！</p>
+</div>
+</div>
+</div>
+<div class="section" id="id20">
+<h2><a class="toc-backref" href="#id43">类参考</a><a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="CI_Session">
+<em class="property">class </em><tt class="descname">CI_Session</tt><a class="headerlink" href="#CI_Session" title="永久链接至目标">¶</a></dt>
+<dd><dl class="method">
+<dt id="CI_Session::userdata">
+<tt class="descname">userdata</tt><big>(</big><span class="optional">[</span><em>$key = NULL</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Session::userdata" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>mixed</em>) -- Session item key or NULL</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Value of the specified item key, or an array of all userdata</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>从 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组中获取指定的项。如果没有指定参数，返回所有 &quot;userdata&quot; 的数组。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这是个遗留方法，只是为了和老的应用程序向前兼容而保留。
+你可以直接使用 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 替代它。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::all_userdata">
+<tt class="descname">all_userdata</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Session::all_userdata" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">An array of all userdata</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">array</td>
+</tr>
+</tbody>
+</table>
+<p>返回所有 &quot;userdata&quot; 的数组。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">该方法已废弃，使用不带参数的 <tt class="docutils literal"><span class="pre">userdata()</span></tt> 方法来代替。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<tt class="descname">&amp;get_userdata()</tt></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">A reference to <tt class="docutils literal"><span class="pre">$_SESSION</span></tt></td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">array</td>
+</tr>
+</tbody>
+</table>
+<p>返回一个 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组的引用。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这是个遗留方法，只是为了和老的应用程序向前兼容而保留。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::has_userdata">
+<tt class="descname">has_userdata</tt><big>(</big><em>$key</em><big>)</big><a class="headerlink" href="#CI_Session::has_userdata" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>string</em>) -- Session item key</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">TRUE if the specified key exists, FALSE if not</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>检查 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组中是否存在某项。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这是个遗留方法，只是为了和老的应用程序向前兼容而保留。
+它只是 <tt class="docutils literal"><span class="pre">isset($_SESSION[$key])</span></tt> 的一个别名，请使用这个来替代它。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::set_userdata">
+<tt class="descname">set_userdata</tt><big>(</big><em>$data</em><span class="optional">[</span>, <em>$value = NULL</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Session::set_userdata" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$data</strong> (<em>mixed</em>) -- An array of key/value pairs to set as session data, or the key for a single item</li>
+<li><strong>$value</strong> (<em>mixed</em>) -- The value to set for a specific session item, if $data is a key</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>将数据赋值给 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 全局变量。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这是个遗留方法，只是为了和老的应用程序向前兼容而保留。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::unset_userdata">
+<tt class="descname">unset_userdata</tt><big>(</big><em>$key</em><big>)</big><a class="headerlink" href="#CI_Session::unset_userdata" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>mixed</em>) -- Key for the session data item to unset, or an array of multiple keys</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>从 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 全局变量中删除某个值。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这是个遗留方法，只是为了和老的应用程序向前兼容而保留。
+它只是 <tt class="docutils literal"><span class="pre">unset($_SESSION[$key])</span></tt> 的一个别名，请使用这个来替代它。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::mark_as_flash">
+<tt class="descname">mark_as_flash</tt><big>(</big><em>$key</em><big>)</big><a class="headerlink" href="#CI_Session::mark_as_flash" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>mixed</em>) -- Key to mark as flashdata, or an array of multiple keys</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">TRUE on success, FALSE on failure</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>将 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组中的一项（或多项）标记为 &quot;flashdata&quot; 。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::get_flash_keys">
+<tt class="descname">get_flash_keys</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Session::get_flash_keys" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">Array containing the keys of all &quot;flashdata&quot; items.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">array</td>
+</tr>
+</tbody>
+</table>
+<p>获取 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组中所有标记为 &quot;flashdata&quot; 的一个列表。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::umark_flash">
+<tt class="descname">umark_flash</tt><big>(</big><em>$key</em><big>)</big><a class="headerlink" href="#CI_Session::umark_flash" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>mixed</em>) -- Key to be un-marked as flashdata, or an array of multiple keys</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>将 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组中的一项（或多项）移除 &quot;flashdata&quot; 标记。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::flashdata">
+<tt class="descname">flashdata</tt><big>(</big><span class="optional">[</span><em>$key = NULL</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Session::flashdata" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>mixed</em>) -- Flashdata item key or NULL</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Value of the specified item key, or an array of all flashdata</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>从 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组中获取某个标记为 &quot;flashdata&quot; 的指定项。
+如果没有指定参数，返回所有 &quot;flashdata&quot; 的数组。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这是个遗留方法，只是为了和老的应用程序向前兼容而保留。
+你可以直接使用 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 替代它。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::keep_flashdata">
+<tt class="descname">keep_flashdata</tt><big>(</big><em>$key</em><big>)</big><a class="headerlink" href="#CI_Session::keep_flashdata" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>mixed</em>) -- Flashdata key to keep, or an array of multiple keys</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">TRUE on success, FALSE on failure</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>将某个指定的 &quot;flashdata&quot; 设置为在下一次请求中仍然保持有效。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这是个遗留方法，只是为了和老的应用程序向前兼容而保留。
+它只是 <tt class="docutils literal"><span class="pre">mark_as_flash()</span></tt> 方法的一个别名。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::set_flashdata">
+<tt class="descname">set_flashdata</tt><big>(</big><em>$data</em><span class="optional">[</span>, <em>$value = NULL</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Session::set_flashdata" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$data</strong> (<em>mixed</em>) -- An array of key/value pairs to set as flashdata, or the key for a single item</li>
+<li><strong>$value</strong> (<em>mixed</em>) -- The value to set for a specific session item, if $data is a key</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>将数据赋值给 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 全局变量，并标记为 &quot;flashdata&quot; 。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这是个遗留方法，只是为了和老的应用程序向前兼容而保留。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::mark_as_temp">
+<tt class="descname">mark_as_temp</tt><big>(</big><em>$key</em><span class="optional">[</span>, <em>$ttl = 300</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Session::mark_as_temp" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>mixed</em>) -- Key to mark as tempdata, or an array of multiple keys</li>
+<li><strong>$ttl</strong> (<em>int</em>) -- Time-to-live value for the tempdata, in seconds</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">TRUE on success, FALSE on failure</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>将 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组中的一项（或多项）标记为 &quot;tempdata&quot; 。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::get_temp_keys">
+<tt class="descname">get_temp_keys</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Session::get_temp_keys" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">Array containing the keys of all &quot;tempdata&quot; items.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body">array</td>
+</tr>
+</tbody>
+</table>
+<p>获取 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组中所有标记为 &quot;tempdata&quot; 的一个列表。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::umark_temp">
+<tt class="descname">umark_temp</tt><big>(</big><em>$key</em><big>)</big><a class="headerlink" href="#CI_Session::umark_temp" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>mixed</em>) -- Key to be un-marked as tempdata, or an array of multiple keys</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>将 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组中的一项（或多项）移除 &quot;tempdata&quot; 标记。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::tempdata">
+<tt class="descname">tempdata</tt><big>(</big><span class="optional">[</span><em>$key = NULL</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Session::tempdata" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>mixed</em>) -- Tempdata item key or NULL</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Value of the specified item key, or an array of all tempdata</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>从 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组中获取某个标记为 &quot;tempdata&quot; 的指定项。
+如果没有指定参数，返回所有 &quot;tempdata&quot; 的数组。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这是个遗留方法，只是为了和老的应用程序向前兼容而保留。
+你可以直接使用 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 替代它。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::set_tempdata">
+<tt class="descname">set_tempdata</tt><big>(</big><em>$data</em><span class="optional">[</span>, <em>$value = NULL</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Session::set_tempdata" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$data</strong> (<em>mixed</em>) -- An array of key/value pairs to set as tempdata, or the key for a single item</li>
+<li><strong>$value</strong> (<em>mixed</em>) -- The value to set for a specific session item, if $data is a key</li>
+<li><strong>$ttl</strong> (<em>int</em>) -- Time-to-live value for the tempdata item(s), in seconds</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>将数据赋值给 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 全局变量，并标记为 &quot;tempdata&quot; 。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这是个遗留方法，只是为了和老的应用程序向前兼容而保留。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::sess_regenerate">
+<tt class="descname">sess_regenerate</tt><big>(</big><span class="optional">[</span><em>$destroy = FALSE</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Session::sess_regenerate" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$destroy</strong> (<em>bool</em>) -- Whether to destroy session data</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>重新生成 session ID ，$destroy 参数可选，用于销毁当前的 session 数据。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">该方法只是 PHP 原生的 <a class="reference external" href="http://php.net/session_regenerate_id">session_regenerate_id()</a> 函数的一个别名而已。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::sess_destroy">
+<tt class="descname">sess_destroy</tt><big>(</big><big>)</big><a class="headerlink" href="#CI_Session::sess_destroy" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body">void</td>
+</tr>
+</tbody>
+</table>
+<p>销毁当前 session 。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这个方法必须在处理 session 相关的操作的**最后**调用。
+如果调用这个方法，所有的 session 数据都会丢失。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">该方法只是 PHP 原生的 <a class="reference external" href="http://php.net/session_destroy">session_destroy()</a>  函数的一个别名而已。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::__get">
+<tt class="descname">__get</tt><big>(</big><em>$key</em><big>)</big><a class="headerlink" href="#CI_Session::__get" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>string</em>) -- Session item key</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">The requested session data item, or NULL if it doesn't exist</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>魔术方法，根据你的喜好，使用 <tt class="docutils literal"><span class="pre">$this-&gt;session-&gt;item</span></tt> 这种方式来替代
+<tt class="docutils literal"><span class="pre">$_SESSION['item']</span></tt> 。</p>
+<p>如果你访问 <tt class="docutils literal"><span class="pre">$this-&gt;session-&gt;session_id</span></tt> 它也会调用 <tt class="docutils literal"><span class="pre">session_id()</span></tt> 方法来返回 session ID 。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Session::__set">
+<tt class="descname">__set</tt><big>(</big><em>$key</em>, <em>$value</em><big>)</big><a class="headerlink" href="#CI_Session::__set" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>string</em>) -- Session item key</li>
+<li><strong>$value</strong> (<em>mixed</em>) -- Value to assign to the session item key</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>魔术方法，直接赋值给 <tt class="docutils literal"><span class="pre">$this-&gt;session</span></tt> 属性，以此来替代赋值给 <tt class="docutils literal"><span class="pre">$_SESSION</span></tt> 数组:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
+
+<span class="c1">// Results in:</span>
+<span class="c1">// $_SESSION[&#39;foo&#39;] = &#39;bar&#39;;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="table.html" class="btn btn-neutral float-right" title="HTML 表格类">下一个主题 <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="security.html" class="btn btn-neutral" title="安全类"><span class="fa fa-arrow-circle-left"></span> 上一个主题</a>
+      
+    </div>
+  
+
+  
+  <div id="notes">
+  
+  <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="userguide3/libraries/sessions" data-title="Session 类" data-url="http://codeigniter.org.cn/user_guide/libraries/sessions.html"></div>
+  <!-- 多说评论框 end -->
+  
+
+  <div class="ds-share flat" data-thread-key="userguide3/libraries/sessions" data-title="Session 类 &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" data-url="http://codeigniter.org.cn/user_guide/libraries/sessions.html" data-images="" data-content="">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+  </div>
+
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codeigniter"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+  <!-- 多说公共JS代码 end -->
+  </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2014 - 2015, 不列颠哥伦比亚理工学院.
+       最后修改: 2015-10-11.
+    </p>
+
+    <p>以 <a href="http://www.aneasystone.com/" target="_blank">aneasystone</a> 制作的手册为基础构建</p>
+  </div>
+
+  
+    <p>基于 <a href="http://sphinx-doc.org/">Sphinx</a> 并使用 <a href="https://readthedocs.org">Read the Docs</a> 提供的<a href="https://github.com/snide/sphinx_rtd_theme">风格</a>构建</p>
+    <p>
+        <a href="https://github.com/CodeIgniter-Chinese/codeigniter-user-guide" target="_blank">Github 简体中文翻译</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/codeigniter_user_guide.zip">离线版压缩包下载</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/CodeIgniter.pdf">PDF 版下载</a>
+    </p>
+  
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.0.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-272152-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+  
+
+</body>
+</html>

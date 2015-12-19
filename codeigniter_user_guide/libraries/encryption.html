@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>加密类（新版） &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档</title>
+  
+
+  
+  
+  <link rel="shortcut icon" href="../_static/ci-icon.ico" />
+  
+
+  
+  <link href="../_static/css/fonts.css" rel="stylesheet" type="text/css" />
+
+  
+  
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme_cn.css" type="text/css" />
+    <link rel="top" title="CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" href="../index.html"/>
+        <link rel="up" title="类库参考" href="index.html"/>
+        <link rel="next" title="文件上传类" href="file_uploading.html"/>
+        <link rel="prev" title="加密类" href="encrypt.html"/> 
+
+  
+  <script src="../_static/js/modernizr.2.6.2.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">类库参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">加密类</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAICAgICAgICAgICAgICAgMCAgICAwMDAwMDAwMEAwMDAwMDBAQEBAUEBAQFBQYGBQUHBwcHBwcHBwcHBwcHBwf/2wBDAQICAgMDAwUEBAUHBgUGBwgICAgICAgHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwf/wAARCAArAJoDAREAAhEBAxEB/8QAHgABAAAGAwEAAAAAAAAAAAAAAAQFBgcICQECAwr/xAA/EAAABAQCBgcFBAsBAAAAAAACAwQFAAEGBxESExZRU5XVCBQZIlWi0gkVITFCIzJSchgzQUNUVmFiZYWy1P/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDCEXygIE47JKAmEAgEAgEAgEAgEAgEAgEAgEBBnGBCcEH9kBEAnjAekBusU9DWxoACnKgx8ZqLmMBaWquivZhvLMmXRYy8v+XfRf8AS+A1WwCAQCAQGdrZby3DbbG0T0bRllHB4q2kVb0+r7nV5U1PLz1Jb+4oQCSoW96RJ9AEhOWHMAqXekLHGeMBQHSCoei6doG0FTUxTlDMLpVTpWaN9Mt5UbxUjOpLZxsoW+QFTs4OGQwrrZ2eRYg/e72OAcAxRgL79Hy3Rtwq1EnU0Y51hTrciNMfAoUlQKikYjijOomKJU2ES2WkNLmEEpYSn8Zz+AZwGdrf0V7fuZqhEK0TylGY1uI0xxbddJIKSopvPOSSCodpBRhmI8AA4HTwFjl+c5QGrN/p98pV4XU/UjUuZHtsMCS4NTkUIhSnGIATQhNKHgIM5gEEXx/ZOAk8AgEAgMwujjZygLjMDg51XT/vZanqE9uJO685pcqctKlNADIiVEA++aL6YDNZq6HlkDygzFQoxf7moP8A3wE7/QysZ/IY+M1FzKAzzWtJehF3YDHe4DNiSdkD9AoD5j9aFm/8ofTANaFm/wDKH0wDWhZv/KH0wDWhZv8Ayh9MA1oWb/yh9MBsYJujb8VobCIFlyujsgeGu3y1M8tdxqPfawdkZ46pdzgFDPp9ndC0IZkjAOSc8ZZve0uTIYAQgtz0l7j0s62nsI30rWtrqmXtb3cI16T2taVbCiRAVmU91GalidUaFcmEfoTsDDEwQnZBTLEOQZ4BhbrQs3/lD6YC+Vh7g0vS9VDqer6nPRSbtCiR0sVTDNUJNSFOGkTLkC4x/UJWxuSyLyyOPNmIcgDnMoOYOaQZtvV+LEW/bbdW4emWnzimtFUL5T1Y0q6Uxc9bb55dHw6adaZ1AsinXctWQACkxFIOZJMJcwBEMJQoDWtWFQJk1U1AQxVSGrGgDqo6hUoGwTQFyKmZMUlgWw4OdJI3HGRQviGXwwl8oCm9aFm/8ofTANaFm/8AKH0wDWhZv/KH0wHOtCz+I2/MIMP6fTjjAba/Z9SMe7eVAsOFpNHXytPmy/hamsf0fmgNtzA0l6EPd+iAqn3SVsgJ6eXIYBSywFq6oZOtFmSwgPn3e/ZrX1b3BcS21ZbdwbCVh4W1YqUvaNUelCaLqxylGU1qgJjRg7wiwnmhCLuaUf34Cmx+z0v4GeHvy2nEHrk0B17Pa/vjluOIPfJoB2e1+vG7b8Qe+TwDs9r++OW44g98mgHZ7X98ctxxB75NAOz2v745bjiD3yaAdntfrxu2/EHvk8A7Pa/Xjdt+IPfJ4B2e1+vG7b8Qe+TwDs9r9eN234g98ngHZ7X68btvxB75PAOz2v143bfiD3yeAdntf3xy3HEHvk0BHEezo6QKmeAKgtiH8zk+8kgNrHQv6OlSWHtyqpurXZqeH52qpdUqwTIFQJCkCclSt5KYlSqCQcp+xRhPEIRBXeN0WQeTTDDYU2JpFlBllgJ1hL8MAnLNKAlalFI6QsQwFLqqaLOmLEuAlI6MInP9TAeepabcwDUtNuYBqWm3MA1LTbmAalptzANS025gGpabcwDUtNuYBqWm3MA1LTbmAalptzANTCJfuYCOIpQkuYfs4CpkbSAjLgGAnxQMksID2gEB1FAJylsgOcJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUAwlslAMJbJQDCWyUBzAIBAf/Z" title="切换目录" alt="切换目录" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索手册" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">欢迎使用 CodeIgniter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">安装说明</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">下载 CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">安装说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">从老版本升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">疑难解答</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter 概览</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter 是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">支持特性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">应用程序流程图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">模型 - 视图 - 控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">架构目标</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">教程 - 内容提要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">加载静态内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">读取新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">创建新闻条目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">结束语</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">向 CodeIgniter 贡献你的力量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">编写 CodeIgniter 的文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developer's Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">常规主题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">CodeIgniter URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">控制器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">保留名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">视图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">使用 CodeIgniter 类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">创建类库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">使用 CodeIgniter 驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">创建驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">创建核心系统类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">创建附属类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">钩子 - 扩展框架核心</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">自动加载资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">公共函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">兼容性函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">URI 路由</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">错误处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">网页缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">程序分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">以 CLI 方式运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">管理你的应用程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">处理多环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">在视图文件中使用 PHP 替代语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">PHP 开发规范</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">类库参考</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">基准测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">缓存驱动器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">日历类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">购物车类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">配置类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">加密类</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">加密类（新版）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">文件上传类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">表单验证类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">FTP 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">图像处理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">输入类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Javascript 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">语言类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">加载器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">迁移类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">输出类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">分页类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">模板解析类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">安全类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML 表格类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">引用通告类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">排版类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">单元测试类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI 类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">用户代理类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC 与 XML-RPC 服务器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip 编码类</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">数据库参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">数据库快速入门: 示例代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">数据库配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">连接数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">查询</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">生成查询结果</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">查询辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">查询构造器类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">事务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">获取元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">自定义函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">查询缓存</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">使用 Database Forge 维护数据库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">数据库工具类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">数据库驱动器参考</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">辅助函数参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">数组辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">验证码辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">日期辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">目录辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">下载辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">邮件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">文件辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">表单辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">语言辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">数字辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">路径辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">安全辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">表情辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">字符串辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">文本辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">排版辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL 辅助函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML 辅助函数</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">首页</a> &raquo; </li>
+    
+    <li><a href="index.html">类库参考</a> &raquo; </li>
+    
+    <li>加密类（新版）</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;">
+      <div style="text-decoration:underline;color:blue;margin-left:5px;cursor:pointer;" id="closeMe">
+        <img title="目录" alt="toc" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+      </div>
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="id1">
+<h1>加密类（新版）<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">绝不要使用这个类或其他任何加密类来进行密码处理！密码应该是被 <em>哈希</em> ，你应该使用 PHP 自带的 <a class="reference external" href="http://php.net/password">密码哈希扩展</a> 。</p>
+</div>
+<p>加密类提供了双向数据加密的方式，为了实现密码学意义上的安全，它使用了一些并非在所有系统上都可用的 PHP 的扩展，
+要使用这个类，你的系统上必须安装了下面的扩展：</p>
+<ul class="simple">
+<li><a class="reference external" href="http://php.net/openssl">OpenSSL</a> （以及 PHP 5.3.3）</li>
+<li><a class="reference external" href="http://php.net/mcrypt">MCrypt</a> （要支持 <cite>MCRYPT_DEV_URANDOM</cite>）</li>
+</ul>
+<p>只要有一点不满足，我们就无法为你提供足够高的安全性。</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#id3" id="id14">使用加密类</a><ul>
+<li><a class="reference internal" href="#id4" id="id15">初始化类</a></li>
+<li><a class="reference internal" href="#id5" id="id16">默认行为</a></li>
+<li><a class="reference internal" href="#encryption-key" id="id17">设置 encryption_key 参数</a></li>
+<li><a class="reference internal" href="#ciphers-and-modes" id="id18">支持的加密算法和模式</a><ul>
+<li><a class="reference internal" href="#portable-ciphers" id="id19">可移植的算法（Portable ciphers）</a></li>
+<li><a class="reference internal" href="#driver-specific-ciphers" id="id20">特定驱动的算法（Driver-specific ciphers）</a></li>
+<li><a class="reference internal" href="#encryption-modes" id="id21">加密模式</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id8" id="id22">消息长度</a></li>
+<li><a class="reference internal" href="#configuration" id="id23">配置类库</a></li>
+<li><a class="reference internal" href="#id10" id="id24">对数据进行加密与解密</a><ul>
+<li><a class="reference internal" href="#id11" id="id25">实现原理</a></li>
+<li><a class="reference internal" href="#custom-parameters" id="id26">使用自定义参数</a></li>
+<li><a class="reference internal" href="#hmac" id="id27">支持的 HMAC 认证算法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id13" id="id28">类参考</a></li>
+</ul>
+</div>
+<div class="custom-index container"></div><div class="section" id="id3">
+<h2><a class="toc-backref" href="#id14">使用加密类</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id15">初始化类</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p>正如 CodeIgniter 中的其他类一样，在你的控制器中使用 <tt class="docutils literal"><span class="pre">$this-&gt;load-&gt;library()</span></tt>
+方法来初始化加密类:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;encryption&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>初始化之后，加密类的对象就可以这样访问:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id16">默认行为</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<p>默认情况下，加密类会通过你配置的 <em>encryption_key</em> 参数和 SHA512 HMAC 认证，
+使用 AES-128 算法的 CBC 模式。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">选择使用 AES-128 算法不仅是因为它已经被证明相当强壮，
+而且它也已经在不同的加密软件和编程语言 API 中广泛的使用了。</p>
+</div>
+<p>但是要注意的是，<em>encryption_key</em> 参数的用法可能并不是你想的那样。</p>
+<p>如果你对密码学有点熟悉的话，你应该知道，使用 HMAC 算法认证也需要使用一个密钥，
+而在加密的过程和认证的过程中使用相同的密钥可不是个好的做法。</p>
+<p>正因为此，程序会从你的配置的 <em>encryption_key</em> 参数中派生出两个密钥来：
+一个用于加密，另一个用于认证。这其实是通过一种叫做 <a class="reference external" href="http://en.wikipedia.org/wiki/HKDF">HKDF</a>
+（HMAC-based Key Derivation Function）的技术实现的。</p>
+</div>
+<div class="section" id="encryption-key">
+<h3><a class="toc-backref" href="#id17">设置 encryption_key 参数</a><a class="headerlink" href="#encryption-key" title="永久链接至标题">¶</a></h3>
+<p>加密密钥 <em>encryption key</em> 是用于控制加密过程的一小段信息，使用它可以对普通文本进行加密和解密。
+这个过程可以保证只有你能对数据进行解密，其他人是看不到你的数据的，这其中的关键就是加密密钥。
+如果你使用了一个密钥来加密数据，那么就只能通过这个密钥来解密，所以你不仅应该仔细选择你的密钥，
+还应该好好的保管好它，不要忘记了。</p>
+<p>还有一点要注意的是，为了确保最高的安全性，这个密钥不仅 <em>应该</em> 越强壮越好，而且 <em>应该</em> 经常修改。
+不过这在现实中很难做到，也不好实现，所以 CodeIgniter 提供了一个配置参数用于设置你的密钥，
+这个密钥（几乎）每次都会用到。</p>
+<p>不用说，你应该小心保管好你的密钥，如果有人得到了你的密钥，那么数据就能很容易的被解密。
+如果你的服务器不在你的控制之下，想保证你的密钥绝对安全是不可能的，
+所以在在你使用密钥对敏感数据（例如信用卡号码）进行加密之前，请再三斟酌。</p>
+<p>你的加密密钥的长度 <strong>必须</strong> 满足正在使用的加密算法允许的长度。例如，AES-128 算法最长支持
+128 位（16 字节）。下面有一个表列出了不同算法支持的密钥长度。</p>
+<p>你所使用的密钥应该越随机越好，它不能是一个普通的文本字符串，经过哈希函数处理过也不行。
+为了生成一个合适的密钥，你应该使用加密类提供的 <tt class="docutils literal"><span class="pre">create_key()</span></tt> 方法:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="c1">// $key will be assigned a 16-byte (128-bit) random key</span>
+<span class="nv">$key</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption</span><span class="o">-&gt;</span><span class="na">create_key</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>密钥可以保存在 <em>application/config/config.php</em> 配置文件中，或者你也可以设计你自己的存储机制，
+然后加密解密的时候动态的去获取它。</p>
+<p>如果要保存在配置文件 <em>application/config/config.php</em> 中，可以打开该文件，然后设置:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;encryption_key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;YOUR KEY&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>你会发现 <tt class="docutils literal"><span class="pre">create_key()</span></tt> 方法返回的是二进制数据，没办法复制粘贴，所以你可能还需要使用
+<tt class="docutils literal"><span class="pre">bin2hex()</span></tt> 、 <tt class="docutils literal"><span class="pre">hex2bin()</span></tt> 或 Base64 编码来更好的处理密钥数据。例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="c1">// Get a hex-encoded representation of the key:</span>
+<span class="nv">$key</span> <span class="o">=</span> <span class="nb">bin2hex</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption</span><span class="o">-&gt;</span><span class="na">create_key</span><span class="p">(</span><span class="mi">16</span><span class="p">));</span>
+
+<span class="c1">// Put the same value in your config with hex2bin(),</span>
+<span class="c1">// so that it is still passed as binary to the library:</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;encryption_key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">hex2bin</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">your</span> <span class="nx">hex</span><span class="o">-</span><span class="nx">encoded</span> <span class="nb">key</span><span class="o">&gt;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ciphers-and-modes">
+<span id="id6"></span><h3><a class="toc-backref" href="#id18">支持的加密算法和模式</a><a class="headerlink" href="#ciphers-and-modes" title="永久链接至标题">¶</a></h3>
+<div class="section" id="portable-ciphers">
+<h4><a class="toc-backref" href="#id19">可移植的算法（Portable ciphers）</a><a class="headerlink" href="#portable-ciphers" title="永久链接至标题">¶</a></h4>
+<p>因为 MCrypt 和 OpenSSL （我们也称之为“驱动”）支持的加密算法不同，而且实现方式也不太一样，
+CodeIgniter 将它们设计成一种可移植的方式来使用，换句话说，你可以交换使用它们两个，
+至少对它们两个驱动都支持的算法来说是这样。</p>
+<p>而且 CodeIgniter 的实现也和其他编程语言和类库的标准实现一致。</p>
+<p>下面是可移植算法的清单，其中 &quot;CodeIgniter 名称&quot; 一栏就是你在使用加密类的时候使用的名称：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="18%" />
+<col width="28%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">算法名称</th>
+<th class="head">CodeIgniter 名称</th>
+<th class="head">密钥长度 （位 / 字节）</th>
+<th class="head">支持的模式</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>AES-128 / Rijndael-128</td>
+<td>aes-128</td>
+<td>128 / 16</td>
+<td>CBC, CTR, CFB, CFB8, OFB, ECB</td>
+</tr>
+<tr class="row-odd"><td>AES-192</td>
+<td>aes-192</td>
+<td>192 / 24</td>
+<td>CBC, CTR, CFB, CFB8, OFB, ECB</td>
+</tr>
+<tr class="row-even"><td>AES-256</td>
+<td>aes-256</td>
+<td>256 / 32</td>
+<td>CBC, CTR, CFB, CFB8, OFB, ECB</td>
+</tr>
+<tr class="row-odd"><td>DES</td>
+<td>des</td>
+<td>56 / 7</td>
+<td>CBC, CFB, CFB8, OFB, ECB</td>
+</tr>
+<tr class="row-even"><td>TripleDES</td>
+<td>tripledes</td>
+<td>56 / 7, 112 / 14, 168 / 21</td>
+<td>CBC, CFB, CFB8, OFB</td>
+</tr>
+<tr class="row-odd"><td>Blowfish</td>
+<td>blowfish</td>
+<td>128-448 / 16-56</td>
+<td>CBC, CFB, OFB, ECB</td>
+</tr>
+<tr class="row-even"><td>CAST5 / CAST-128</td>
+<td>cast5</td>
+<td>88-128 / 11-16</td>
+<td>CBC, CFB, OFB, ECB</td>
+</tr>
+<tr class="row-odd"><td>RC4 / ARCFour</td>
+<td>rc4</td>
+<td>40-2048 / 5-256</td>
+<td>Stream</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">由于 MCrypt 的内部实现，如果你提供了一个长度不合适的密钥，它会使用另一种不同的算法来加密，
+这将和你配置的算法不一致，所以要特别注意这一点！</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">上表中还有一点要澄清，Blowfish、CAST5 和 RC4 算法支持可变长度的密钥，也就是说，
+只要密钥的长度在指定范围内都是可以的。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">尽管 CAST5 支持的密钥的长度可以小于 128 位（16 字节），其实实际上，根据 <a class="reference external" href="http://tools.ietf.org/rfc/rfc2144.txt">RFC 2144</a> 我们知道，它会用 0 进行补齐到最大长度。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">Blowfish 算法支持最短 32 位（4 字节）的密钥，但是经过我们的测试发现，只有密钥长度大于等于 128 位（16 字节）
+时，才可以很好的同时支持 MCrypt 和 OpenSSL ，再说，设置这么短的密钥也不是好的做法。</p>
+</div>
+</div>
+<div class="section" id="driver-specific-ciphers">
+<h4><a class="toc-backref" href="#id20">特定驱动的算法（Driver-specific ciphers）</a><a class="headerlink" href="#driver-specific-ciphers" title="永久链接至标题">¶</a></h4>
+<p>正如前面所说，MCrypt 和 OpenSSL 支持不同的加密算法，所以你也可以选择下面这些只针对某一特定驱动的算法。
+但是为了移植性考虑，而且这些算法也没有经过彻底测试，我们并不建议你使用这些算法。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="10%" />
+<col width="32%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">算法名称</th>
+<th class="head">驱动</th>
+<th class="head">密钥长度 （位 / 字节）</th>
+<th class="head">支持的模式</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>AES-128</td>
+<td>OpenSSL</td>
+<td>128 / 16</td>
+<td>CBC, CTR, CFB, CFB8, OFB, ECB, XTS</td>
+</tr>
+<tr class="row-odd"><td>AES-192</td>
+<td>OpenSSL</td>
+<td>192 / 24</td>
+<td>CBC, CTR, CFB, CFB8, OFB, ECB, XTS</td>
+</tr>
+<tr class="row-even"><td>AES-256</td>
+<td>OpenSSL</td>
+<td>256 / 32</td>
+<td>CBC, CTR, CFB, CFB8, OFB, ECB, XTS</td>
+</tr>
+<tr class="row-odd"><td>Rijndael-128</td>
+<td>MCrypt</td>
+<td>128 / 16, 192 / 24, 256 / 32</td>
+<td>CBC, CTR, CFB, CFB8, OFB, OFB8, ECB</td>
+</tr>
+<tr class="row-even"><td>Rijndael-192</td>
+<td>MCrypt</td>
+<td>128 / 16, 192 / 24, 256 / 32</td>
+<td>CBC, CTR, CFB, CFB8, OFB, OFB8, ECB</td>
+</tr>
+<tr class="row-odd"><td>Rijndael-256</td>
+<td>MCrypt</td>
+<td>128 / 16, 192 / 24, 256 / 32</td>
+<td>CBC, CTR, CFB, CFB8, OFB, OFB8, ECB</td>
+</tr>
+<tr class="row-even"><td>GOST</td>
+<td>MCrypt</td>
+<td>256 / 32</td>
+<td>CBC, CTR, CFB, CFB8, OFB, OFB8, ECB</td>
+</tr>
+<tr class="row-odd"><td>Twofish</td>
+<td>MCrypt</td>
+<td>128 / 16, 192 / 24, 256 / 32</td>
+<td>CBC, CTR, CFB, CFB8, OFB, OFB8, ECB</td>
+</tr>
+<tr class="row-even"><td>CAST-128</td>
+<td>MCrypt</td>
+<td>40-128 / 5-16</td>
+<td>CBC, CTR, CFB, CFB8, OFB, OFB8, ECB</td>
+</tr>
+<tr class="row-odd"><td>CAST-256</td>
+<td>MCrypt</td>
+<td>128 / 16, 192 / 24, 256 / 32</td>
+<td>CBC, CTR, CFB, CFB8, OFB, OFB8, ECB</td>
+</tr>
+<tr class="row-even"><td>Loki97</td>
+<td>MCrypt</td>
+<td>128 / 16, 192 / 24, 256 / 32</td>
+<td>CBC, CTR, CFB, CFB8, OFB, OFB8, ECB</td>
+</tr>
+<tr class="row-odd"><td>SaferPlus</td>
+<td>MCrypt</td>
+<td>128 / 16, 192 / 24, 256 / 32</td>
+<td>CBC, CTR, CFB, CFB8, OFB, OFB8, ECB</td>
+</tr>
+<tr class="row-even"><td>Serpent</td>
+<td>MCrypt</td>
+<td>128 / 16, 192 / 24, 256 / 32</td>
+<td>CBC, CTR, CFB, CFB8, OFB, OFB8, ECB</td>
+</tr>
+<tr class="row-odd"><td>XTEA</td>
+<td>MCrypt</td>
+<td>128 / 16</td>
+<td>CBC, CTR, CFB, CFB8, OFB, OFB8, ECB</td>
+</tr>
+<tr class="row-even"><td>RC2</td>
+<td>MCrypt</td>
+<td>8-1024 / 1-128</td>
+<td>CBC, CTR, CFB, CFB8, OFB, OFB8, ECB</td>
+</tr>
+<tr class="row-odd"><td>RC2</td>
+<td>OpenSSL</td>
+<td>8-1024 / 1-128</td>
+<td>CBC, CFB, OFB, ECB</td>
+</tr>
+<tr class="row-even"><td>Camellia-128</td>
+<td>OpenSSL</td>
+<td>128 / 16</td>
+<td>CBC, CFB, CFB8, OFB, ECB</td>
+</tr>
+<tr class="row-odd"><td>Camellia-192</td>
+<td>OpenSSL</td>
+<td>192 / 24</td>
+<td>CBC, CFB, CFB8, OFB, ECB</td>
+</tr>
+<tr class="row-even"><td>Camellia-256</td>
+<td>OpenSSL</td>
+<td>256 / 32</td>
+<td>CBC, CFB, CFB8, OFB, ECB</td>
+</tr>
+<tr class="row-odd"><td>Seed</td>
+<td>OpenSSL</td>
+<td>128 / 16</td>
+<td>CBC, CFB, OFB, ECB</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">如果你要使用这些算法，你只需将它的名称以小写形式传递给加密类即可。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">你可能已经注意到，所有的 AES 算法（以及 Rijndael-128 算法）也在上面的可移植算法列表中出现了，
+这是因为这些算法支持不同的模式。还有很重要的一点是，在使用 128 位的密钥时，AES-128 和 Rijndael-128
+算法其实是一样的。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">CAST-128 / CAST-5 算法也在两个表格都出现了，这是因为当密钥长度小于等于 80 位时，
+OpenSSL 的实现貌似有问题。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">列表中可以看到 RC2 算法同时被 MCrypt 和 OpenSSL 支持，但是两个驱动对它的实现方式是不一样的，
+而且也是不能移植的。我们只找到了一条关于这个的不确定的消息可能是 MCrypt 的实现有问题。</p>
+</div>
+</div>
+<div class="section" id="encryption-modes">
+<span id="id7"></span><h4><a class="toc-backref" href="#id21">加密模式</a><a class="headerlink" href="#encryption-modes" title="永久链接至标题">¶</a></h4>
+<p>加密算法的不同模式有着不同的特性，它们有着不同的目的，有的可能比另一些更强壮，有的可能速度更快，
+有的可能提供了额外的功能。
+我们并不打算深入研究这个，这应该是密码学专家做的事。下表将向我们普通的用户列出一些简略的参考信息。
+如果你是个初学者，直接使用 CBC 模式就可以了，一般情况下它已经足够强壮和安全，并且已经被广泛接受。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="9%" />
+<col width="9%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">模式名称</th>
+<th class="head">CodeIgniter 名称</th>
+<th class="head">支持的驱动</th>
+<th class="head">备注</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>CBC</td>
+<td>cbc</td>
+<td>MCrypt, OpenSSL</td>
+<td>安全的默认选择</td>
+</tr>
+<tr class="row-odd"><td>CTR</td>
+<td>ctr</td>
+<td>MCrypt, OpenSSL</td>
+<td>理论上比 CBC 更好，但并没有广泛使用</td>
+</tr>
+<tr class="row-even"><td>CFB</td>
+<td>cfb</td>
+<td>MCrypt, OpenSSL</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>CFB8</td>
+<td>cfb8</td>
+<td>MCrypt, OpenSSL</td>
+<td>和 CFB 一样，但是使用 8 位模式（不推荐）</td>
+</tr>
+<tr class="row-even"><td>OFB</td>
+<td>ofb</td>
+<td>MCrypt, OpenSSL</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>OFB8</td>
+<td>ofb8</td>
+<td>MCrypt</td>
+<td>和 OFB 一样，但是使用 8 位模式（不推荐）</td>
+</tr>
+<tr class="row-even"><td>ECB</td>
+<td>ecb</td>
+<td>MCrypt, OpenSSL</td>
+<td>忽略 IV （不推荐）</td>
+</tr>
+<tr class="row-odd"><td>XTS</td>
+<td>xts</td>
+<td>OpenSSL</td>
+<td>通常用来加密可随机访问的数据，如 RAM 或 硬盘</td>
+</tr>
+<tr class="row-even"><td>Stream</td>
+<td>stream</td>
+<td>MCrypt, OpenSSL</td>
+<td>这其实并不是一种模式，只是表明使用了流加密，通常在 算法+模式 的初始化过程中会用到。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id22">消息长度</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p>有一点对你来说可能很重要，加密的字符串通常要比原始的文本字符串要长（取决于算法）。</p>
+<p>这个会取决于加密所使用的算法，添加到密文上的 IV ，以及添加的 HMAC 认证信息。
+另外，为了保证传输的安全性，加密消息还会被 Base64 编码。</p>
+<p>当你选择数据保存机制时请记住这一点，例如 Cookie 只能存储 4k 的信息。</p>
+</div>
+<div class="section" id="configuration">
+<span id="id9"></span><h3><a class="toc-backref" href="#id23">配置类库</a><a class="headerlink" href="#configuration" title="永久链接至标题">¶</a></h3>
+<p>考虑到可用性，性能，以及一些历史原因，加密类使用了和老的 <a class="reference internal" href="encrypt.html"><em>加密类</em></a> 一样的驱动、
+加密算法、模式 和 密钥。</p>
+<p>上面的 &quot;默认行为&quot; 一节已经提到，系统将自动检测驱动（OpenSSL 优先级要高点），使用 CBC 模式的
+AES-128 算法，以及 <tt class="docutils literal"><span class="pre">$config['encryption_key']</span></tt> 参数。</p>
+<p>如果你想改变这点，你需要使用 <tt class="docutils literal"><span class="pre">initialize()</span></tt> 方法，它的参数为一个关联数组，每一项都是可选：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">选项</th>
+<th class="head">可能的值</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>driver</td>
+<td>'mcrypt', 'openssl'</td>
+</tr>
+<tr class="row-odd"><td>cipher</td>
+<td>算法名称（参见 <a class="reference internal" href="#ciphers-and-modes"><em>支持的加密算法和模式</em></a>）</td>
+</tr>
+<tr class="row-even"><td>mode</td>
+<td>加密模式（参见 <a class="reference internal" href="#encryption-modes"><em>加密模式</em></a>）</td>
+</tr>
+<tr class="row-odd"><td>key</td>
+<td>加密密钥</td>
+</tr>
+</tbody>
+</table>
+<p>例如，如果你想将加密算法和模式改为 AES-126 CTR ，可以这样:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption</span><span class="o">-&gt;</span><span class="na">initialize</span><span class="p">(</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;cipher&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;aes-256&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ctr&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;key&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&lt;a 32-character random string&gt;&#39;</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>另外，我们也可以设置一个密钥，如前文所说，针对所使用的算法选择一个合适的密钥非常重要。</p>
+<p>我们还可以修改驱动，如果你两种驱动都支持，但是出于某种原因你想使用 MCrypt 来替代 OpenSSL</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="c1">// Switch to the MCrypt driver</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption</span><span class="o">-&gt;</span><span class="na">initialize</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mcrypt&#39;</span><span class="p">));</span>
+
+<span class="c1">// Switch back to the OpenSSL driver</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption</span><span class="o">-&gt;</span><span class="na">initialize</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;openssl&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id24">对数据进行加密与解密</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<p>使用已配置好的参数来对数据进行加密和解密是非常简单的，你只要将字符串传给 <tt class="docutils literal"><span class="pre">encrypt()</span></tt>
+和/或 <tt class="docutils literal"><span class="pre">decrypt()</span></tt> 方法即可:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$plain_text</span> <span class="o">=</span> <span class="s1">&#39;This is a plain-text message!&#39;</span><span class="p">;</span>
+<span class="nv">$ciphertext</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption</span><span class="o">-&gt;</span><span class="na">encrypt</span><span class="p">(</span><span class="nv">$plain_text</span><span class="p">);</span>
+
+<span class="c1">// Outputs: This is a plain-text message!</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption</span><span class="o">-&gt;</span><span class="na">decrypt</span><span class="p">(</span><span class="nv">$ciphertext</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>这样就行了！加密类会为你完成所有必须的操作并确保安全，你根本不用关系细节。</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">两个方法在遇到错误时都会返回 FALSE ，如果是 <tt class="docutils literal"><span class="pre">encrypt()</span></tt> 返回 FALSE ，
+那么只可能是配置参数错了。在生产代码中一定要对 <tt class="docutils literal"><span class="pre">decrypt()</span></tt> 方法进行检查。</p>
+</div>
+<div class="section" id="id11">
+<h4><a class="toc-backref" href="#id25">实现原理</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h4>
+<p>如果你非要知道整个过程的实现步骤，下面是内部的实现：</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">$this-&gt;encryption-&gt;encrypt($plain_text)</span></tt><ol class="arabic">
+<li>通过 HKDF 和 SHA-512 摘要算法，从你配置的 <em>encryption_key</em> 参数中获取两个密钥：加密密钥 和 HMAC 密钥。</li>
+<li>生成一个随机的初始向量（IV）。</li>
+<li>使用上面的加密密钥和 IV ，通过 AES-128 算法的 CBC 模式（或其他你配置的算法和模式）对数据进行加密。</li>
+<li>将 IV 附加到密文后。</li>
+<li>对结果进行 Base64 编码，这样就可以安全的保存和传输它，而不用担心字符集问题。</li>
+<li>使用 HMAC 密钥生成一个 SHA-512 HMAC 认证消息，附加到 Base64 字符串后，以保证数据的完整性。</li>
+</ol>
+</li>
+<li><tt class="docutils literal"><span class="pre">$this-&gt;encryption-&gt;decrypt($ciphertext)</span></tt><ol class="arabic">
+<li>通过 HKDF 和 SHA-512 摘要算法，从你配置的 <em>encryption_key</em> 参数中获取两个密钥：加密密钥 和 HMAC 密钥。
+由于 <em>encryption_key</em> 不变，所以生成的结果和上面 <tt class="docutils literal"><span class="pre">encrypt()</span></tt> 方法生成的结果是一样的，否则你没办法解密。</li>
+<li>检查字符串的长度是否足够长，并从字符串中分离出 HMAC ，然后验证是否一致（这可以防止时序攻击（timing attack）），
+如果验证失败，返回 FALSE 。</li>
+<li>进行 Base64 解码。</li>
+<li>从密文中分离出 IV ，并使用 IV 和 加密密钥对数据进行解密。</li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="section" id="custom-parameters">
+<span id="id12"></span><h4><a class="toc-backref" href="#id26">使用自定义参数</a><a class="headerlink" href="#custom-parameters" title="永久链接至标题">¶</a></h4>
+<p>假设你需要和另一个系统交互，这个系统不受你的控制，而且它使用了其他的方法来加密数据，
+加密的方式和我们上面介绍的流程不一样。</p>
+<p>在这种情况下，加密类允许你修改它的加密和解密的流程，这样你就可以简单的调整成自己的解决方案。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">通过这种方式，你可以不用在配置文件中配置 <em>encryption_key</em> 就能使用加密类。</p>
+</div>
+<p>你所需要做的就是传一个包含一些参数的关联数组到 <tt class="docutils literal"><span class="pre">encrypt()</span></tt> 或 <tt class="docutils literal"><span class="pre">decrypt()</span></tt> 方法，下面是个例子:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="c1">// Assume that we have $ciphertext, $key and $hmac_key</span>
+<span class="c1">// from on outside source</span>
+
+<span class="nv">$message</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption</span><span class="o">-&gt;</span><span class="na">decrypt</span><span class="p">(</span>
+    <span class="nv">$ciphertext</span><span class="p">,</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;cipher&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;blowfish&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cbc&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;key&#39;</span> <span class="o">=&gt;</span> <span class="nv">$key</span><span class="p">,</span>
+        <span class="s1">&#39;hmac_digest&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;sha256&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;hmac_key&#39;</span> <span class="o">=&gt;</span> <span class="nv">$hmac_key</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>在上面的例子中，我们对一段使用 CBC 模式的 Blowfish 算法加密的消息进行解密，并使用 SHA-256 HMAC 认证方式。</p>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last">注意在这个例子中 'key' 和 'hmac_key' 参数都要指定，当使用自定义参数时，加密密钥和 HMAC 密钥
+不再是默认的那样从配置参数中自动获取的了。</p>
+</div>
+<p>下面是所有可用的选项。</p>
+<p>但是，除非你真的需要这样做，并且你知道你在做什么，否则我们建议你不要修改加密的流程，因为这会影响安全性，
+所以请谨慎对待。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="13%" />
+<col width="25%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">选项</th>
+<th class="head">默认值</th>
+<th class="head">必须的 / 可选的</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>cipher</td>
+<td>N/A</td>
+<td>Yes</td>
+<td>加密算法（参见 <a class="reference internal" href="#ciphers-and-modes"><em>支持的加密算法和模式</em></a>）</td>
+</tr>
+<tr class="row-odd"><td>mode</td>
+<td>N/A</td>
+<td>Yes</td>
+<td>加密模式（参见 <a class="reference internal" href="#encryption-modes"><em>加密模式</em></a>）</td>
+</tr>
+<tr class="row-even"><td>key</td>
+<td>N/A</td>
+<td>Yes</td>
+<td>加密密钥</td>
+</tr>
+<tr class="row-odd"><td>hmac</td>
+<td>TRUE</td>
+<td>No</td>
+<td>是否使用 HMAC
+布尔值，如果为 FALSE ，<em>hmac_digest</em> 和 <em>hmac_key</em> 将被忽略</td>
+</tr>
+<tr class="row-even"><td>hmac_digest</td>
+<td>sha512</td>
+<td>No</td>
+<td>HMAC 消息摘要算法（参见 <a class="reference internal" href="#digests"><em>支持的 HMAC 认证算法</em></a>）</td>
+</tr>
+<tr class="row-odd"><td>hmac_key</td>
+<td>N/A</td>
+<td>Yes，除非 <em>hmac</em> 设为 FALSE</td>
+<td>HMAC 密钥</td>
+</tr>
+<tr class="row-even"><td>raw_data</td>
+<td>FALSE</td>
+<td>No</td>
+<td>加密文本是否保持原样
+布尔值，如果为 TRUE ，将不执行 Base64 编码和解码操作
+HMAC 也不会是十六进制字符串</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="first admonition-title">重要</p>
+<p class="last"><tt class="docutils literal"><span class="pre">encrypt()</span></tt> and <tt class="docutils literal"><span class="pre">decrypt()</span></tt> will return FALSE if
+a mandatory parameter is not provided or if a provided
+value is incorrect. This includes <em>hmac_key</em>, unless <em>hmac</em>
+is set to FALSE.</p>
+</div>
+</div>
+<div class="section" id="hmac">
+<span id="digests"></span><h4><a class="toc-backref" href="#id27">支持的 HMAC 认证算法</a><a class="headerlink" href="#hmac" title="永久链接至标题">¶</a></h4>
+<p>对于 HMAC 消息认证，加密类支持使用 SHA-2 家族的算法：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="34%" />
+<col width="47%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">算法</th>
+<th class="head">原始长度（字节）</th>
+<th class="head">十六进制编码长度（字节）</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>sha512</td>
+<td>64</td>
+<td>128</td>
+</tr>
+<tr class="row-odd"><td>sha384</td>
+<td>48</td>
+<td>96</td>
+</tr>
+<tr class="row-even"><td>sha256</td>
+<td>32</td>
+<td>64</td>
+</tr>
+<tr class="row-odd"><td>sha224</td>
+<td>28</td>
+<td>56</td>
+</tr>
+</tbody>
+</table>
+<p>之所以没有包含一些其他的流行算法，例如 MD5 或 SHA1 ，是因为这些算法目前已被证明不够安全，
+我们并不鼓励使用它们。如果你非要使用这些算法，简单的使用 PHP 的原生函数
+<a class="reference external" href="http://php.net/manual/en/function.hash-hmac.php">hash_hmac()</a> 也可以。</p>
+<p>当未来出现广泛使用的更好的算法时，我们自然会将其添加进去。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id13">
+<h2><a class="toc-backref" href="#id28">类参考</a><a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="CI_Encryption">
+<em class="property">class </em><tt class="descname">CI_Encryption</tt><a class="headerlink" href="#CI_Encryption" title="永久链接至目标">¶</a></dt>
+<dd><dl class="method">
+<dt id="CI_Encryption::initialize">
+<tt class="descname">initialize</tt><big>(</big><em>$params</em><big>)</big><a class="headerlink" href="#CI_Encryption::initialize" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$params</strong> (<em>array</em>) -- Configuration parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">CI_Encryption instance (method chaining)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">CI_Encryption</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>初始化加密类的配置，使用不同的驱动，算法，模式 或 密钥。</p>
+<p>例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption</span><span class="o">-&gt;</span><span class="na">initialize</span><span class="p">(</span>
+    <span class="k">array</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ctr&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>请参考 <a class="reference internal" href="#configuration"><em>配置类库</em></a> 一节了解详细信息。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Encryption::encrypt">
+<tt class="descname">encrypt</tt><big>(</big><em>$data</em><span class="optional">[</span>, <em>$params = NULL</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Encryption::encrypt" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$data</strong> (<em>string</em>) -- Data to encrypt</li>
+<li><strong>$params</strong> (<em>array</em>) -- Optional parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Encrypted data or FALSE on failure</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>对输入数据进行加密，并返回密文。</p>
+<p>例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$ciphertext</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption</span><span class="o">-&gt;</span><span class="na">encrypt</span><span class="p">(</span><span class="s1">&#39;My secret message&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>请参考 <a class="reference internal" href="#custom-parameters"><em>使用自定义参数</em></a> 一节了解更多参数信息。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Encryption::decrypt">
+<tt class="descname">decrypt</tt><big>(</big><em>$data</em><span class="optional">[</span>, <em>$params = NULL</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Encryption::decrypt" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$data</strong> (<em>string</em>) -- Data to decrypt</li>
+<li><strong>$params</strong> (<em>array</em>) -- Optional parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">Decrypted data or FALSE on failure</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>对输入数据进行解密，并返回解密后的文本。</p>
+<p>例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption</span><span class="o">-&gt;</span><span class="na">decrypt</span><span class="p">(</span><span class="nv">$ciphertext</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>请参考 <a class="reference internal" href="#custom-parameters"><em>使用自定义参数</em></a> 一节了解更多参数信息。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Encryption::create_key">
+<tt class="descname">create_key</tt><big>(</big><em>$length</em><big>)</big><a class="headerlink" href="#CI_Encryption::create_key" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$length</strong> (<em>int</em>) -- Output length</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">A pseudo-random cryptographic key with the specified length, or FALSE on failure</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>从操作系统获取随机数据（例如 /dev/urandom），并生成加密密钥。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Encryption::hkdf">
+<tt class="descname">hkdf</tt><big>(</big><em>$key</em><span class="optional">[</span>, <em>$digest = 'sha512'</em><span class="optional">[</span>, <em>$salt = NULL</em><span class="optional">[</span>, <em>$length = NULL</em><span class="optional">[</span>, <em>$info = ''</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#CI_Encryption::hkdf" title="永久链接至目标">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>$key</strong> (<em>string</em>) -- Input key material</li>
+<li><strong>$digest</strong> (<em>string</em>) -- A SHA-2 family digest algorithm</li>
+<li><strong>$salt</strong> (<em>string</em>) -- Optional salt</li>
+<li><strong>$length</strong> (<em>int</em>) -- Optional output length</li>
+<li><strong>$info</strong> (<em>string</em>) -- Optional context/application-specific info</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">A pseudo-random key or FALSE on failure</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>从一个密钥生成另一个密钥（较弱的密钥）。</p>
+<p>这是内部使用的一个方法，用于从配置的 <em>encryption_key</em> 参数生成一个加密密钥和 HMAC 密钥。</p>
+<p>将这个方法公开，是为了可能会在其他地方使用到。关于这个算法的描述可以看
+<a class="reference external" href="https://tools.ietf.org/rfc/rfc5869.txt">RFC 5869</a> 。</p>
+<p>和 RFC 5869 描述不同的是，这个方法不支持 SHA1 。</p>
+<p>例如:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span class="nv">$hmac_key</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">encryption</span><span class="o">-&gt;</span><span class="na">hkdf</span><span class="p">(</span>
+    <span class="nv">$key</span><span class="p">,</span>
+    <span class="s1">&#39;sha512&#39;</span><span class="p">,</span>
+    <span class="k">NULL</span><span class="p">,</span>
+    <span class="k">NULL</span><span class="p">,</span>
+    <span class="s1">&#39;authentication&#39;</span>
+<span class="p">);</span>
+
+<span class="c1">// $hmac_key is a pseudo-random key with a length of 64 bytes</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="file_uploading.html" class="btn btn-neutral float-right" title="文件上传类">下一个主题 <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="encrypt.html" class="btn btn-neutral" title="加密类"><span class="fa fa-arrow-circle-left"></span> 上一个主题</a>
+      
+    </div>
+  
+
+  
+  <div id="notes">
+  
+  <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="userguide3/libraries/encryption" data-title="加密类（新版）" data-url="http://codeigniter.org.cn/user_guide/libraries/encryption.html"></div>
+  <!-- 多说评论框 end -->
+  
+
+  <div class="ds-share flat" data-thread-key="userguide3/libraries/encryption" data-title="加密类（新版） &mdash; CodeIgniter 3.0.0 中文手册|用户手册|用户指南|中文文档" data-url="http://codeigniter.org.cn/user_guide/libraries/encryption.html" data-images="" data-content="">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+  </div>
+
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codeigniter"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+  <!-- 多说公共JS代码 end -->
+  </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2014 - 2015, 不列颠哥伦比亚理工学院.
+       最后修改: 2015-10-11.
+    </p>
+
+    <p>以 <a href="http://www.aneasystone.com/" target="_blank">aneasystone</a> 制作的手册为基础构建</p>
+  </div>
+
+  
+    <p>基于 <a href="http://sphinx-doc.org/">Sphinx</a> 并使用 <a href="https://readthedocs.org">Read the Docs</a> 提供的<a href="https://github.com/snide/sphinx_rtd_theme">风格</a>构建</p>
+    <p>
+        <a href="https://github.com/CodeIgniter-Chinese/codeigniter-user-guide" target="_blank">Github 简体中文翻译</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/codeigniter_user_guide.zip">离线版压缩包下载</a>
+        ·
+        <a href="http://codeigniter-chinese.github.io/codeigniter-user-guide/CodeIgniter.pdf">PDF 版下载</a>
+    </p>
+  
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.0.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+  
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-272152-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+  
+
+</body>
+</html>
