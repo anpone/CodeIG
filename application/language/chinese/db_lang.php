@@ -1,34 +1,29 @@
 <?php
-/**
- * System messages translation for CodeIgniter(tm)
- *
- * @author	CodeIgniter community
- * @copyright	Copyright (c) 2014 - 2015, British Columbia Institute of Technology (http://bcit.ca/)
- * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	http://codeigniter.com
- */
-defined('BASEPATH') OR exit('No direct script access allowed');
-$lang['db_invalid_connection_str'] = '無法根據送出的連接字串確定資料庫設定';
-$lang['db_unable_to_connect'] = '無法使用提供的設定連接到資料庫伺服器';
-$lang['db_unable_to_select'] = '無法選擇指定的資料庫：%s';
-$lang['db_unable_to_create'] = '無法創建指定的資料庫：%s';
-$lang['db_invalid_query'] = '送出的查詢無效';
-$lang['db_must_set_table'] = '查詢中必須設定要查詢的表名';
-$lang['db_must_use_set'] = '更新資料請使用 Set 方法';
-$lang['db_must_use_index'] = '必須指定索引以符合批次更新';
-$lang['db_batch_missing_index'] = '批次更新作業中一個或多個行缺少指定的索引';
-$lang['db_must_use_where'] = '更新作業必須包含 Where 條件';
-$lang['db_del_must_use_where'] = '刪除作業必須包含 Where 或 Like 條件';
-$lang['db_field_param_missing'] = '取得欄位需要指定表名稱';
-$lang['db_unsupported_function'] = '您目前使用的資料庫支援不支援此功能';
-$lang['db_transaction_failure'] = '交易失敗：執行回溯 (Rollback performed)';
-$lang['db_unable_to_drop'] = '無法刪除指定的資料庫';
-$lang['db_unsupported_feature'] = '您目前使用的資料庫不支援此功能';
-$lang['db_unsupported_compression'] = '伺服器不支援您選擇的檔案壓縮格式';
-$lang['db_filepath_error'] = '送出的檔案路徑無法寫入';
-$lang['db_invalid_cache_path'] = '送出的站純路徑無效或無法寫入';
-$lang['db_table_name_required'] = '此操作需要指定表名稱';
-$lang['db_column_name_required'] = '此操作需要指定列名稱';
-$lang['db_column_definition_required'] = '此操作需要指定列定義';
-$lang['db_unable_to_set_charset'] = '無法設定字元集：%s';
-$lang['db_error_heading'] = '資料庫發生錯誤';
+
+$lang['db_invalid_connection_str'] = '用您给出的连接字符串无法获得数据库设置.';
+$lang['db_unable_to_connect'] = '使用给出的设置无法连接数据库.';
+$lang['db_unable_to_select'] = '无法选择指定的数据库: %s';
+$lang['db_unable_to_create'] = '无法创建指定的数据库: %s';
+$lang['db_invalid_query'] = '查询无效.';
+$lang['db_must_set_table'] = '查询中必须设置数据库表.';
+$lang['db_must_use_set'] = '必须使用"set"命令更新记录.';
+$lang['db_must_use_index'] = '您必须为批量更新指定一个索引.';
+$lang['db_batch_missing_index'] = '批量更新中的一个或多个记录缺少指定的索引.';
+$lang['db_must_use_where'] = '更新记录时必须包含"where"子句.';
+$lang['db_del_must_use_where'] = '删除记录时必须包含"where"或"like"子句.';
+$lang['db_field_param_missing'] = '必须提供表名参数才能取得字段信息.';
+$lang['db_unsupported_function'] = '您使用的数据库不支持此功能.';
+$lang['db_transaction_failure'] = '事务失败: 已回滚.';
+$lang['db_unable_to_drop'] = '无法删除数据库.';
+$lang['db_unsuported_feature'] = '数据库平台不支持此功能.';
+$lang['db_unsuported_compression'] = '不支持此文件压缩格式.';
+$lang['db_filepath_error'] = '您指定的文件路径无法写入数据.';
+$lang['db_invalid_cache_path'] = '缓存路径无效或不可写.';
+$lang['db_table_name_required'] = '必须提供表名.';
+$lang['db_column_name_required'] = '必须提供字段名.';
+$lang['db_column_definition_required'] = '必须提供字段定义.';
+$lang['db_unable_to_set_charset'] = '无法设置客户端连接的字符集: %s';
+$lang['db_error_heading'] = '发生了一个数据库错误';
+
+/* End of file db_lang.php */
+/* Location: ./system/language/chinesesimplified/db_lang.php */

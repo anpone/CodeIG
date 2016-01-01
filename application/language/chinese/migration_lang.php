@@ -8,11 +8,11 @@
  * @link	http://codeigniter.com
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
-$lang['migration_none_found'] = '沒有發現任何遷移';
-$lang['migration_not_found'] = '無法根據版本號碼 %s 找到遷移方法';
-$lang['migration_sequence_gap'] = '版本遷移存在間隙：%s';
-$lang['migration_multiple_version'] = '有多個遷移對應到同一版本號：%s';
-$lang['migration_class_doesnt_exist'] = '無法找到遷移類別 "%s"';
-$lang['migration_missing_up_method'] = '無法找到遷移類別 "%s" 中的 "up" 方法';
-$lang['migration_missing_down_method'] = '無法找到遷移類別 "%s" 中的 " 方法';
-$lang['migration_invalid_filename'] = '無效的遷移檔名："%s"';
+$lang['migration_none_found'] = '没有发现任何迁移';
+$lang['migration_not_found'] = '无法根据版本号码%s 找到迁移方法';
+$lang['migration_sequence_gap'] = '版本迁移存在间隙：%s';
+$lang['migration_multiple_version'] = '有多个迁移对应到同一版本号：%s';
+$lang['migration_class_doesnt_exist'] = '无法找到迁移类别 "%s"';
+$lang['migration_missing_up_method'] = '无法找到迁移类别 "%s" 中的 "up" 方法';
+$lang['migration_missing_down_method'] = '无法找到迁移类别 "%s" 中的 " 方法';
+$lang['migration_invalid_filename'] = '无效的迁移档名："%s"';
